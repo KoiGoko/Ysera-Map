@@ -1,77 +1,98 @@
 <template>
   <div class="container">
-<!--    <v-map-->
-<!--      ref="mapRef"-->
-<!--      :accessToken="accessToken"-->
-<!--      :options="{-->
-<!--        center: [120, 30],-->
-<!--        zoom: 7,-->
-<!--        style: 'mapbox://styles/mapbox/satellite-v9',-->
-<!--        projection: 'mercator'-->
-<!--      }"-->
-<!--    >-->
-<!--      <v-geo-source id="spf" :data="fc"/>-->
-<!--      <v-fill-layer-->
-<!--        id="spf"-->
-<!--        source="spf"-->
-<!--        :paint="{-->
-<!--          'fill-color': ['get', 'color'],-->
-<!--          'fill-opacity': 0.96,-->
-<!--          'fill-outline-color': 'transparent'-->
+    <v-map
+      ref="mapRef"
+      :accessToken="accessToken"
+      :options="{
+        center: [120, 30],
+        zoom: 7,
+        style: 'mapbox://styles/mapbox/satellite-v9',
+        projection: 'mercator'
+      }"
+    >
+      <v-geo-source id="spf" :data="fc"/>
+      <v-fill-layer
+        id="spf"
+        source="spf"
+        :paint="{
+          'fill-color': ['get', 'color'],
+          'fill-opacity': bpm / 100,
+          'fill-outline-color': 'transparent'
 
-<!--        }"-->
-<!--      />-->
-<!--    </v-map>-->
+        }"
+      />
+    </v-map>
 
-    <div>
-      <v-slider thumb-color="purple" color="black"></v-slider>
-    </div>
-
-
-
-    <template>
-  <div class="d-flex flex-column">
-    <div>
-      <div class="text-caption">
-        Show thumb when using slider
-      </div>
-      <v-slider
-        thumb-label
-      ></v-slider>
-    </div>
-
-    <div>
-      <div class="text-caption">
-        Always show thumb label
-      </div>
-      <v-slider
-        thumb-label="always"
-      ></v-slider>
-    </div>
-
-    <div>
-      <div class="text-caption">
-        Custom thumb size
-      </div>
-      <v-slider
-        :thumb-size="36"
-        thumb-label="always"
-      ></v-slider>
-    </div>
-
-    <div>
-      <div class="text-caption">
-        Custom thumb label
-      </div>
-      <v-slider
-        thumb-label="always"
+    <v-card
+    class="slide-opacity mx-auto"
+    width="400"
+  >
+    <v-card-text>
+      <v-row
+        class="mb-4"
+        justify="space-between"
       >
+        <v-col class="text-left">
+          <span
+            class="text-h2 font-weight-light"
+            v-text="bpm"
+          ></span>
+          <span class="subheading font-weight-light me-1">BPM</span>
+          <v-fade-transition>
+            <v-avatar
+              v-if="isPlaying"
+              :color="color()"
+              :style="{
+                animationDuration: animationDuration
+              }"
+              class="mb-1 v-avatar--metronome"
+              size="12"
+            ></v-avatar>
+          </v-fade-transition>
+        </v-col>
+        <v-col class="text-right">
+<!--          <v-btn-->
+<!--            :color="color()"-->
+<!--            theme="dark"-->
+<!--            icon-->
+<!--            elevation="0"-->
+<!--            @click="toggle"-->
+<!--          >-->
+<!--            <v-icon size="large" :icon="isPlaying ? 'mdi-pause' : 'mdi-play'"></v-icon>-->
+<!--          </v-btn>-->
+        </v-col>
+      </v-row>
 
+      <v-slider
+        v-model="bpm"
+        :color="color()"
+        track-color="grey"
+        min="0"
+        max="100"
+        :step="1"
+      >
+        <template v-slot:prepend>
+          <v-btn
+            size="small"
+            variant="text"
+            icon="mdi-minus"
+            :color="color()"
+            @click="decrement"
+          ></v-btn>
+        </template>
+
+        <template v-slot:append>
+          <v-btn
+            size="small"
+            variant="text"
+            icon="mdi-plus"
+            :color="color()"
+            @click="increment"
+          ></v-btn>
+        </template>
       </v-slider>
-    </div>
-  </div>
-</template>
-
+    </v-card-text>
+  </v-card>
   </div>
 </template>
 
@@ -79,6 +100,32 @@
 import { reactive, ref, watch } from "vue";
 import {accessToken} from "@/utils/mapUtils"
 import * as turf from "@turf/turf"
+
+let bpm = ref(40)
+let interval = ref(null)
+let isPlaying = ref(false)
+function color() {
+  if (bpm.value < 100) return 'indigo'
+  if (bpm.value < 125) return 'teal'
+  if (bpm.value < 140) return 'green'
+  if (bpm.value < 175) return 'orange'
+  return 'red'
+}
+
+function animationDuration() {
+  return `${60 / bpm.value}s`
+}
+
+function increment() {
+  bpm.value++
+}
+function decrement() {
+  bpm.value--
+}
+function toggle() {
+  isPlaying.value = !isPlaying.value
+}
+
 const arrays = [
   [1, 0, 2, 4, 8, 6, 4, 6, 5, 9, 1, 3, 2, 4, 4, 6],
   [4, 0, 2, 4, 8, 5, 4, 6, 5, 9, 1, 3, 2, 4, 4, 6],
@@ -124,7 +171,7 @@ const colors = [
   "#813332",
   "#100101",
 ];
-
+let opacity = ref(0)
 function draw_color(min, max, value) {
   const index = Math.floor((value - min) / (max - min) * 9);
   return colors[index];
@@ -194,12 +241,25 @@ for (let i = 0; i < radius; i++) {
 </script>
 
 <style scoped>
-.slider {
+.slide-opacity {
   position: absolute;
-  height: 500px;
-  margin: 30px;
   top: 10px;
-  left: 30px;
+  right: 100px;
 }
+@keyframes metronome-example {
+    from {
+      transform: scale(.5);
+    }
+
+    to {
+      transform: scale(1);
+    }
+  }
+
+  .v-avatar--metronome {
+    animation-name: metronome-example;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
 
 </style>
