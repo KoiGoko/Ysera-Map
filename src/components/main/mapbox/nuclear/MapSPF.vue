@@ -1,29 +1,78 @@
 <template>
   <div class="container">
-    <v-map
-      ref="mapRef"
-      :accessToken="accessToken"
-      :options="{
-        center: [120, 30],
-        zoom: 10,
-        style: 'mapbox://styles/mapbox/satellite-v9',
-        projection: 'mercator'
-      }"
-    >
-      <v-geo-source id="spf" :data="fc"/>
-      <v-fill-layer
-        id="spf"
-        source="spf"
-        :paint="{
-          'fill-color': ['get', 'color'],
-        }"
-      />
-    </v-map>
+<!--    <v-map-->
+<!--      ref="mapRef"-->
+<!--      :accessToken="accessToken"-->
+<!--      :options="{-->
+<!--        center: [120, 30],-->
+<!--        zoom: 7,-->
+<!--        style: 'mapbox://styles/mapbox/satellite-v9',-->
+<!--        projection: 'mercator'-->
+<!--      }"-->
+<!--    >-->
+<!--      <v-geo-source id="spf" :data="fc"/>-->
+<!--      <v-fill-layer-->
+<!--        id="spf"-->
+<!--        source="spf"-->
+<!--        :paint="{-->
+<!--          'fill-color': ['get', 'color'],-->
+<!--          'fill-opacity': 0.96,-->
+<!--          'fill-outline-color': 'transparent'-->
 
+<!--        }"-->
+<!--      />-->
+<!--    </v-map>-->
+
+    <div>
+      <v-slider thumb-color="purple" color="black"></v-slider>
+    </div>
+
+
+
+    <template>
+  <div class="d-flex flex-column">
+    <div>
+      <div class="text-caption">
+        Show thumb when using slider
+      </div>
+      <v-slider
+        thumb-label
+      ></v-slider>
+    </div>
+
+    <div>
+      <div class="text-caption">
+        Always show thumb label
+      </div>
+      <v-slider
+        thumb-label="always"
+      ></v-slider>
+    </div>
+
+    <div>
+      <div class="text-caption">
+        Custom thumb size
+      </div>
+      <v-slider
+        :thumb-size="36"
+        thumb-label="always"
+      ></v-slider>
+    </div>
+
+    <div>
+      <div class="text-caption">
+        Custom thumb label
+      </div>
+      <v-slider
+        thumb-label="always"
+      >
+
+      </v-slider>
+    </div>
+  </div>
+</template>
 
   </div>
-
-
 </template>
 
 <script setup lang="ts">
@@ -112,7 +161,7 @@ for (let i = 0; i < radius; i++) {
               center,
             ],
           ], {
-            color: get_color(value[j])
+            color: get_color(value[j]),
           })
         )
       } else {
@@ -142,10 +191,15 @@ for (let i = 0; i < radius; i++) {
     }
 }
 
-  // }
-// }
 </script>
 
 <style scoped>
+.slider {
+  position: absolute;
+  height: 500px;
+  margin: 30px;
+  top: 10px;
+  left: 30px;
+}
 
 </style>

@@ -30,12 +30,12 @@
 import { ref, reactive } from 'vue'
 import {useRouter, useRoute} from "vue-router";
 const router = useRouter()
-const icons = reactive({
+let icons = reactive({
   index: 'mdi-map-outline',
   land: 'mdi-tree-outline',
   elevation: 'mdi-landslide-outline'
 })
-const originIcons = reactive({
+let originIcons = reactive({
   index: 'mdi-map',
   land: 'mdi-tree',
   elevation: 'mdi-landslide'
