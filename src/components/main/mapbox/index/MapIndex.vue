@@ -1,6 +1,6 @@
 
 <template>
-  <div class="container">
+  <div>
     <v-map
       ref="mapRef"
       :accessToken="accessToken"
@@ -71,16 +71,32 @@
       >
         {{ state.popupOptions.content }}
       </v-popup>
-
     </v-map>
 
+
+<!--    <v-btn-group variant="elevated" density="compact" class="switch" color="primary">-->
+<!--      <v-btn size="small">影像</v-btn>-->
+<!--      <v-btn size="small">底图</v-btn>-->
+<!--    </v-btn-group>-->
   </div>
+
+
 </template>
 
 <script setup lang="ts">
 import { reactive, ref, watch } from "vue";
 import {accessToken} from "@/utils/mapUtils"
+import {center} from "@turf/turf";
+import FooterBottom from "@/components/main/FooterBottom.vue";
 const mapRef = ref();
+const styles = reactive([
+  {style: "mapbox://styles/mapbox/satellite-v9", text: "高清影像"},
+  {style: "mapbox://styles/mapbox/streets-v11", text: "MapBox底图"},
+]);
+const mapLists = reactive([
+        { text: '高清影像', icon: 'mdi-clock' },
+        { text: 'MapBox底图', icon: 'mdi-account' },
+    ]);
 const state = reactive({
   mapOptions: {
     style: "mapbox://styles/mapbox/satellite-v9",
@@ -134,5 +150,6 @@ const handleClickPoint = (e) => {
 </script>
 
 <style scoped>
+
 </style>
 

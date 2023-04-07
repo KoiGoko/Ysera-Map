@@ -1,15 +1,15 @@
 <template>
   <v-bottom-navigation
     elevation="0"
-    height="75"
-    bg-color="#f6f8fc"
+    height="74"
+    bg-color="primary"
   >
     <v-spacer></v-spacer>
-      <v-btn @click="addIndex" :prepend-icon="icons.index" class="rounded-xl">核电分布</v-btn>
-      <v-btn @click="addFinance" :prepend-icon="icons.finance" class="rounded-xl">经济效应</v-btn>
-      <v-btn @click="addMeteorology" :prepend-icon="icons.meteorology" class="rounded-xl">气象反演</v-btn>
-      <v-btn @click="addNuclear" :prepend-icon="icons.nuclear" class="rounded-xl">事故模拟</v-btn>
-      <v-btn @click="addEvacuate" :prepend-icon="icons.evacuate" class="rounded-xl">撤离仿真</v-btn>
+      <v-btn @click="addIndex" :prepend-icon="icons.index">核电分布</v-btn>
+      <v-btn @click="addFinance" :prepend-icon="icons.finance">经济效应</v-btn>
+      <v-btn @click="addMeteorology" :prepend-icon="icons.meteorology">气象反演</v-btn>
+      <v-btn @click="addNuclear" :prepend-icon="icons.nuclear">事故模拟</v-btn>
+      <v-btn @click="addEvacuate" :prepend-icon="icons.evacuate">撤离仿真</v-btn>
     <v-spacer></v-spacer>
 
   </v-bottom-navigation>

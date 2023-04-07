@@ -6,6 +6,7 @@
         width="200"
         permanent
         color="primary"
+        elevation="0"
       >
         <v-list-item
           nav
@@ -15,7 +16,6 @@
           </template>
         </v-list-item>
 
-        <v-divider></v-divider>
 
         <v-list density="compact" nav>
           <v-list-item @click="indexPush" class="rounded-end-pill" :prepend-icon="icons.index" title="全球核电" value="nuclear"></v-list-item>
