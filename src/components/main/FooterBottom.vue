@@ -5,11 +5,11 @@
     bg-color="primary"
   >
     <v-spacer></v-spacer>
-      <v-btn @click="addIndex" :prepend-icon="icons.index">核电分布</v-btn>
-      <v-btn @click="addFinance" :prepend-icon="icons.finance">经济效应</v-btn>
-      <v-btn @click="addMeteorology" :prepend-icon="icons.meteorology">气象反演</v-btn>
-      <v-btn @click="addNuclear" :prepend-icon="icons.nuclear">事故模拟</v-btn>
-      <v-btn @click="addEvacuate" :prepend-icon="icons.evacuate">撤离仿真</v-btn>
+      <v-btn class="rounded-lg" @click="addIndex" :prepend-icon="icons.index">核电分布</v-btn>
+      <v-btn class="rounded-lg" @click="addFinance" :prepend-icon="icons.finance">经济效应</v-btn>
+      <v-btn class="rounded-lg" @click="addMeteorology" :prepend-icon="icons.meteorology">气象反演</v-btn>
+      <v-btn class="rounded-lg" @click="addNuclear" :prepend-icon="icons.nuclear">事故模拟</v-btn>
+      <v-btn class="rounded-lg" @click="addEvacuate" :prepend-icon="icons.evacuate">撤离仿真</v-btn>
     <v-spacer></v-spacer>
 
   </v-bottom-navigation>

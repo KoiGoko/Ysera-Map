@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { reactive, ref, watch } from "vue";
+import { ref } from "vue";
 import {accessToken} from "@/utils/mapUtils"
-import * as turf from "@turf/turf"
 const mapRef = ref();
 </script>
-
 <template>
+  <!--地形高程-->
   <div class="container">
     <v-map
       ref="mapRef"

@@ -1,7 +1,8 @@
-
 <template>
   <div>
+    <!--全球核电站-->
     <v-map
+      class="map"
       ref="mapRef"
       :accessToken="accessToken"
       :options="state.mapOptions"
@@ -71,35 +72,31 @@
       >
         {{ state.popupOptions.content }}
       </v-popup>
+      <MapScale></MapScale>
+      <MapNavControl></MapNavControl>
+      <SwitchBgMap @switch-map="receiveChild"></SwitchBgMap>
     </v-map>
-
-
-<!--    <v-btn-group variant="elevated" density="compact" class="switch" color="primary">-->
-<!--      <v-btn size="small">影像</v-btn>-->
-<!--      <v-btn size="small">底图</v-btn>-->
-<!--    </v-btn-group>-->
   </div>
-
-
 </template>
 
 <script setup lang="ts">
 import { reactive, ref, watch } from "vue";
+
+import MapScale from "@/components/main/utils/MapScale.vue";
+import SwitchBgMap from "@/components/main/utils/SwitchBgMap.vue";
+import MapNavControl from "@/components/main/utils/MapNavControl.vue";
+
 import {accessToken} from "@/utils/mapUtils"
-import {center} from "@turf/turf";
-import FooterBottom from "@/components/main/FooterBottom.vue";
 const mapRef = ref();
-const styles = reactive([
-  {style: "mapbox://styles/mapbox/satellite-v9", text: "高清影像"},
-  {style: "mapbox://styles/mapbox/streets-v11", text: "MapBox底图"},
-]);
-const mapLists = reactive([
-        { text: '高清影像', icon: 'mdi-clock' },
-        { text: 'MapBox底图', icon: 'mdi-account' },
-    ]);
+
+let style = ref('mapbox://styles/mapbox/light-v11');
+function receiveChild(data) {
+  style.value = data
+}
+
 const state = reactive({
   mapOptions: {
-    style: "mapbox://styles/mapbox/satellite-v9",
+    style: style,
     center: [-103.5917, 40.6699],
     projection: 'mercator',
     zoom: 4,
@@ -150,6 +147,5 @@ const handleClickPoint = (e) => {
 </script>
 
 <style scoped>
-
 </style>
 

@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <!--土地利用-->
     <v-map
       ref="mapRef"
       :accessToken="accessToken"
@@ -10,6 +11,8 @@
         projection: 'mercator'
       }"
     >
+      <v-scale-control position="top-left">
+      </v-scale-control>
       <v-raster-source
         id="tiles"
         :tiles="[
@@ -28,6 +31,5 @@ import {accessToken} from "@/utils/mapUtils"
 </script>
 
 <style scoped>
-
 </style>
 

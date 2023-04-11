@@ -20,7 +20,11 @@ const myCustomLightTheme = {
     info: '#2196F3',
     success: '#4CAF50',
     warning: '#FB8C00',
-  }
+  },
+  fonts: {
+      body: 'Roboto',
+      heading: 'Roboto',
+    },
 }
 
 // @ts-ignore
