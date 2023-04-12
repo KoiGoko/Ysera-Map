@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { reactive, ref, watch } from "vue";
+import { reactive, ref } from "vue";
 import {accessToken} from "@/utils/mapUtils"
-import * as turf from "@turf/turf"
 const mapRef = ref();
 </script>
 

@@ -5,11 +5,11 @@
       class="map"
       ref="mapRef"
       :accessToken="accessToken"
-      :options="state.mapOptions"
+      :options=state.mapOptions
     >
       <v-geo-source
         id="earthquakes"
-        data="http://127.0.0.1:8000/index/index_geojson/"
+        :data=data
         :cluster="true"
         :clusterMaxZoom="16"
         :clusterRadius="50"
@@ -88,13 +88,13 @@ import MapNavControl from "@/components/main/utils/MapNavControl.vue";
 
 import {accessToken} from "@/utils/mapUtils"
 const mapRef = ref();
+let style = ref('mapbox://styles/mapbox/satellite-v9');
+let data = ref('http://127.0.0.1:8000/index/index_geojson/');
 
-let style = ref('mapbox://styles/mapbox/light-v11');
 function receiveChild(data) {
   style.value = data
 }
-
-const state = reactive({
+let state = reactive({
   mapOptions: {
     style: style,
     center: [-103.5917, 40.6699],

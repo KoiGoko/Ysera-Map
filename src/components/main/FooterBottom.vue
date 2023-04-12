@@ -11,13 +11,12 @@
       <v-btn class="rounded-lg" @click="addNuclear" :prepend-icon="icons.nuclear">事故模拟</v-btn>
       <v-btn class="rounded-lg" @click="addEvacuate" :prepend-icon="icons.evacuate">撤离仿真</v-btn>
     <v-spacer></v-spacer>
-
   </v-bottom-navigation>
 </template>
 
 <script setup lang="ts">
 import {reactive} from "vue"
-import { useRouter, useRoute } from 'vue-router'
+import { useRouter } from 'vue-router'
 const icons = reactive({
   index: 'mdi-map-outline',
   finance: 'mdi-file-document-edit-outline',

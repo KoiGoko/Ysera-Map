@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <!--土地利用-->
+    <!--land use-->
     <v-map
       ref="mapRef"
       :accessToken="accessToken"

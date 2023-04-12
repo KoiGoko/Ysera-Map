@@ -1,7 +1,7 @@
 <template>
-  <!--底图切换组件-->
+  <!--bg-map switch-->
   <v-menu class="switch-map">
-    <template v-slot:activator="{ props  }">
+    <template v-slot:activator="{ props }">
       <v-btn class="switch-map" elevation="4" icon="mdi-switch" color="primary" v-bind="props"></v-btn>
     </template>
     <v-btn @click="switchMap('mapbox')" icon="mdi-earth"></v-btn>
