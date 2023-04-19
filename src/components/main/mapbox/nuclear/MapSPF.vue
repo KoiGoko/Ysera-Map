@@ -11,15 +11,7 @@
         projection: 'mercator'
       }"
     >
-      <v-geo-source id="spf" :data="data1"/>
-      <v-line-layer
-        id="spf-line"
-        source="spf"
-        :paint="{
-          'line-width': 0,
-          'line-opacity': 0,
-        }"
-      />
+      <v-geo-source id="spf" :data="data"/>
       <v-fill-layer
         ref="fillLayerRef"
         id="spf"
@@ -27,54 +19,20 @@
         :paint="{
           'fill-color': ['get', 'color'],
           'fill-opacity': bpm / 100,
-          // 'fill-outline-color': 'transparent',
         }"
       />
     </v-map>
 
     <v-card
     class="slide-opacity mx-auto"
-    width="400"
+    width="300"
+    color="primary"
+    height="74"
   >
     <v-card-text>
-      <v-row
-        class="mb-4"
-        justify="space-between"
-      >
-        <v-col class="text-left">
-          <span
-            class="text-h2 font-weight-light"
-            v-text="bpm"
-          ></span>
-          <span class="subheading font-weight-light me-1">BPM</span>
-          <v-fade-transition>
-            <v-avatar
-              v-if="isPlaying"
-              :color="color()"
-              :style="{
-                animationDuration: animationDuration
-              }"
-              class="mb-1 v-avatar--metronome"
-              size="12"
-            ></v-avatar>
-          </v-fade-transition>
-        </v-col>
-        <v-col class="text-right">
-<!--          <v-btn-->
-<!--            :color="color()"-->
-<!--            theme="dark"-->
-<!--            icon-->
-<!--            elevation="0"-->
-<!--            @click="toggle"-->
-<!--          >-->
-<!--            <v-icon size="large" :icon="isPlaying ? 'mdi-pause' : 'mdi-play'"></v-icon>-->
-<!--          </v-btn>-->
-        </v-col>
-      </v-row>
-
       <v-slider
         v-model="bpm"
-        :color="color()"
+        color="black"
         track-color="grey"
         min="0"
         max="100"
@@ -85,17 +43,16 @@
             size="small"
             variant="text"
             icon="mdi-minus"
-            :color="color()"
+            color="black"
             @click="decrement"
           ></v-btn>
         </template>
-
         <template v-slot:append>
           <v-btn
             size="small"
             variant="text"
             icon="mdi-plus"
-            :color="color()"
+            color="black"
             @click="increment"
           ></v-btn>
         </template>
@@ -109,22 +66,8 @@
 import {ref} from "vue";
 import {accessToken} from "@/utils/mapUtils"
 import * as turf from "@turf/turf"
-
-let bpm = ref(40)
-let interval = ref(null)
-let isPlaying = ref(false)
-
-function color() {
-  if (bpm.value < 100) return 'indigo'
-  if (bpm.value < 125) return 'teal'
-  if (bpm.value < 140) return 'green'
-  if (bpm.value < 175) return 'orange'
-  return 'red'
-}
-
-function animationDuration() {
-  return `${60 / bpm.value}s`
-}
+let bpm = ref(50)
+let data = ref()
 
 function increment() {
   bpm.value++
@@ -132,12 +75,9 @@ function increment() {
 function decrement() {
   bpm.value--
 }
-function toggle() {
-  isPlaying.value = !isPlaying.value
-}
-let data1 = ref()
+
 const arrays = [
-  [1, 0, 2, 4, 8, 6, 4, 6, 5, 9, 1, 3, 2, 4, 4, 6],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [4, 0, 2, 4, 8, 5, 4, 6, 5, 9, 1, 3, 2, 4, 4, 6],
   [3, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
   [4, 0, 2, 4, 8, 6, 5, 6, 5, 8, 1, 3, 2, 4, 4, 6],
@@ -170,16 +110,14 @@ const arrays = [
 ]
 
 const colors = [
-  "#3034C5",
-  "#3454FF",
-  "#35AEFE",
-  "#4CFFDF",
-  "#69FF65",
-  "#DFFF4D",
-  "#FFBE35",
-  "#FE6934",
-  "#813332",
-  "#100101",
+  '#f44336', // red 500
+  '#ff9800', // orange 500
+  '#ffc107', // amber 500
+  '#8bc34a', // lightgreen 500
+  '#4caf50', // green 500
+  '#2196f3', // blue 500
+  '#3f51b5', // indigo 500
+  '#9c27b0', // purple 500
 ];
 let opacity = ref(0)
 function draw_color(min, max, value) {
@@ -192,20 +130,17 @@ function get_color(value) {
   }
   return colors[value]
 }
-
 const fc = turf.featureCollection([]);
-let data = turf.circle([120, 30], 10, {steps: 100, units: 'kilometers'})
 const radius = 30;
 const center = [120, 30];
 let prevCircle;
-let sum = 0
 for (let i = 0; i < radius; i++) {
   let circle = turf.circle(center, i+1, {steps: 64, units: 'kilometers'})
   const value = arrays[i]
   for (let j = 0; j < 16; j++) {
-    // if (value[j] === 0) {
-    //   continue;
-    // }
+    if (value[j] === 0) {
+      continue;
+    }
       if (i === 0) {
         fc.features.push(
           turf.polygon([
@@ -247,7 +182,7 @@ for (let i = 0; i < radius; i++) {
 
       }
     }
-  data1 = turf.dissolve(fc, {propertyName: "color"})
+  data = turf.dissolve(fc, {propertyName: "color"})
 
 }
 
@@ -257,7 +192,7 @@ for (let i = 0; i < radius; i++) {
 .slide-opacity {
   position: absolute;
   top: 10px;
-  right: 100px;
+  right: 10px;
 }
 @keyframes metronome-example {
     from {
@@ -268,11 +203,4 @@ for (let i = 0; i < radius; i++) {
       transform: scale(1);
     }
   }
-
-  .v-avatar--metronome {
-    animation-name: metronome-example;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-  }
-
 </style>
