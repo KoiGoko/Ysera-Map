@@ -4,6 +4,8 @@ import '@mdi/font/css/materialdesignicons.css'
 import 'mapbox-gl/dist/mapbox-gl.css';
 // @ts-ignore
 import colors from 'vuetify/lib/util/colors'
+// @ts-ignore
+import SourceHanSansSC from '@/assets/fonts/SourceHanSansSC-Normal.otf'
 
 import {createVuetify, ThemeDefinition } from 'vuetify'
 import * as components from 'vuetify/components'
@@ -24,6 +26,7 @@ const myCustomLightTheme = {
   fonts: {
       body: 'Roboto',
       heading: 'Roboto',
+      button: 'Roboto',
     },
 }
 

@@ -7,19 +7,27 @@
       :options="{
         center: [120, 30],
         zoom: 7,
-        style: 'mapbox://styles/mapbox/satellite-v9',
+        style: 'mapbox://styles/mapbox/light-v11',
         projection: 'mercator'
       }"
     >
-      <v-geo-source id="spf" :data="fc"/>
+      <v-geo-source id="spf" :data="data1"/>
+      <v-line-layer
+        id="spf-line"
+        source="spf"
+        :paint="{
+          'line-width': 0,
+          'line-opacity': 0,
+        }"
+      />
       <v-fill-layer
+        ref="fillLayerRef"
         id="spf"
         source="spf"
         :paint="{
           'fill-color': ['get', 'color'],
           'fill-opacity': bpm / 100,
-          'fill-outline-color': 'transparent'
-
+          // 'fill-outline-color': 'transparent',
         }"
       />
     </v-map>
@@ -98,13 +106,14 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, watch } from "vue";
+import {ref} from "vue";
 import {accessToken} from "@/utils/mapUtils"
 import * as turf from "@turf/turf"
 
 let bpm = ref(40)
 let interval = ref(null)
 let isPlaying = ref(false)
+
 function color() {
   if (bpm.value < 100) return 'indigo'
   if (bpm.value < 125) return 'teal'
@@ -126,7 +135,7 @@ function decrement() {
 function toggle() {
   isPlaying.value = !isPlaying.value
 }
-
+let data1 = ref()
 const arrays = [
   [1, 0, 2, 4, 8, 6, 4, 6, 5, 9, 1, 3, 2, 4, 4, 6],
   [4, 0, 2, 4, 8, 5, 4, 6, 5, 9, 1, 3, 2, 4, 4, 6],
@@ -210,7 +219,9 @@ for (let i = 0; i < radius; i++) {
             ],
           ], {
             color: get_color(value[j]),
-          })
+            outline: 'transparent',
+          },
+          )
         )
       } else {
         prevCircle = turf.circle(center, i, {steps: 64, units: 'kilometers'});
@@ -232,11 +243,12 @@ for (let i = 0; i < radius; i++) {
               color: get_color(value[j]),
             }
           )
-
         );
 
       }
     }
+  data1 = turf.dissolve(fc, {propertyName: "color"})
+
 }
 
 </script>

@@ -1,43 +1,43 @@
 <template>
   <div>
-    <!--全球核电站-->
     <v-map
-      class="map"
       ref="mapRef"
       :accessToken="accessToken"
       :options=state.mapOptions
     >
       <v-geo-source
-        id="earthquakes"
+        id="nuclear-stations"
         :data=data
         :cluster="true"
-        :clusterMaxZoom="16"
         :clusterRadius="50"
       />
+
       <v-circle-layer
-        id="clusters"
-        source="earthquakes"
+        id="nuclear-stations-circle"
+        source="nuclear-stations"
         :filter="['has', 'point_count']"
         :paint="{
           'circle-color': [
             'step',
             ['get', 'point_count'],
             '#51bbd6',
-            30,
+            20,
             '#f1f075',
-            50,
+            60,
             '#f28cb1',
-            80,
+            100,
             '#e20656',
           ],
           'circle-radius': [
             'step',
             ['get', 'point_count'],
             20,
-            100,
+            20,
             30,
-            750,
+            60,
             40,
+            100,
+            50,
           ],
         }"
         @click="handleClick"
@@ -46,7 +46,7 @@
       />
       <v-symbol-layer
         id="cluster-count"
-        source="earthquakes"
+        source="nuclear-stations"
         :filter="['has', 'point_count']"
         :layout="{
           'text-field': '{point_count_abbreviated}',
@@ -56,7 +56,7 @@
       />
       <v-circle-layer
         id="uncluster-point"
-        source="earthquakes"
+        source="nuclear-stations"
         :filter="['!', ['has', 'point_count']]"
         :paint="{
           'circle-color': '#11b4da',
@@ -66,40 +66,36 @@
         }"
         @click="handleClickPoint"
       />
-      <v-popup
-        :visible="state.popupOptions.visible"
-        :center="state.popupOptions.center"
-      >
-        {{ state.popupOptions.content }}
-      </v-popup>
+<!--      <v-popup-->
+<!--        :visible="state.popupOptions.visible"-->
+<!--        :center="state.popupOptions.center"-->
+<!--      >-->
+<!--        {{ state.popupOptions.content }}-->
+<!--      </v-popup>-->
       <MapScale></MapScale>
       <MapNavControl></MapNavControl>
-      <SwitchBgMap @switch-map="receiveChild"></SwitchBgMap>
+      <SwitchBgMap @switch-map="receiveChild">
+      </SwitchBgMap>
     </v-map>
   </div>
 </template>
 
 <script setup lang="ts">
 import { reactive, ref, watch } from "vue";
-
+import axios from "axios";
 import MapScale from "@/components/main/utils/MapScale.vue";
 import SwitchBgMap from "@/components/main/utils/SwitchBgMap.vue";
 import MapNavControl from "@/components/main/utils/MapNavControl.vue";
-
 import {accessToken} from "@/utils/mapUtils"
-const mapRef = ref();
-let style = ref('mapbox://styles/mapbox/satellite-v9');
-let data = ref('http://127.0.0.1:8000/index/index_geojson/');
-
-function receiveChild(data) {
-  style.value = data
-}
+let style = ref('mapbox://styles/mapbox/light-v11');
+const mapRef = ref()
+const data = reactive({
+  features: []
+});
 let state = reactive({
   mapOptions: {
     style: style,
-    center: [-103.5917, 40.6699],
     projection: 'mercator',
-    zoom: 4,
   },
   popupOptions: {
     visible: false,
@@ -108,14 +104,28 @@ let state = reactive({
   },
 });
 
+async function fetchData() {
+  try {
+    const response = await axios.get('http://127.0.0.1:8000/index/index_geojson')
+    data.features = response.data.features
+  } catch (error) {
+    console.error(error)
+  }
+}
+function receiveChild(value: string) {
+  style.value = value;
+  watch(style, fetchData)
+}
+
 const handleClick = (e) => {
   const map = e.target;
+  console.log(e.target)
   const features = map.queryRenderedFeatures(e.point, {
-    layers: ["clusters"],
+    layers: ["nuclear-stations-circle"],
   });
   const clusterId = features[0].properties.cluster_id;
   map
-    .getSource("earthquakes")
+    .getSource("nuclear-stations")
     .getClusterExpansionZoom(clusterId, (err, zoom) => {
       if (err) return;
       map.easeTo({
@@ -134,18 +144,21 @@ const handleMouseLeave = (e) => {
 
 const handleClickPoint = (e) => {
   const coordinates = e.features[0].geometry.coordinates.slice();
-  const mag = e.features[0].properties.mag;
-  const tsunami = e.features[0].properties.tsunami === 1 ? "yes" : "no";
 
   while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
     coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
   }
   state.popupOptions.visible = true;
-  state.popupOptions.content = `magnitude: ${mag}<br>Was there a tsunami?: ${tsunami}`;
+  state.popupOptions.content = data.features[0].name;
   state.popupOptions.center = coordinates;
 };
 </script>
 
 <style scoped>
+.switch-map {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
 </style>
 
