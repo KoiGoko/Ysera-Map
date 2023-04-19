@@ -110,14 +110,16 @@ const arrays = [
 ]
 
 const colors = [
-  '#f44336', // red 500
-  '#ff9800', // orange 500
-  '#ffc107', // amber 500
-  '#8bc34a', // lightgreen 500
-  '#4caf50', // green 500
-  '#2196f3', // blue 500
-  '#3f51b5', // indigo 500
-  '#9c27b0', // purple 500
+  '#FFEBEE',
+  '#FFCDD2',
+  '#EF9A9A',
+  '#E57373',
+  '#EF5350',
+  '#F44336',
+  '#E53935',
+  '#D32F2F',
+  '#C62828',
+  '#B71C1C'
 ];
 let opacity = ref(0)
 function draw_color(min, max, value) {
@@ -154,7 +156,6 @@ for (let i = 0; i < radius; i++) {
             ],
           ], {
             color: get_color(value[j]),
-            outline: 'transparent',
           },
           )
         )
