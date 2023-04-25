@@ -1,33 +1,17 @@
 <template>
-  <v-card>
-    <v-navigation-drawer
-      width="200"
-      permanent
-      expand-on-hover
-      rail
-      color="primary"
-    >
-      <v-list-item
-        nav
-      >
-        <template v-slot:append>
-        </template>
-      </v-list-item>
-
-      <v-divider></v-divider>
-
-      <v-list density="compact" nav>
-        <v-list-item @click="weatherPush" class="rounded-end-pill" :prepend-icon="icons.weather" title="全球气象" value="weather"></v-list-item>
-        <v-list-item @click="typhoonPush" class="rounded-end-pill" :prepend-icon="icons.typhoon" title="台风情况" value="typhoon"></v-list-item>
-        <v-list-item @click="inversionPush" class="rounded-end-pill" :prepend-icon="icons.inversion" title="气象反演" value="inversion"></v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-  </v-card>
+  <DrawMain>
+    <v-list density="compact" nav>
+      <v-list-item @click="weatherPush" class="rounded-end-pill" :prepend-icon="icons.weather" title="全球气象" value="weather"></v-list-item>
+      <v-list-item @click="typhoonPush" class="rounded-end-pill" :prepend-icon="icons.typhoon" title="台风情况" value="typhoon"></v-list-item>
+      <v-list-item @click="inversionPush" class="rounded-end-pill" :prepend-icon="icons.inversion" title="气象反演" value="inversion"></v-list-item>
+    </v-list>
+  </DrawMain>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import {useRouter, useRoute} from "vue-router";
+import { reactive } from 'vue'
+import { useRouter } from "vue-router";
+import DrawMain from "@/components/main/drawer/DrawMain.vue";
 const router = useRouter()
 const icons = reactive({
   weather: 'mdi-cloud-percent-outline',
@@ -73,7 +57,6 @@ function inversionPush() {
   toggleIcon('inversion')
 }
 </script>
-
 
 <style>
 .rounded-end-pill {

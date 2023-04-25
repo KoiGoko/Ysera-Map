@@ -1,33 +1,17 @@
 <template>
-  <v-card>
-    <v-navigation-drawer
-      width="200"
-      expand-on-hover
-      rail
-      permanent
-      color="primary"
-    >
-      <v-list-item
-        nav
-      >
-        <template v-slot:append>
-        </template>
-      </v-list-item>
-
-      <v-divider></v-divider>
-
-      <v-list density="compact" nav>
-        <v-list-item @click="singlePush" class="rounded-end-pill" :prepend-icon="icons.dose_single" title="个人剂量" value="dose_single"></v-list-item>
-        <v-list-item @click="mutilatePush" class="rounded-end-pill" :prepend-icon="icons.dose_mutilate" title="集体计量" value="dose_mutilate"></v-list-item>
-        <v-list-item @click="otherPush" class="rounded-end-pill" :prepend-icon="icons.other" title="其他" value="other"></v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-  </v-card>
+  <DrawMain>
+    <v-list density="compact" nav>
+      <v-list-item @click="singlePush" class="rounded-end-pill" :prepend-icon="icons.dose_single" title="个人剂量" value="dose_single"></v-list-item>
+      <v-list-item @click="mutilatePush" class="rounded-end-pill" :prepend-icon="icons.dose_mutilate" title="集体计量" value="dose_mutilate"></v-list-item>
+      <v-list-item @click="otherPush" class="rounded-end-pill" :prepend-icon="icons.other" title="其他" value="other"></v-list-item>
+    </v-list>
+  </DrawMain>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import {useRouter, useRoute} from "vue-router";
+import { reactive } from 'vue'
+import { useRouter } from "vue-router";
+import DrawMain from "@/components/main/drawer/DrawMain.vue";
 const router = useRouter()
 const icons = reactive({
   dose_single: 'mdi-account-outline',

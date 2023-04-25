@@ -30,7 +30,7 @@ function switchMap(SwitchMap:string) {
 <style scoped>
 .switch-map {
     position: absolute;
-    bottom: 20px;
-    left: 20px;
+    top: 20px;
+    right: 20px;
 }
 </style>

@@ -1,34 +1,16 @@
 <template>
-  <v-card>
-      <v-navigation-drawer
-        expand-on-hover
-        rail
-        width="200"
-        permanent
-        color="primary"
-        elevation="0"
-      >
-        <v-list-item
-          nav
-        >
-          <template v-slot:append>
-
-          </template>
-        </v-list-item>
-
-
-        <v-list density="compact" nav>
-          <v-list-item @click="indexPush" class="rounded-end-pill" :prepend-icon="icons.index" title="全球核电" value="nuclear"></v-list-item>
-          <v-list-item @click="landPush" class="rounded-end-pill" :prepend-icon="icons.land" title="土地利用" value="land"></v-list-item>
-          <v-list-item @click="elevationPush" class="rounded-end-pill" :prepend-icon="icons.elevation" title="地形高程" value="elevation"></v-list-item>
-        </v-list>
-      </v-navigation-drawer>
-  </v-card>
+  <DrawMain>
+    <v-list density="compact" nav>
+      <v-list-item @click="indexPush" class="rounded-end-pill" :prepend-icon="icons.index" title="全球核电" value="nuclear"></v-list-item>
+      <v-list-item @click="landPush" class="rounded-end-pill" :prepend-icon="icons.land" title="土地利用" value="land"></v-list-item>
+      <v-list-item @click="elevationPush" class="rounded-end-pill" :prepend-icon="icons.elevation" title="地形高程" value="elevation"></v-list-item>
+    </v-list>
+  </DrawMain>
 </template>
-
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import {useRouter, useRoute} from "vue-router";
+import DrawMain from "@/components/main/drawer/DrawMain.vue";
 const router = useRouter()
 let icons = reactive({
   index: 'mdi-map-outline',

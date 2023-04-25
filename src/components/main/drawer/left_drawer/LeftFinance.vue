@@ -1,32 +1,16 @@
 <template>
-  <v-card>
-    <v-navigation-drawer
-      width="200"
-      permanent
-      expand-on-hover
-      rail
-      color="primary"
-    >
-      <v-list-item
-        nav
-      >
-        <template v-slot:append>
-        </template>
-      </v-list-item>
-
-      <v-divider></v-divider>
-
-      <v-list density="compact" nav>
-        <v-list-item @click="gdpPush" class="rounded-end-pill" :prepend-icon="icons.GDP" title="国民生产总值" value="GDP"></v-list-item>
-        <v-list-item @click="densityPush" class="rounded-end-pill" :prepend-icon="icons.density" title="人口密度" value="density"></v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-  </v-card>
+  <DrawMain>
+    <v-list density="compact" nav>
+      <v-list-item @click="gdpPush" class="rounded-end-pill" :prepend-icon="icons.GDP" title="国民生产总值" value="GDP"></v-list-item>
+      <v-list-item @click="densityPush" class="rounded-end-pill" :prepend-icon="icons.density" title="人口密度" value="density"></v-list-item>
+    </v-list>
+  </DrawMain>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import {useRouter, useRoute} from "vue-router";
+import { reactive } from 'vue'
+import { useRouter } from "vue-router";
+import DrawMain from "@/components/main/drawer/DrawMain.vue";
 const router = useRouter()
 const icons = reactive({
   GDP: 'mdi-bank-outline',
@@ -57,9 +41,7 @@ function densityPush() {
   })
   toggleIcon('density')
 }
-
 </script>
-
 
 <style>
 .rounded-end-pill {

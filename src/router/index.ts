@@ -1,10 +1,10 @@
 import {createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw} from 'vue-router'
 
-import LeftIndex from "@/components/main/drawer/LeftIndex.vue"
-import LeftFinance from "@/components/main/drawer/LeftFinance.vue"
-import LeftMeteorology from "@/components/main/drawer/LeftMeteorology.vue"
-import LeftNuclear from "@/components/main/drawer/LeftNuclear.vue"
-import LeftEvacuate from "@/components/main/drawer/LeftEvacuate.vue"
+import LeftIndex from "@/components/main/drawer/left_drawer/LeftIndex.vue"
+import LeftFinance from "@/components/main/drawer/left_drawer/LeftFinance.vue"
+import LeftMeteorology from "@/components/main/drawer/left_drawer/LeftMeteorology.vue"
+import LeftNuclear from "@/components/main/drawer/left_drawer/LeftNuclear.vue"
+import LeftEvacuate from "@/components/main/drawer/left_drawer/LeftEvacuate.vue"
 import MapIndex from "@/components/main/mapbox/index/MapIndex.vue"
 import MapLand from "@/components/main/mapbox/index/MapLand.vue"
 import MapElevation from "@/components/main/mapbox/index/MapElevation.vue"
