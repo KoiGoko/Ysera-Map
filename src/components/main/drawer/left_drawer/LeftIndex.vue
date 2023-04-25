@@ -13,12 +13,12 @@ import { useRouter } from "vue-router";
 import DrawMain from "@/components/main/drawer/DrawMain.vue";
 const router = useRouter()
 
-let icons = reactive({
+const icons = reactive({
   index: 'mdi-map-outline',
   land: 'mdi-tree-outline',
   elevation: 'mdi-landslide-outline'
 })
-let originIcons = reactive({
+const originIcons = reactive({
   index: 'mdi-map',
   land: 'mdi-tree',
   elevation: 'mdi-landslide'
