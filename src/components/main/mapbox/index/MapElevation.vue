@@ -1,23 +1,12 @@
-<script setup lang="ts">
-import { ref } from "vue";
-import {accessToken} from "@/utils/mapUtils"
-const mapRef = ref();
-</script>
 <template>
-  <!--地形高程-->
-  <div class="container">
-    <v-map
-      ref="mapRef"
-      :accessToken="accessToken"
-      :options="{
-        center: [120, 30],
-        zoom: 10,
-        style: 'mapbox://styles/mapbox/outdoors-v12',
-        projection: 'mercator'
-      }"
-    />
+  <div>
+    <MapMain></MapMain>
   </div>
 </template>
+
+<script setup lang="ts">
+import MapMain from "@/components/main/mapbox/MapMain.vue";
+</script>
 
 <style scoped>
 </style>

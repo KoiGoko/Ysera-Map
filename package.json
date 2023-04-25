@@ -7,6 +7,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mapbox/mapbox-gl-draw": "^1.4.1",
     "@turf/turf": "^6.5.0",
     "mapbox-gl": "^2.13.0",
     "mapvue": "^0.3.1",

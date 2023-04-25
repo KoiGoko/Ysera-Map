@@ -4,6 +4,7 @@
       ref="mapRef"
       :accessToken="accessToken"
       :options=state.mapOptions
+      @loaded="fetchData"
     >
       <v-geo-source
         id="nuclear-stations"
@@ -105,9 +106,13 @@ let state = reactive({
 });
 
 async function fetchData() {
+  // const map = mapRef.value.map
+  // map.setLayoutProperty('country-label', 'text-field', ['get', 'name_zh']);
+  // map.setLanguage('zh-Hans');
   try {
     const response = await axios.get('http://127.0.0.1:8000/index/index_geojson')
     data.features = response.data.features
+    console.log(mapRef.value.map)
   } catch (error) {
     console.error(error)
   }

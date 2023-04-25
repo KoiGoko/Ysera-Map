@@ -13,7 +13,7 @@ const mapRef = ref();
       :options="{
         center: [120, 30],
         zoom: 10,
-        style: 'mapbox://styles/mapbox/outdoors-v12',
+        style: 'mapbox://styles/mapbox/light-v11',
         projection: 'mercator'
       }"
     />

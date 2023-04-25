@@ -1,12 +1,11 @@
 <template>
   <v-layout>
     <v-main>
-      <v-card elevation="0" color="primary" height="35" class="rounded-0 ">
-      </v-card>
-      <router-view class="map" name="main_view"></router-view>
-      <FooterBottom></FooterBottom>
+      <v-card elevation="0" color="primary" height="35" class="rounded-0"/>
+      <router-view class="map" name="main_view"/>
+      <FooterBottom/>
     </v-main>
-    <router-view class="draw" name="left_draw"></router-view>
+    <router-view class="draw" name="left_draw"/>
   </v-layout>
 </template>
 

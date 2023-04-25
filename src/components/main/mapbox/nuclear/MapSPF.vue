@@ -1,16 +1,7 @@
 <template>
   <!--SPF计算-->
   <div class="container">
-    <v-map
-      ref="mapRef"
-      :accessToken="accessToken"
-      :options="{
-        center: [120, 30],
-        zoom: 7,
-        style: 'mapbox://styles/mapbox/light-v11',
-        projection: 'mercator'
-      }"
-    >
+    <MapMain>
       <v-geo-source id="spf" :data="data"/>
       <v-fill-layer
         ref="fillLayerRef"
@@ -21,8 +12,7 @@
           'fill-opacity': bpm / 100,
         }"
       />
-    </v-map>
-
+    </MapMain>
     <v-card
     class="slide-opacity mx-auto"
     width="300"
@@ -64,8 +54,8 @@
 
 <script setup lang="ts">
 import {ref} from "vue";
-import {accessToken} from "@/utils/mapUtils"
 import * as turf from "@turf/turf"
+import MapMain from "@/components/main/mapbox/MapMain.vue";
 let bpm = ref(50)
 let data = ref()
 
@@ -186,20 +176,18 @@ for (let i = 0; i < radius; i++) {
   data = turf.dissolve(fc, {propertyName: "color"})
 
 }
-
 </script>
 
 <style scoped>
 .slide-opacity {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  bottom: 10px;
+  left: calc(50% - 150px);
 }
 @keyframes metronome-example {
     from {
       transform: scale(.5);
     }
-
     to {
       transform: scale(1);
     }
