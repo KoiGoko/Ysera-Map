@@ -9,9 +9,10 @@
 </template>
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
-import {useRouter, useRoute} from "vue-router";
+import { useRouter } from "vue-router";
 import DrawMain from "@/components/main/drawer/DrawMain.vue";
 const router = useRouter()
+
 let icons = reactive({
   index: 'mdi-map-outline',
   land: 'mdi-tree-outline',
@@ -22,41 +23,34 @@ let originIcons = reactive({
   land: 'mdi-tree',
   elevation: 'mdi-landslide'
 })
-function toggleIcon(button_name: string) {
-  if (button_name === 'sub_index') {
-    icons.index = originIcons.index
-    icons.land = 'mdi-tree-outline'
-    icons.elevation = 'mdi-landslide-outline'
-  } else if (button_name === 'land') {
-    icons.index = 'mdi-map-outline'
-    icons.land = originIcons.land
-    icons.elevation = 'mdi-landslide-outline'
-  } else if (button_name === 'elevation') {
-    icons.index = 'mdi-map-outline'
-    icons.land = 'mdi-tree-outline'
-    icons.elevation = originIcons.elevation
-  }
+
+function toggleIcon(button_name: string, button_icons: { index: string, land: string, elevation: string }) {
+  icons.index = button_name === 'sub_index' ? originIcons.index : button_icons.index;
+  icons.land = button_name === 'land' ? originIcons.land : button_icons.land;
+  icons.elevation = button_name === 'elevation' ? originIcons.elevation : button_icons.elevation;
 }
+
 function indexPush() {
   router.push({
     name: 'sub_index'
   })
-  toggleIcon('sub_index')
+  toggleIcon('sub_index', { index: 'mdi-map', land: 'mdi-tree-outline', elevation: 'mdi-landslide-outline' })
 }
+
 function landPush() {
   router.push({
     name: 'land'
   })
-  toggleIcon('land')
+  toggleIcon('land', { index: 'mdi-map-outline', land: 'mdi-tree', elevation: 'mdi-landslide-outline' })
 }
+
 function elevationPush() {
   router.push({
     name: 'elevation'
   })
-  toggleIcon('elevation')
+  toggleIcon('elevation', { index: 'mdi-map-outline', land: 'mdi-tree-outline', elevation: 'mdi-landslide' })
 }
 </script>
-
 
 <style>
 .rounded-end-pill {

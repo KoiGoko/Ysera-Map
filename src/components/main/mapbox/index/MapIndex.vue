@@ -1,11 +1,7 @@
 <template>
   <div>
-    <v-map
-      ref="mapRef"
-      :accessToken="accessToken"
-      :options=state.mapOptions
-      @loaded="fetchData"
-    >
+    <MapMain
+      @loaded="fetchData">
       <v-geo-source
         id="nuclear-stations"
         :data=data
@@ -73,21 +69,15 @@
 <!--      >-->
 <!--        {{ state.popupOptions.content }}-->
 <!--      </v-popup>-->
-      <MapScale></MapScale>
-      <MapNavControl></MapNavControl>
-      <SwitchBgMap @switch-map="receiveChild">
-      </SwitchBgMap>
-    </v-map>
+    </MapMain>
   </div>
 </template>
 
 <script setup lang="ts">
 import { reactive, ref, watch } from "vue";
 import axios from "axios";
-import MapScale from "@/components/main/utils/MapScale.vue";
-import SwitchBgMap from "@/components/main/utils/SwitchBgMap.vue";
-import MapNavControl from "@/components/main/utils/MapNavControl.vue";
 import {accessToken} from "@/utils/mapUtils"
+import MapMain from "@/components/main/mapbox/MapMain.vue";
 let style = ref('mapbox://styles/mapbox/light-v11');
 const mapRef = ref()
 const data = reactive({
@@ -106,9 +96,6 @@ let state = reactive({
 });
 
 async function fetchData() {
-  // const map = mapRef.value.map
-  // map.setLayoutProperty('country-label', 'text-field', ['get', 'name_zh']);
-  // map.setLanguage('zh-Hans');
   try {
     const response = await axios.get('http://127.0.0.1:8000/index/index_geojson')
     data.features = response.data.features

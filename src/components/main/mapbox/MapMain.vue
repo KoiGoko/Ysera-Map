@@ -3,11 +3,11 @@
       ref="mapRef"
       :accessToken="accessToken"
       :options="options"
-      @loaded="initMap"
   >
     <slot></slot>
     <MapScale/>
     <SwitchBgMap @receiveChild="receiveChild"/>
+    <MapNavControl/>
   </v-map>
 </template>
 
@@ -16,6 +16,7 @@ import {ref, reactive} from "vue";
 import {accessToken} from "@/utils/mapUtils"
 import MapScale from "@/components/main/utils/MapScale.vue";
 import SwitchBgMap from "@/components/main/utils/SwitchBgMap.vue";
+import MapNavControl from "@/components/main/utils/MapNavControl.vue";
 const options = reactive({
   center: [120, 30],
   zoom: 5,
@@ -28,11 +29,6 @@ function receiveChild(value: string) {
   options.style = value;
 }
 
-function initMap() {
-  const map = mapRef.value.map;
-  map.setLayoutProperty('country-label', 'text-field', ['get', 'name_zh']);
-  map.setLanguage('zh-Hans');
-}
 </script>
 
 <style scoped>
