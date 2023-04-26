@@ -4,8 +4,8 @@
       <TabMain/>
       <router-view class="map" name="main_view"/>
       <FooterBottom/>
+      <router-view class="draw" name="left_draw"/>
     </v-main>
-    <router-view class="draw" name="left_draw"/>
   </v-layout>
 </template>
 

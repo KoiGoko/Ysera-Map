@@ -1,13 +1,5 @@
 <template>
-  <div>
-    <v-card
-      elevation="0"
-      color="primary"
-      height="30"
-      class="rounded-0">
-      <slot/>
-    </v-card>
-  </div>
+  <v-app-bar color="primary" elevation="0" height="30"></v-app-bar>
 </template>
 
 <script setup lang="ts">
