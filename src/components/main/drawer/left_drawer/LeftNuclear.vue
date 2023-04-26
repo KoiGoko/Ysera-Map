@@ -9,35 +9,27 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
 import { useRouter } from "vue-router";
 import DrawMain from "@/components/main/drawer/DrawMain.vue";
+import {useDrawerIcons} from "@/utils/useDrawerIcons"
 const router = useRouter()
-const icons = reactive({
-  dose_single: 'mdi-account-outline',
-  dose_mutilate: 'mdi-account-group-outline',
-  other: 'mdi-circle-outline'
-})
-const originIcons = reactive({
-  dose_single: 'mdi-account',
-  dose_mutilate: 'mdi-account-group',
-  other: 'mdi-circle'
-})
-function toggleIcon(button_name: string) {
-  if (button_name === 'dose_single') {
-    icons.dose_single = originIcons.dose_single
-    icons.dose_mutilate = 'mdi-account-group-outline'
-    icons.other = 'mdi-circle-outline'
-  } else if (button_name === 'dose_mutilate') {
-    icons.dose_single = 'mdi-account-outline'
-    icons.dose_mutilate = originIcons.dose_mutilate
-    icons.other = 'mdi-circle-outline'
-  } else if (button_name === 'other') {
-    icons.dose_single = 'mdi-account-outline'
-    icons.dose_mutilate = 'mdi-account-group-outline'
-    icons.other = originIcons.other
+const {icons, toggleIcon} = useDrawerIcons({
+  icons: {
+    dose_single: 'mdi-account-outline',
+    dose_mutilate: 'mdi-account-group-outline',
+    other: 'mdi-circle-outline'
+  },
+  activeIcons: {
+    dose_single: 'mdi-account',
+    dose_mutilate: 'mdi-account-group',
+    other: 'mdi-circle'
+  },
+  temp: {
+    dose_single: 'mdi-account-outline',
+    dose_mutilate: 'mdi-account-group-outline',
+    other: 'mdi-circle-outline'
   }
-}
+})
 function singlePush() {
   router.push({
     name:'single'

@@ -8,27 +8,24 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
 import { useRouter } from "vue-router";
 import DrawMain from "@/components/main/drawer/DrawMain.vue";
+import {useDrawerIcons} from "@/utils/useDrawerIcons"
 const router = useRouter()
-const icons = reactive({
-  success: 'mdi-run',
-  failure: 'mdi-alert-circle-outline'
-})
-const originIcons = reactive({
-  success: 'mdi-run-fast',
-  failure: 'mdi-alert-circle'
-})
-const toggleIcon = (button_name: string) => {
-  if (button_name === 'success') {
-    icons.success = originIcons.success
-    icons.failure = 'mdi-alert-circle-outline'
-  } else if (button_name === 'failure') {
-    icons.success = 'mdi-run'
-    icons.failure = originIcons.failure
+const {icons, toggleIcon} = useDrawerIcons({
+  icons: {
+    success: 'mdi-run',
+    failure: 'mdi-alert-circle-outline'
+  },
+  activeIcons: {
+    success: 'mdi-run-fast',
+    failure: 'mdi-alert-circle'
+  },
+  temp: {
+    success: 'mdi-run',
+    failure: 'mdi-alert-circle-outline'
   }
-}
+})
 function successPush() {
   router.push({
     name: 'success'

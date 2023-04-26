@@ -15,58 +15,32 @@
 </template>
 
 <script setup lang="ts">
-import {reactive} from "vue"
 import { useRouter } from 'vue-router'
-const icons = reactive({
-  index: 'mdi-map-outline',
-  finance: 'mdi-file-document-edit-outline',
-  meteorology: 'mdi-cloud-outline',
-  nuclear: 'mdi-atom',
-  evacuate: 'mdi-run'
-})
-const originIcons = reactive({
-  index: 'mdi-map',
-  finance: 'mdi-file-document-edit',
-  meteorology: 'mdi-cloud',
-  nuclear: 'mdi-atom-variant',
-  evacuate: 'mdi-run-fast'
-})
-
-function toggleIcon(button_name:string) {
-  if (button_name === 'index') {
-    icons.index = originIcons.index
-    icons.finance = 'mdi-file-document-edit-outline'
-    icons.meteorology = 'mdi-cloud-outline'
-    icons.nuclear = 'mdi-atom'
-    icons.evacuate = 'mdi-run'
-  } else if (button_name === 'finance') {
-    icons.index = 'mdi-map-outline'
-    icons.finance = originIcons.finance
-    icons.meteorology = 'mdi-cloud-outline'
-    icons.nuclear = 'mdi-atom'
-    icons.evacuate = 'mdi-run'
-  } else if (button_name === 'meteorology') {
-    icons.index = 'mdi-map-outline'
-    icons.finance = 'mdi-file-document-edit-outline'
-    icons.meteorology = originIcons.meteorology
-    icons.nuclear = 'mdi-atom'
-    icons.evacuate = 'mdi-run'
-  } else if (button_name === 'nuclear') {
-    icons.index = 'mdi-map-outline'
-    icons.finance = 'mdi-file-document-edit-outline'
-    icons.meteorology = 'mdi-cloud-outline'
-    icons.nuclear = originIcons.nuclear
-    icons.evacuate = 'mdi-run'
-  } else if (button_name === 'evacuate') {
-    icons.index = 'mdi-map-outline'
-    icons.finance = 'mdi-file-document-edit-outline'
-    icons.meteorology = 'mdi-cloud-outline'
-    icons.nuclear = 'mdi-atom'
-    icons.evacuate = originIcons.evacuate
-  }
-}
-
 const router = useRouter()
+import {useDrawerIcons} from "@/utils/useDrawerIcons"
+const {icons, toggleIcon} = useDrawerIcons({
+  icons: {
+    index: 'mdi-map-outline',
+    finance: 'mdi-file-document-edit-outline',
+    meteorology: 'mdi-cloud-outline',
+    nuclear: 'mdi-atom',
+    evacuate: 'mdi-run'
+  },
+  activeIcons: {
+    index: 'mdi-map',
+    finance: 'mdi-file-document-edit',
+    meteorology: 'mdi-cloud',
+    nuclear: 'mdi-atom-variant',
+    evacuate: 'mdi-run-fast'
+  },
+  temp: {
+    index: 'mdi-map-outline',
+    finance: 'mdi-file-document-edit-outline',
+    meteorology: 'mdi-cloud-outline',
+    nuclear: 'mdi-atom',
+    evacuate: 'mdi-run'
+  }
+})
 function addFinance() {
   router.push({
     name: 'finance'

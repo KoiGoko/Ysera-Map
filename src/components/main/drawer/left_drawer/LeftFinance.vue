@@ -8,19 +8,10 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
 import { useRouter } from "vue-router";
 import DrawMain from "@/components/main/drawer/DrawMain.vue";
 import {useDrawerIcons} from "@/utils/useDrawerIcons"
 const router = useRouter()
-// const icons = reactive({
-//   GDP: 'mdi-bank-outline',
-//   density: 'mdi-account-multiple-outline'
-// })
-// const originIcons = reactive({
-//   GDP: 'mdi-bank',
-//   density: 'mdi-account-multiple'
-// })
 const {icons, toggleIcon} = useDrawerIcons({
   icons: {
     GDP: 'mdi-bank-outline',
@@ -35,15 +26,7 @@ const {icons, toggleIcon} = useDrawerIcons({
     density: 'mdi-account-multiple-outline'
   }
 })
-// function toggleIcon(button_name: string) {
-//   if (button_name === 'GDP') {
-//     icons.GDP = originIcons.GDP
-//     icons.density = 'mdi-account-multiple-outline'
-//   } else if (button_name === 'density') {
-//     icons.GDP = 'mdi-bank-outline'
-//     icons.density = originIcons.density
-//   }
-// }
+
 function gdpPush() {
   router.push({
     name: 'gdp'

@@ -9,35 +9,27 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
 import { useRouter } from "vue-router";
 import DrawMain from "@/components/main/drawer/DrawMain.vue";
+import {useDrawerIcons} from "@/utils/useDrawerIcons"
 const router = useRouter()
-const icons = reactive({
-  weather: 'mdi-cloud-percent-outline',
-  typhoon: 'mdi-lightning-bolt-outline',
-  inversion: 'mdi-chart-areaspline',
-})
-const originIcons = reactive({
-  weather: 'mdi-cloud-percent',
-  typhoon: 'mdi-lightning-bolt',
-  inversion: 'mdi-chart-areaspline-variant',
-})
-function toggleIcon(button_name: string) {
-  if (button_name === 'weather') {
-    icons.weather = originIcons.weather
-    icons.typhoon = 'mdi-lightning-bolt-outline'
-    icons.inversion = 'mdi-chart-areaspline'
-  } else if (button_name === 'typhoon') {
-    icons.weather = 'mdi-cloud-percent-outline'
-    icons.typhoon = originIcons.typhoon
-    icons.inversion = 'mdi-chart-areaspline'
-  } else if (button_name === 'inversion') {
-    icons.weather = 'mdi-cloud-percent-outline'
-    icons.typhoon = 'mdi-lightning-bolt-outline'
-    icons.inversion = originIcons.inversion
+const {icons, toggleIcon} = useDrawerIcons({
+  icons: {
+    weather: 'mdi-cloud-percent-outline',
+    typhoon: 'mdi-lightning-bolt-outline',
+    inversion: 'mdi-chart-areaspline',
+  },
+  activeIcons: {
+    weather: 'mdi-cloud-percent',
+    typhoon: 'mdi-lightning-bolt',
+    inversion: 'mdi-chart-areaspline-variant',
+  },
+  temp: {
+    weather: 'mdi-cloud-percent-outline',
+    typhoon: 'mdi-lightning-bolt-outline',
+    inversion: 'mdi-chart-areaspline',
   }
-}
+})
 function weatherPush() {
   router.push({
     name: 'weather'
