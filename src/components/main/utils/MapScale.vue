@@ -1,7 +1,6 @@
 <template>
   <!--map scale-->
-  <v-scale-control class="scale-control" position="bottom-right">
-  </v-scale-control>
+  <v-scale-control class="scale-control" position="bottom-right"/>
 </template>
 
 <script setup lang="ts">

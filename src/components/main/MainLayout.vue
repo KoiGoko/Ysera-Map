@@ -1,7 +1,7 @@
 <template>
   <v-layout>
     <v-main>
-      <v-card elevation="0" color="primary" height="35" class="rounded-0"/>
+      <IndexTab/>
       <router-view class="map" name="main_view"/>
       <FooterBottom/>
     </v-main>
@@ -11,6 +11,7 @@
 
 <script setup lang="ts">
 import FooterBottom from "@/components/main/FooterBottom.vue";
+import IndexTab from "@/components/main/tab/top_tab/IndexTab.vue";
 </script>
 <style scoped>
 html, body {

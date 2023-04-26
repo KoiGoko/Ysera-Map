@@ -17,7 +17,7 @@ const myCustomLightTheme = {
     background: '#FFFFFF',
     surface: '#FFFFFF',
     primary: '#f6f8fc',
-    secondary: '#f6f8fc',
+    secondary: '#d5e0fc',
     error: '#B00020',
     info: '#2196F3',
     success: '#4CAF50',

@@ -15,7 +15,7 @@
     </MapMain>
     <v-card
     class="slide-opacity mx-auto"
-    width="300"
+    width="400"
     color="primary"
     height="74"
   >
@@ -181,8 +181,8 @@ for (let i = 0; i < radius; i++) {
 <style scoped>
 .slide-opacity {
   position: absolute;
-  bottom: 10px;
-  left: calc(50% - 150px);
+  bottom: 5px;
+  left: calc(50% - 200px);
 }
 @keyframes metronome-example {
     from {

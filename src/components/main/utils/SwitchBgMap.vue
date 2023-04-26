@@ -2,10 +2,10 @@
   <!--bg-map switch-->
   <v-menu class="switch-map">
     <template v-slot:activator="{ props }">
-      <v-btn class="switch-map" elevation="4" icon="mdi-switch" color="primary" v-bind="props"></v-btn>
+      <v-btn class="switch-map" elevation="4" icon="mdi-switch" color="primary" v-bind="props"/>
     </template>
-    <v-btn @click="switchMap('mapbox')" icon="mdi-earth"></v-btn>
-    <v-btn @click="switchMap('earth')" icon="mdi-mapbox"></v-btn>
+    <v-btn @click="switchMap('mapbox')" icon="mdi-earth"/>
+    <v-btn @click="switchMap('earth')" icon="mdi-mapbox"/>
   </v-menu>
 </template>
 
