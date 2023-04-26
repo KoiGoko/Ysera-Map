@@ -1,7 +1,7 @@
 <template>
   <v-layout>
     <v-main>
-      <IndexTab/>
+      <TabMain/>
       <router-view class="map" name="main_view"/>
       <FooterBottom/>
     </v-main>
@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import FooterBottom from "@/components/main/FooterBottom.vue";
-import IndexTab from "@/components/main/tab/top_tab/IndexTab.vue";
+import TabMain from "@/components/main/tab/TabMain.vue";
 </script>
 <style scoped>
 html, body {
@@ -19,10 +19,10 @@ html, body {
 }
 .map {
   position: absolute;
-  top: 35px;
+  top: 30px;
   /*地图计算宽度减去左侧抽屉宽度*/
   width: calc(100% - 50px);
-  height:calc(100% - 35px - 74px);
+  height:calc(100% - 30px - 74px);
 }
 /*隐藏地图logo和版权信息*/
 /deep/.mapboxgl-ctrl-logo {

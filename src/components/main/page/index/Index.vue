@@ -1,11 +1,11 @@
 <template>
-  <TabMain>
-  </TabMain>
+  <v-card elevation="2" width="300" height="200">
+
+  </v-card>
 </template>
 
 <script setup lang="ts">
 
-import TabMain from "@/components/main/tab/TabMain.vue";
 </script>
 
 <style scoped>
