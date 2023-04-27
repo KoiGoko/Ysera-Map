@@ -12,10 +12,10 @@
 <script setup lang="ts">
 import { ref, reactive } from "vue"
 const emit = defineEmits(['switch-map']);
-const style = ref('mapbox://styles/mapbox/light-v11')
+const style = ref('map://styles/map/light-v11')
 const mapbox = reactive({
-  mapbox: 'mapbox://styles/mapbox/light-v11',
-  earth: 'mapbox://styles/mapbox/satellite-streets-v11'
+  mapbox: 'map://styles/map/light-v11',
+  earth: 'map://styles/map/satellite-streets-v11'
 })
 function switchMap(SwitchMap:string) {
   if (SwitchMap === 'mapbox') {

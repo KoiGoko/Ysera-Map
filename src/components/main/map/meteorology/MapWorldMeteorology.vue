@@ -5,10 +5,9 @@
 </template>
 
 <script setup lang="ts">
-
-import MapMain from "@/components/main/mapbox/MapMain.vue";
+import MapMain from "@/components/main/map/MapMain.vue";
 </script>
 
 <style scoped>
-
 </style>
+

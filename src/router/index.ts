@@ -5,16 +5,16 @@ import LeftFinance from "@/components/main/drawer/left_drawer/LeftFinance.vue"
 import LeftMeteorology from "@/components/main/drawer/left_drawer/LeftMeteorology.vue"
 import LeftNuclear from "@/components/main/drawer/left_drawer/LeftNuclear.vue"
 import LeftEvacuate from "@/components/main/drawer/left_drawer/LeftEvacuate.vue"
-import MapIndex from "@/components/main/mapbox/index/MapIndex.vue"
-import MapLand from "@/components/main/mapbox/index/MapLand.vue"
-import MapElevation from "@/components/main/mapbox/index/MapElevation.vue"
-import MapSPF from "@/components/main/mapbox/nuclear/MapSPF.vue";
-import MapPopulation from "@/components/main/mapbox/finance/MapPopulation.vue";
-import MapWorldMeteorology from "@/components/main/mapbox/meteorology/MapWorldMeteorology.vue";
-import MapTyphoon from "@/components/main/mapbox/meteorology/MapTyphoon.vue";
-import MapInversion from "@/components/main/mapbox/meteorology/MapInversion.vue";
-import MapDose from "@/components/main/mapbox/nuclear/MapDose.vue";
-import MapDiffusion from "@/components/main/mapbox/nuclear/MapDiffusion.vue";
+import MapIndex from "@/components/main/map/index/MapIndex.vue"
+import MapLand from "@/components/main/map/index/MapLand.vue"
+import MapElevation from "@/components/main/map/index/MapElevation.vue"
+import MapSPF from "@/components/main/map/nuclear/MapSPF.vue";
+import MapPopulation from "@/components/main/map/finance/MapPopulation.vue";
+import MapWorldMeteorology from "@/components/main/map/meteorology/MapWorldMeteorology.vue";
+import MapTyphoon from "@/components/main/map/meteorology/MapTyphoon.vue";
+import MapInversion from "@/components/main/map/meteorology/MapInversion.vue";
+import MapDose from "@/components/main/map/nuclear/MapDose.vue";
+import MapDiffusion from "@/components/main/map/nuclear/MapDiffusion.vue";
 //routers
 const routes: Array<RouteRecordRaw> = [
   {

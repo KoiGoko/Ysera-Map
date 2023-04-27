@@ -1,11 +1,10 @@
 <template>
-  <v-card elevation="2" width="300" height="200">
-
-  </v-card>
+  <InfoCard/>
 </template>
 
 <script setup lang="ts">
 
+import InfoCard from "@/components/main/card/InfoCard.vue";
 </script>
 
 <style scoped>

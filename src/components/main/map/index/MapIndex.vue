@@ -76,7 +76,8 @@
 <script setup lang="ts">
 import { reactive, ref, watch } from "vue";
 import axios from "axios";
-import MapMain from "@/components/main/mapbox/MapMain.vue";
+import MapMain from "@/components/main/map/MapMain.vue";
+import Index from "@/components/main/card/index/Index.vue";
 let style = ref('mapbox://styles/mapbox/light-v11');
 const mapRef = ref()
 const data = reactive({
