@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar color="primary" elevation="0" height="30"></v-app-bar>
+  <v-app-bar color="primary" elevation="0" height="31"></v-app-bar>
 </template>
 
 <script setup lang="ts">

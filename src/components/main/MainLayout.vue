@@ -19,10 +19,10 @@ html, body {
 }
 .map {
   position: absolute;
-  top: 30px;
+  top: 31px;
   /*地图计算宽度减去左侧抽屉宽度*/
   width: calc(100% - 50px);
-  height:calc(100% - 30px - 74px);
+  height:calc(100% - 31px - 74px);
 }
 /*隐藏地图logo和版权信息*/
 /deep/.mapboxgl-ctrl-logo {
