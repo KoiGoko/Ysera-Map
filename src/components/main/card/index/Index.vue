@@ -1,5 +1,7 @@
 <template>
-  <InfoCard/>
+  <InfoCard>
+  </InfoCard>
+
 </template>
 
 <script setup lang="ts">
