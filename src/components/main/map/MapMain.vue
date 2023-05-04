@@ -9,7 +9,7 @@
     <SwitchBgMap @receiveChild="receiveChild"/>
     <MapNavControl/>
   </v-map>
-  <IndexIsland/>
+  <SearchBox></SearchBox>
 </template>
 
 <script setup lang="ts">
@@ -19,6 +19,7 @@ import MapScale from "@/components/main/utils/MapScale.vue";
 import SwitchBgMap from "@/components/main/utils/SwitchBgMap.vue";
 import MapNavControl from "@/components/main/utils/MapNavControl.vue";
 import IndexIsland from "@/components/main/card/index/IndexIsland.vue";
+import SearchBox from "@/components/main/card/IslandMain.vue";
 const options = reactive({
   center: [120, 30],
   zoom: 5,
