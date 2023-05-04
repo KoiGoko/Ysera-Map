@@ -18,7 +18,7 @@ import {accessToken} from "@/utils/mapUtils"
 import MapScale from "@/components/main/utils/MapScale.vue";
 import SwitchBgMap from "@/components/main/utils/SwitchBgMap.vue";
 import MapNavControl from "@/components/main/utils/MapNavControl.vue";
-import Index from "@/components/main/card/InfoCard.vue";
+import Index from "@/components/main/card/CardMain.vue";
 const options = reactive({
   center: [120, 30],
   zoom: 5,
