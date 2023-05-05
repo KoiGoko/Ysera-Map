@@ -1,22 +1,36 @@
 <template>
-  <v-card width="300" class="search-card rounded">
-    <v-text-field
-      bg-color="white"
-      v-model="searchText"
-      :placeholder="placeholderText"
-      rounded
-      dense
-      class="search-field no-focus-outline rounded-0"
-    />
-    <v-btn variant="flat" icon color="white" class="search-btn rounded-0">
-      <v-icon>mdi-magnify</v-icon>
-    </v-btn>
-    <MyMenu class="search-btn" ref="myMenu" />
-  </v-card>
+  <v-menu>
+    <template v-slot:activator="{ props }">
+      <v-card width="300" class="search-card rounded">
+        <v-text-field
+          bg-color="white"
+          v-model="searchText"
+          :placeholder="placeholderText"
+          rounded
+          dense
+          class="search-field no-focus-outline rounded-0"
+          v-bind="props"
+        />
+        <v-btn variant="flat" icon color="white" class="search-btn rounded-0">
+          <v-icon>mdi-magnify</v-icon>
+        </v-btn>
+        <v-btn variant="flat" icon color="white" class="search-btn rounded-0">
+          <v-icon>mdi-account</v-icon>
+        </v-btn>
+      </v-card>
+    </template>
+    <v-card elevation="2" width="300" height="400">
+      <v-list-item>hello</v-list-item>
+      <v-list-item>world</v-list-item>
+      <v-list-item>hao</v-list-item>
+    </v-card>
+  </v-menu>
+
 </template>
 
 <script>
 import MyMenu from "@/components/main/card/index/IndexIsland.vue";
+
 export default {
   name: "SearchBox",
   components: {
@@ -48,6 +62,7 @@ export default {
   height: 100%;
   background-color: rgba(255, 255, 255, 0.8);
 }
+
 .search-btn {
   height: 100%;
 }
