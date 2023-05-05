@@ -21,7 +21,7 @@
 
     </template>
     <v-card elevation="2" width="300" height="400">
-      <v-list-item>hello</v-list-item>
+      <v-list-item active>hello</v-list-item>
       <v-list-item>world</v-list-item>
       <v-list-item>hao</v-list-item>
     </v-card>
@@ -29,25 +29,10 @@
 
 </template>
 
-<script>
-import MyMenu from "@/components/main/card/index/IndexIsland.vue";
-import CardMain from "@/components/main/card/CardMain.vue";
-import IndexIsland from "@/components/main/card/index/IndexIsland.vue";
-
-export default {
-  name: "SearchBox",
-  components: {
-    IndexIsland,
-    CardMain,
-    MyMenu,
-  },
-  data() {
-    return {
-      searchText: "",
-      placeholderText: "Search",
-    };
-  },
-};
+<script setup lang="ts">
+import {ref} from "vue";
+const searchText = ref('')
+const placeholderText = ref('Search')
 </script>
 
 <style scoped>
