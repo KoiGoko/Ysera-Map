@@ -9,7 +9,7 @@
     <SwitchBgMap @receiveChild="receiveChild"/>
     <MapNavControl/>
   </v-map>
-  <CardMain/>
+  <SearchBox/>
 </template>
 
 <script setup lang="ts">

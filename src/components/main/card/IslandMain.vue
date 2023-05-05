@@ -30,10 +30,14 @@
 
 <script>
 import MyMenu from "@/components/main/card/index/IndexIsland.vue";
+import CardMain from "@/components/main/card/CardMain.vue";
+import IndexIsland from "@/components/main/card/index/IndexIsland.vue";
 
 export default {
   name: "SearchBox",
   components: {
+    IndexIsland,
+    CardMain,
     MyMenu,
   },
   data() {
