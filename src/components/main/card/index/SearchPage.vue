@@ -22,10 +22,10 @@ const items = reactive([
             class="search-field no-focus-outline rounded-0"
             v-bind="props"
           />
-          <v-btn @click="showSearchResult = true" variant="flat" icon color="white" class="search-btn rounded-0">
+          <v-btn variant="flat" icon color="white" class="search-btn rounded-0">
             <v-icon>mdi-magnify</v-icon>
           </v-btn>
-          <v-btn @click="showSearchResult = true" variant="flat" icon color="white" class="search-btn rounded-0">
+          <v-btn variant="flat" icon color="white" class="search-btn rounded-0">
             <v-icon>mdi-account</v-icon>
           </v-btn>
           <slot/>
@@ -39,6 +39,7 @@ const items = reactive([
             :key="i"
             :value="item"
             active-color="red"
+            @click="showSearchResult = true"
           >
             <template v-slot:prepend>
               <v-icon :icon="item.icon"></v-icon>
