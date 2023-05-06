@@ -63,14 +63,8 @@
         }"
         @click="handleClickPoint"
       />
-<!--      <v-popup-->
-<!--        :visible="state.popupOptions.visible"-->
-<!--        :center="state.popupOptions.center"-->
-<!--      >-->
-<!--        {{ state.popupOptions.content }}-->
-<!--      </v-popup>-->
     </MapMain>
-    <SearchPage/>
+    <SearchPage :data="data.features"/>
   </div>
 </template>
 
@@ -80,10 +74,7 @@ import axios from "axios";
 import MapMain from "@/components/main/map/MapMain.vue";
 import SearchPage from "@/components/main/card/index/SearchPage.vue";
 let style = ref('mapbox://styles/mapbox/light-v11');
-const mapRef = ref()
-const data = reactive({
-  features: []
-});
+const data = reactive({features: []});
 let state = reactive({
   mapOptions: {
     style: style,
@@ -100,7 +91,7 @@ async function fetchData() {
   try {
     const response = await axios.get('http://127.0.0.1:8000/index/index_geojson')
     data.features = response.data.features
-    console.log(mapRef.value.map)
+    // console.log(response)
   } catch (error) {
     console.error(error)
   }

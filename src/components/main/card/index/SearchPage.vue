@@ -1,10 +1,16 @@
 <script setup lang="ts">
-import {reactive, ref} from "vue";
+import {reactive, ref, defineProps} from "vue";
+const props = defineProps({
+  data: {
+    type: Object,
+  }
+});
+const name = props.data[2].properties.country
 const showSearchResult = ref(false)
 const searchText = ref('')
 const placeholderText = ref('Search')
 const items = reactive([
-  {text: 'Real-Time', icon: 'mdi-clock'},
+  {text: `${name}`, icon: 'mdi-clock'},
   {text: 'Audience', icon: 'mdi-account'},
   {text: 'Conversions', icon: 'mdi-flag'}])
 </script>
@@ -45,7 +51,7 @@ const items = reactive([
               <v-icon :icon="item.icon"></v-icon>
             </template>
 
-            <v-list-item-title v-text="item.text"></v-list-item-title>
+            <v-list-item-title class="font-italic" v-text="item.text"></v-list-item-title>
           </v-list-item>
         </v-list>
       </v-card>
@@ -90,6 +96,7 @@ const items = reactive([
   height: 100%;
   background-color: rgba(255, 255, 255, 0.8);
 }
+
 .search-btn {
   height: 100%;
 }
