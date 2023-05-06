@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import SearchResultPage from "@/components/main/card/index/SearchResultPage.vue";
-import SearchBox from "@/components/main/card/index/SearchBox.vue";
-import {ref} from "vue";
-
+import {reactive, ref} from "vue";
 const showSearchResult = ref(false)
 const searchText = ref('')
 const placeholderText = ref('Search')
+const items = reactive([
+  {text: 'Real-Time', icon: 'mdi-clock'},
+  {text: 'Audience', icon: 'mdi-account'},
+  {text: 'Conversions', icon: 'mdi-flag'}])
 </script>
 <template>
   <div class="box">
@@ -32,14 +33,30 @@ const placeholderText = ref('Search')
 
       </template>
       <v-card elevation="2" width="300" height="400">
-        <v-list-item active>hello</v-list-item>
-        <v-list-item>world</v-list-item>
-        <v-list-item>hao</v-list-item>
+        <v-list density="compact">
+          <v-list-item
+            v-for="(item, i) in items"
+            :key="i"
+            :value="item"
+            active-color="red"
+          >
+            <template v-slot:prepend>
+              <v-icon :icon="item.icon"></v-icon>
+            </template>
+
+            <v-list-item-title v-text="item.text"></v-list-item-title>
+          </v-list-item>
+        </v-list>
       </v-card>
     </v-menu>
   </div>
   <div>
-    <v-card class="res" v-show="showSearchResult" color="white" width="400" height="100%">
+    <v-card class="res d-flex align-center justify-center" v-if="showSearchResult" color="white" width="330"
+            height="100%">
+      <v-spacer></v-spacer>
+      <v-card-actions>
+        <v-btn color="red" @click="showSearchResult = false">close</v-btn>
+      </v-card-actions>
     </v-card>
   </div>
 
@@ -51,7 +68,7 @@ const placeholderText = ref('Search')
 }
 
 .res {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   z-index: 2;
@@ -66,6 +83,7 @@ const placeholderText = ref('Search')
   top: 10px;
   left: 10px;
 }
+
 .search-field {
   flex-grow: 1;
   height: 100%;
