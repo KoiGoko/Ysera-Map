@@ -5,7 +5,6 @@ const props = defineProps({
     type: Object,
   }
 });
-const name = props.data[2].properties.country
 const showSearchResult = ref(false)
 const searchText = ref('')
 const placeholderText = ref('Search')
