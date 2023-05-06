@@ -7,4 +7,8 @@
 </script>
 
 <style scoped>
+.scale-control {
+  position: absolute;
+  right: 20px;
+}
 </style>

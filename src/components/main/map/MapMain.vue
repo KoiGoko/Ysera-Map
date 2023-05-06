@@ -1,13 +1,16 @@
 <template>
   <v-map
-      ref="mapRef"
-      :accessToken="accessToken"
-      :options="options"
+    ref="mapRef"
+    :accessToken="accessToken"
+    :options="options"
   >
     <slot></slot>
     <MapScale/>
     <SwitchBgMap @receiveChild="receiveChild"/>
-    <MapNavControl/>
+    <div class="scale-button d-flex flex-column justify-center align-center">
+      <v-btn @click="zoomIn" icon="mdi-plus"></v-btn>
+      <v-btn @click="zoomOut" icon="mdi-reduce"></v-btn>
+    </div>
   </v-map>
 </template>
 
@@ -18,6 +21,7 @@ import MapScale from "@/components/main/utils/MapScale.vue";
 import SwitchBgMap from "@/components/main/utils/SwitchBgMap.vue";
 import MapNavControl from "@/components/main/utils/MapNavControl.vue";
 import SearchPage from "@/components/main/card/index/SearchPage.vue";
+
 const options = reactive({
   center: [120, 30],
   zoom: 5,
@@ -26,6 +30,14 @@ const options = reactive({
 })
 const mapRef = ref();
 
+function zoomIn() {
+  options.zoom++
+}
+
+function zoomOut() {
+  options.zoom--
+}
+
 function receiveChild(value: string) {
   options.style = value;
 }
@@ -33,5 +45,10 @@ function receiveChild(value: string) {
 </script>
 
 <style scoped>
+.scale-button {
+  position: absolute;
+  bottom: 160px;
+  right: 20px;
+}
 
 </style>
