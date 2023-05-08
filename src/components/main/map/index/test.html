@@ -1,43 +1,60 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Mapbox Windy API Example</title>
+<head>
+    <meta charset='utf-8' />
+    <title>Mapbox + Windy.com Map Forecast API</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css' rel='stylesheet' />
     <style>
-      body { margin: 0; padding: 0; }
-      #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+        body { margin: 0; padding: 0; }
+        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <div id='map'></div>
+
     <script>
-      mapboxgl.accessToken = 'pk.eyJ1Ijoia29pZ29rb3JvIiwiYSI6ImNsOXAxZDIzZDA0OHQ0MW1wMHd2Y3Rxa3IifQ.X9ACqkqRQ_m3IvwqsGYy0w';
-      var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/dark-v10',
-        center: [0, 0],
-        zoom: 1
-      });
-      map.on('load', function () {
-        map.addSource('windy', {
-          type: 'vector',
-          tiles: ['https://tiles.windytiles.com/v1.0/{z}/{x}/{y}.json']
+        mapboxgl.accessToken = 'pk.eyJ1Ijoia29pZ29rb3JvIiwiYSI6ImNsOXAxZDIzZDA0OHQ0MW1wMHd2Y3Rxa3IifQ.X9ACqkqRQ_m3IvwqsGYy0w';
+
+        // 创建地图
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [-74.50, 40],
+            zoom: 9
         });
-        map.addLayer({
-          'id': 'wind-layer',
-          'type': 'vector',
-          'source': 'windy',
-          'minzoom': 0,
-          'maxzoom': 22,
-          'layout': {
-            'visibility': 'visible'
-          },
-          'paint': {}
+
+        // 将 Windy.com 的天气数据作为矢量图层添加到 Mapbox Studio 中，并将其添加到地图中
+        map.on('load', function () {
+            map.addSource('windy', {
+                type: 'vector',
+                url: 'https://api.windy.com/tiles/v10/tiles.json?key=Zx5K0aRsDFPJsOVhB0U2iCO5umd829fK'
+            });
+            map.addLayer({
+                'id': 'windy-layer',
+                'type': 'line',
+                'source': 'windy',
+                'source-layer': 'wind',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-color': [
+                        'case',
+                        ['==', ['get', 'wind'], 0], 'white',
+                        ['==', ['get', 'wind'], 1], 'blue',
+                        ['==', ['get', 'wind'], 2], 'green',
+                        ['==', ['get', 'wind'], 3], 'yellow',
+                        ['==', ['get', 'wind'], 4], 'orange',
+                        ['==', ['get', 'wind'], 5], 'red',
+                        'white'
+                    ],
+                    'line-width': 2
+                }
+            });
         });
-      });
     </script>
-  </body>
+</body>
 </html>

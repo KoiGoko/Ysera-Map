@@ -8,7 +8,9 @@
     <SwitchBgMap @receiveChild="receiveChild"/>
     <v-vector-source
       id="mapbox-terrain"
-      url="mapbox://mapbox.mapbox-terrain-v2"
+      :tiles="[
+          'https://api.maptiler.com/maps/97d05326-b3ca-4b19-97df-969a34169ee3/style.json?key=uebNbI6Q96mqTrReSadC',
+        ]"
     />
     <v-fill-layer
       id="landcover"
@@ -52,7 +54,6 @@ import SwitchBgMap from "@/components/main/utils/SwitchBgMap.vue";
 const options = reactive({
   center: [120, 30],
   zoom: 5,
-  style: 'mapbox://styles/mapbox/light-v11',
   projection: 'mercator'
 })
 const mapRef = ref();
