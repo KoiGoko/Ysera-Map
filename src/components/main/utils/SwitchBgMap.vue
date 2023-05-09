@@ -1,11 +1,17 @@
 <template>
   <!--bg-map switch-->
-  <v-menu class="switch-map">
+  <v-menu location="start" class="switch-map">
     <template v-slot:activator="{ props }">
       <v-btn class="switch-map" elevation="4" icon="mdi-switch" color="primary" v-bind="props"/>
     </template>
-    <v-btn @click="switchMap('mapbox')" icon="mdi-earth"/>
-    <v-btn @click="switchMap('earth')" icon="mdi-mapbox"/>
+    <v-row>
+      <v-col>
+        <v-btn @click="switchMap('mapbox')" icon="mdi-earth"/>
+      </v-col>
+      <v-col>
+        <v-btn @click="switchMap('earth')" icon="mdi-mapbox"/>
+      </v-col>
+    </v-row>
   </v-menu>
 </template>
 

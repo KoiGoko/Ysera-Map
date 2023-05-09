@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Mapbox GL JS - Display Mouse Coordinates</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin: 0; padding: 0; }
+        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+        #coordinates {
+            background: rgba(0,0,0,0.5);
+            color: #fff;
+            position: absolute;
+            bottom: 40px;
+            left: 10px;
+            padding: 5px 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+<div id='coordinates'></div>
+
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1Ijoia29pZ29rb3JvIiwiYSI6ImNsOXAxZDIzZDA0OHQ0MW1wMHd2Y3Rxa3IifQ.X9ACqkqRQ_m3IvwqsGYy0w';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [-122.4194, 37.7749],
+        zoom: 12
+    });
+
+    map.on('mousemove', function(e) {
+        var lngLat = e.lngLat;
+        var coordinates = document.getElementById('coordinates');
+        coordinates.style.display = 'block';
+        coordinates.innerHTML = 'Longitude: ' + lngLat.lng.toFixed(6) + '<br />Latitude: ' + lngLat.lat.toFixed(6);
+    });
+</script>
+
+</body>
+</html>
