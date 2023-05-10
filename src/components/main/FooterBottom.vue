@@ -1,7 +1,7 @@
 <template>
   <v-bottom-navigation
     elevation="0"
-    height="74"
+    height="65"
     bg-color="primary"
   >
     <v-spacer></v-spacer>
