@@ -1,8 +1,8 @@
 <template>
   <DrawMain>
     <v-list density="compact" nav>
-      <v-list-item @click="successPush" class="rounded-end-pill" :prepend-icon="icons.success" title="撤离成功" value="success"></v-list-item>
-      <v-list-item @click="failurePush" class="rounded-end-pill"  :prepend-icon="icons.failure" title="撤离失败" value="failure"></v-list-item>
+      <v-list-item @click="handleClick('success')" class="rounded-end-pill" :prepend-icon="icons.success" title="撤离成功" value="success"></v-list-item>
+      <v-list-item @click="handleClick('failure')" class="rounded-end-pill"  :prepend-icon="icons.failure" title="撤离失败" value="failure"></v-list-item>
     </v-list>
   </DrawMain>
 </template>
@@ -31,18 +31,6 @@ const handleClick = (name: string) => {
     name
   });
   toggleIcon(name);
-}
-function successPush() {
-  router.push({
-    name: 'success'
-  })
-  toggleIcon('success')
-}
-function failurePush() {
-  router.push({
-    name: 'failure'
-  })
-  toggleIcon('failure')
 }
 </script>
 

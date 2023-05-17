@@ -1,8 +1,8 @@
 <template>
   <DrawMain>
     <v-list density="compact" nav>
-      <v-list-item @click="gdpPush" class="rounded-end-pill" :prepend-icon="icons.GDP" title="国民生产总值" value="GDP"></v-list-item>
-      <v-list-item @click="densityPush" class="rounded-end-pill" :prepend-icon="icons.density" title="人口密度" value="density"></v-list-item>
+      <v-list-item @click="handleClick('GDP')" class="rounded-end-pill" :prepend-icon="icons.GDP" title="国民生产总值" value="GDP"></v-list-item>
+      <v-list-item @click="handleClick('density')" class="rounded-end-pill" :prepend-icon="icons.density" title="人口密度" value="density"></v-list-item>
     </v-list>
   </DrawMain>
 </template>
@@ -31,18 +31,6 @@ const handleClick = (name: string) => {
     name
   });
   toggleIcon(name);
-}
-function gdpPush() {
-  router.push({
-    name: 'gdp'
-  })
-  toggleIcon('GDP')
-}
-function densityPush() {
-  router.push({
-    name: 'density'
-  })
-  toggleIcon('density')
 }
 </script>
 

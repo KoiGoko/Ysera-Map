@@ -1,9 +1,9 @@
 <template>
   <DrawMain>
     <v-list density="compact" nav>
-      <v-list-item @click="weatherPush" class="rounded-end-pill" :prepend-icon="icons.weather" title="全球气象" value="weather"></v-list-item>
-      <v-list-item @click="typhoonPush" class="rounded-end-pill" :prepend-icon="icons.typhoon" title="台风情况" value="typhoon"></v-list-item>
-      <v-list-item @click="inversionPush" class="rounded-end-pill" :prepend-icon="icons.inversion" title="气象反演" value="inversion"></v-list-item>
+      <v-list-item @click="handleClick('weather')" class="rounded-end-pill" :prepend-icon="icons.weather" title="全球气象" value="weather"></v-list-item>
+      <v-list-item @click="handleClick('typhoon')" class="rounded-end-pill" :prepend-icon="icons.typhoon" title="台风情况" value="typhoon"></v-list-item>
+      <v-list-item @click="handleClick('inversion')" class="rounded-end-pill" :prepend-icon="icons.inversion" title="气象反演" value="inversion"></v-list-item>
     </v-list>
   </DrawMain>
 </template>
@@ -35,24 +35,6 @@ const handleClick = (name: string) => {
     name
   });
   toggleIcon(name);
-}
-function weatherPush() {
-  router.push({
-    name: 'weather'
-  })
-  toggleIcon('weather')
-}
-function typhoonPush() {
-  router.push({
-    name: 'typhoon'
-  })
-  toggleIcon('typhoon')
-}
-function inversionPush() {
-  router.push({
-    name: 'inversion'
-  })
-  toggleIcon('inversion')
 }
 </script>
 
