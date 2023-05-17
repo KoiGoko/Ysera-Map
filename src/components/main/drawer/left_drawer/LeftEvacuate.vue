@@ -26,6 +26,12 @@ const {icons, toggleIcon} = useDrawerIcons({
     failure: 'mdi-alert-circle-outline'
   }
 })
+const handleClick = (name: string) => {
+  router.push({
+    name
+  });
+  toggleIcon(name);
+}
 function successPush() {
   router.push({
     name: 'success'

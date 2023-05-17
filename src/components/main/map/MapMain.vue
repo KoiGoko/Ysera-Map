@@ -8,8 +8,8 @@
     <MapScale/>
     <SwitchBgMap @receiveChild="receiveChild"/>
     <div class="scale-button d-flex flex-column justify-center align-center">
-      <v-btn class="mb-2" @click="zoomIn" icon="mdi-plus"></v-btn>
-      <v-btn @click="zoomOut" icon="mdi-minus"></v-btn>
+      <v-btn width="36" height="36" class="mb-2" @click="zoomIn" icon="mdi-plus"></v-btn>
+      <v-btn width="36" height="36" @click="zoomOut" icon="mdi-minus"></v-btn>
     </div>
   </v-map>
 </template>

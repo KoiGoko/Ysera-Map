@@ -1,9 +1,9 @@
 <template>
   <DrawMain>
     <v-list density="compact" nav>
-      <v-list-item @click="indexPush" class="rounded-end-pill" :prepend-icon="icons.index" title="全球核电" value="nuclear"></v-list-item>
-      <v-list-item @click="landPush" class="rounded-end-pill" :prepend-icon="icons.land" title="土地利用" value="land"></v-list-item>
-      <v-list-item @click="elevationPush" class="rounded-end-pill" :prepend-icon="icons.elevation" title="地形高程" value="elevation"></v-list-item>
+      <v-list-item @click="handleClick('index')" class="rounded-end-pill" :prepend-icon="icons.index" title="全球核电" value="nuclear"></v-list-item>
+      <v-list-item @click="handleClick('land')" class="rounded-end-pill" :prepend-icon="icons.land" title="土地利用" value="land"></v-list-item>
+      <v-list-item @click="handleClick('elevation')" class="rounded-end-pill" :prepend-icon="icons.elevation" title="地形高程" value="elevation"></v-list-item>
     </v-list>
   </DrawMain>
 </template>
@@ -29,25 +29,11 @@ const {icons, toggleIcon} = useDrawerIcons({
     elevation: 'mdi-landslide-outline'
   }
 })
-function indexPush() {
+const handleClick = (name: string) => {
   router.push({
-    name: 'sub_index'
-  })
-  toggleIcon('index')
-}
-
-function landPush() {
-  router.push({
-    name: 'land'
-  })
-  toggleIcon('land')
-}
-
-function elevationPush() {
-  router.push({
-    name: 'elevation'
-  })
-  toggleIcon('elevation')
+    name
+  });
+  toggleIcon(name);
 }
 </script>
 

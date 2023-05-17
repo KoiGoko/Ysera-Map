@@ -30,6 +30,12 @@ const {icons, toggleIcon} = useDrawerIcons({
     inversion: 'mdi-chart-areaspline',
   }
 })
+const handleClick = (name: string) => {
+  router.push({
+    name
+  });
+  toggleIcon(name);
+}
 function weatherPush() {
   router.push({
     name: 'weather'

@@ -26,7 +26,12 @@ const {icons, toggleIcon} = useDrawerIcons({
     density: 'mdi-account-multiple-outline'
   }
 })
-
+const handleClick = (name: string) => {
+  router.push({
+    name
+  });
+  toggleIcon(name);
+}
 function gdpPush() {
   router.push({
     name: 'gdp'

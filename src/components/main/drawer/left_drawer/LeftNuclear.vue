@@ -34,7 +34,12 @@ const {icons, toggleIcon} = useDrawerIcons({
     other: 'mdi-circle-outline'
   }
 })
-
+const handleClick = (name: string) => {
+  router.push({
+    name
+  });
+  toggleIcon(name);
+}
 function singlePush() {
   router.push({
     name: 'single'
