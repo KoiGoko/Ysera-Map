@@ -33,7 +33,7 @@ html, body {
   top: var(--tab-height);
   /*地图计算宽度减去左侧抽屉宽度*/
   width: calc(100% - var(--draw-width));
-  height:calc(100% - var(--tab-height) - var(--footer-height));
+  height:calc(100% - var(--tab-height));
 }
 /*隐藏地图logo和版权信息*/
 /deep/.mapboxgl-ctrl-logo {

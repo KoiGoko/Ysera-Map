@@ -1,16 +1,18 @@
 <template>
   <DrawMain>
     <v-list density="compact" nav>
-      <v-list-item @click="handleClick('GDP')" class="rounded-end-pill" :prepend-icon="icons.GDP" title="国民生产总值" value="GDP"></v-list-item>
-      <v-list-item @click="handleClick('density')" class="rounded-end-pill" :prepend-icon="icons.density" title="人口密度" value="density"></v-list-item>
+      <v-list-item @click="handleClick('GDP')" :prepend-icon="icons.GDP" title="国民生产总值" value="GDP"></v-list-item>
+      <v-list-item @click="handleClick('density')" :prepend-icon="icons.density" title="人口密度"
+                   value="density"></v-list-item>
     </v-list>
   </DrawMain>
 </template>
 
 <script setup lang="ts">
-import { useRouter } from "vue-router";
+import {useRouter} from "vue-router";
 import DrawMain from "@/components/main/drawer/DrawMain.vue";
 import {useDrawerIcons} from "@/utils/useDrawerIcons"
+
 const router = useRouter()
 const {icons, toggleIcon} = useDrawerIcons({
   icons: {
@@ -35,8 +37,4 @@ const handleClick = (name: string) => {
 </script>
 
 <style>
-.rounded-end-pill {
-  border-end-end-radius: 30px;
-  border-top-right-radius: 30px;
-}
 </style>

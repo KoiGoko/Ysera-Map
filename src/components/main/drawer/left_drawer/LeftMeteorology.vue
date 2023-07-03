@@ -1,17 +1,21 @@
 <template>
   <DrawMain>
     <v-list density="compact" nav>
-      <v-list-item @click="handleClick('weather')" class="rounded-end-pill" :prepend-icon="icons.weather" title="全球气象" value="weather"></v-list-item>
-      <v-list-item @click="handleClick('typhoon')" class="rounded-end-pill" :prepend-icon="icons.typhoon" title="台风情况" value="typhoon"></v-list-item>
-      <v-list-item @click="handleClick('inversion')" class="rounded-end-pill" :prepend-icon="icons.inversion" title="气象反演" value="inversion"></v-list-item>
+      <v-list-item @click="handleClick('weather')" :prepend-icon="icons.weather" title="全球气象"
+                   value="weather"></v-list-item>
+      <v-list-item @click="handleClick('typhoon')" :prepend-icon="icons.typhoon" title="台风情况"
+                   value="typhoon"></v-list-item>
+      <v-list-item @click="handleClick('inversion')" :prepend-icon="icons.inversion" title="气象反演"
+                   value="inversion"></v-list-item>
     </v-list>
   </DrawMain>
 </template>
 
 <script setup lang="ts">
-import { useRouter } from "vue-router";
+import {useRouter} from "vue-router";
 import DrawMain from "@/components/main/drawer/DrawMain.vue";
 import {useDrawerIcons} from "@/utils/useDrawerIcons"
+
 const router = useRouter()
 const {icons, toggleIcon} = useDrawerIcons({
   icons: {
@@ -39,8 +43,5 @@ const handleClick = (name: string) => {
 </script>
 
 <style>
-.rounded-end-pill {
-  border-end-end-radius: 30px;
-  border-top-right-radius: 30px;
-}
+
 </style>

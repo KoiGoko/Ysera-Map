@@ -7,7 +7,7 @@
           'https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg',
         ]"
       />
-      <v-raster-layer id="tiles" source="tiles" />
+      <v-raster-layer id="tiles" source="tiles"/>
     </MapMain>
     <RightFunctionMain/>
   </div>

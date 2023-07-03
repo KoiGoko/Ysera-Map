@@ -37,31 +37,16 @@
 <template>
   <v-card>
     <v-navigation-drawer
-      rail
       v-model="drawer"
-      expand-on-hover
       width="180"
       permanent
-      color="primary"
+      color="#FFFFFF"
       elevation="0"
       class="rounded"
       @transitionend="handleTransitionEnd"
     >
       <slot />
 
-      <v-divider class="pa-2"></v-divider>
-
-      <template v-slot:append>
-        <div class="pa-2">
-          <v-btn
-            class="bg-blue-lighten-4 mb-2 rounded-button"
-            elevation="2"
-            height="40"
-            block
-            :class="{ 'rounded-pill': !isCollapsed }"
-          ></v-btn>
-        </div>
-      </template>
     </v-navigation-drawer>
   </v-card>
 </template>
