@@ -35,24 +35,22 @@
 <!--}-->
 <!--</style>-->
 <template>
-  <v-card>
-    <v-navigation-drawer
-      v-model="drawer"
-      width="180"
-      permanent
-      color="#FFFFFF"
-      elevation="0"
-      class="rounded"
-      @transitionend="handleTransitionEnd"
-    >
-      <slot />
+  <v-navigation-drawer
+    v-model="drawer"
+    width="240"
+    color="#E0E0E0"
+    elevation="0"
+    class="rounded pa-3"
+    @transitionend="handleTransitionEnd"
+    floating
+  >
+    <slot/>
 
-    </v-navigation-drawer>
-  </v-card>
+  </v-navigation-drawer>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import {ref} from 'vue'
 
 const drawer = ref(true)
 const isCollapsed = ref(false)

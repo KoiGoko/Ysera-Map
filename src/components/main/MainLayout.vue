@@ -1,17 +1,18 @@
 <template>
   <v-layout>
-    <v-main>
-      <TabMain ref="tab"/>
-      <router-view class="map" name="main_view">
-      </router-view>
-      <router-view class="draw" name="left_draw"/>
+<!--    <TabMain ref="tab"/>-->
+    <router-view class="draw" name="left_draw"/>
+    <v-main class="d-flex justify-end">
+      <v-card width="90%" height="500"></v-card>
+<!--      <router-view class="map" name="main_view">-->
+<!--      </router-view>-->
     </v-main>
   </v-layout>
 </template>
 
 <script setup lang="ts">
-import FooterBottom from "@/components/main/FooterBottom.vue";
-import TabMain from "@/components/main/tab/TabMain.vue";
+import FooterBottom from "components@/components/main/FooterBottom.vue";
+import TabMain from "@//main/tab/Tab.vue";
 import {ref, onMounted} from "vue";
 
 const tab = ref()

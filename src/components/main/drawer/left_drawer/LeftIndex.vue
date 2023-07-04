@@ -1,11 +1,27 @@
 <template>
   <DrawMain>
     <v-list density="compact" nav>
-      <v-list-item @click="handleClick('index')" :prepend-icon="icons.index" title="全球核电"
-                   value="nuclear"></v-list-item>
-      <v-list-item @click="handleClick('land')" :prepend-icon="icons.land" title="土地利用" value="land"></v-list-item>
-      <v-list-item @click="handleClick('elevation')" :prepend-icon="icons.elevation" title="地形高程"
-                   value="elevation"></v-list-item>
+      <v-list-item class="d-flex justify-center" @click="handleClick('index')" value="nuclear">
+        <template v-slot:prepend>
+          <v-icon class="mr-1" :icon="icons.index"></v-icon>
+        </template>
+        <v-list-item-title>全球核电</v-list-item-title>
+      </v-list-item>
+      <v-list-item class="d-flex justify-center" @click="handleClick('land')" value="land">
+        <template v-slot:prepend>
+          <v-icon class="mr-1" :icon="icons.land"></v-icon>
+        </template>
+        <v-list-item-title>土地利用</v-list-item-title>
+      </v-list-item>
+      <v-list-item class="d-flex justify-center" @click="handleClick('elevation')" value="elevation">
+        <template v-slot:prepend>
+          <v-icon class="mr-1" :icon="icons.elevation"></v-icon>
+        </template>
+        <v-list-item-title>地形高程</v-list-item-title>
+      </v-list-item>
+      <v-divider></v-divider>
+
+
     </v-list>
   </DrawMain>
 </template>

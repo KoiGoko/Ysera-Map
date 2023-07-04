@@ -3,6 +3,7 @@
     ref="mapRef"
     :accessToken="accessToken"
     :options="options"
+    class="pa-3"
   >
 <!--    <MapScale/>-->
 <!--    <SwitchBgMap @receiveChild="receiveChild"/>-->
