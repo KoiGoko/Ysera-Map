@@ -3,7 +3,7 @@
     <AppBar/>
     <LeftBar/>
     <v-main class="bg-grey-lighten-3">
-      <v-card elevation="1" class="h-75 ml-lg-5 mt-lg-5 mr-lg-5 rounded-0">
+      <v-card elevation="1" height="90%" class="ml-lg-5 mt-lg-5 mr-lg-5 rounded-0">
         <router-view class="map" name="main_view"/>
       </v-card>
     </v-main>
