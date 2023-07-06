@@ -1,20 +1,21 @@
 <template>
   <v-app>
-      <TabMain/>
-      <LeftIndex/>
-      <v-main class="bg-grey-lighten-3">
-        <v-card elevation="1" class="h-75 ml-lg-5 mt-lg-5 mr-lg-5 rounded-0" >
-          <router-view class="map" name="main_view"/>
-        </v-card>
-      </v-main>
+    <AppBar/>
+    <LeftBar/>
+    <v-main class="bg-grey-lighten-3">
+      <v-card elevation="1" class="h-75 ml-lg-5 mt-lg-5 mr-lg-5 rounded-0">
+        <router-view class="map" name="main_view"/>
+      </v-card>
+    </v-main>
   </v-app>
 
 </template>
 
 <script setup lang="ts">
-import TabMain from "@/components/main/appbar/BarApp.vue";
+import AppBar from "@/components/main/appbar/BarApp.vue";
+import LeftBar from "@/components/main/sidebar/BarLeft.vue";
+
 import {ref, onMounted} from "vue";
-import LeftIndex from "@/components/main/sidebar/BarLeft.vue";
 
 const tab = ref()
 onMounted(() => {
