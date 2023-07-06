@@ -1,20 +1,20 @@
 import {createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw} from 'vue-router'
 
-import LeftIndex from "@/components/main/drawer/left_drawer/LeftIndex.vue"
-import LeftFinance from "@/components/main/drawer/left_drawer/LeftFinance.vue"
-import LeftMeteorology from "@/components/main/drawer/left_drawer/LeftMeteorology.vue"
-import LeftNuclear from "@/components/main/drawer/left_drawer/LeftNuclear.vue"
-import LeftEvacuate from "@/components/main/drawer/left_drawer/LeftEvacuate.vue"
-import MapIndex from "@/components/main/map/index/MapIndex.vue"
-import MapLand from "@/components/main/map/index/MapLand.vue"
-import MapElevation from "@/components/main/map/index/MapElevation.vue"
-import MapSPF from "@/components/main/map/nuclear/MapSPF.vue";
-import MapPopulation from "@/components/main/map/finance/MapPopulation.vue";
-import MapWorldMeteorology from "@/components/main/map/meteorology/MapWorldMeteorology.vue";
-import MapTyphoon from "@/components/main/map/meteorology/MapTyphoon.vue";
-import MapInversion from "@/components/main/map/meteorology/MapInversion.vue";
-import MapDose from "@/components/main/map/nuclear/MapDose.vue";
-import MapDiffusion from "@/components/main/map/nuclear/MapDiffusion.vue";
+import LeftIndex from "@/components/main/sidebar/BarLeft.vue"
+// import LeftFinance from "@/components/main/sidebar/left_drawer/LeftFinance.vue"
+// import LeftMeteorology from "@/components/main/sidebar/left_drawer/LeftMeteorology.vue"
+// import LeftNuclear from "@/components/main/sidebar/left_drawer/LeftNuclear.vue"
+// import LeftEvacuate from "@/components/main/sidebar/left_drawer/LeftEvacuate.vue"
+import MapIndex from "@/components/main/core/map/MapIndex.vue"
+import MapLand from "@/components/main/core/map/MapLand.vue"
+import MapElevation from "@/components/main/core/map/MapElevation.vue"
+import MapSPF from "@/components/main/core/evaluation/MapSPF.vue";
+import MapPopulation from "@/components/main/core/finance/MapPopulation.vue";
+import MapWorldMeteorology from "@/components/main/core/meteorology/MapWorldMeteorology.vue";
+import MapTyphoon from "@/components/main/core/meteorology/MapTyphoon.vue";
+import MapInversion from "@/components/main/core/meteorology/MapInversion.vue";
+import MapDose from "@/components/main/core/evaluation/MapDose.vue";
+import MapDiffusion from "@/components/main/core/evaluation/MapDiffusion.vue";
 //routers
 const routes: Array<RouteRecordRaw> = [
   {
@@ -25,7 +25,7 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
-    path: '/index',
+    path: '/map',
     name: 'index',
     components: {
       left_draw: LeftIndex,
@@ -36,7 +36,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/finance',
     name: 'finance',
     components: {
-      left_draw: LeftFinance,
       main_view: MapIndex
     }
   },
@@ -44,15 +43,13 @@ const routes: Array<RouteRecordRaw> = [
     path: '/meteorology',
     name: 'meteorology',
     components: {
-      left_draw: LeftMeteorology,
       main_view: MapIndex
     }
   },
   {
-    path: '/nuclear',
+    path: '/evaluation',
     name: 'nuclear',
     components: {
-      left_draw: LeftNuclear,
       main_view: MapIndex
     }
   },
@@ -60,12 +57,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/evacuate',
     name: 'evacuate',
     components: {
-      left_draw: LeftEvacuate,
       main_view: MapSPF
     }
   },
   {
-    path: '/index/index',
+    path: '/map/map',
     name: 'sub_index',
     components: {
       left_draw: LeftIndex,
@@ -73,7 +69,7 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
-    path: '/index/land',
+    path: '/map/land',
     name: 'land',
     components: {
       left_draw: LeftIndex,
@@ -81,7 +77,7 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
-    path: '/index/elevation',
+    path: '/map/elevation',
     name: 'elevation',
     components: {
       left_draw: LeftIndex,
@@ -92,7 +88,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/finance/gdp',
     name: 'gdp',
     components: {
-      left_draw: LeftFinance,
       main_view: MapIndex
     }
   },
@@ -100,7 +95,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/finance/density',
     name: 'density',
     components: {
-      left_draw: LeftFinance,
       main_view: MapPopulation
     }
   },
@@ -108,7 +102,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/meteorology/weather',
     name: 'weather',
     components: {
-      left_draw: LeftMeteorology,
       main_view: MapWorldMeteorology
     }
   },
@@ -116,7 +109,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/meteorology/typhoon',
     name: 'typhoon',
     components: {
-      left_draw: LeftMeteorology,
       main_view: MapTyphoon
     }
   },
@@ -124,31 +116,27 @@ const routes: Array<RouteRecordRaw> = [
     path: '/meteorology/inversion',
     name: 'inversion',
     components: {
-      left_draw: LeftMeteorology,
       main_view: MapInversion
     }
   },
   {
-    path: '/nuclear/single',
+    path: '/evaluation/single',
     name: 'single',
     components: {
-      left_draw: LeftNuclear,
       main_view: MapDose
     }
   },
   {
-    path: '/nuclear/multiple',
+    path: '/evaluation/multiple',
     name: 'multiple',
     components: {
-      left_draw: LeftNuclear,
       main_view: MapDose
     }
   },
   {
-    path: '/nuclear/single',
+    path: '/evaluation/single',
     name: 'single',
     components: {
-      left_draw: LeftNuclear,
       main_view: MapDose
     }
   },
@@ -156,7 +144,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/evacuate/success',
     name: 'success',
     components: {
-      left_draw: LeftEvacuate,
       main_view: MapLand
     }
   },
@@ -164,7 +151,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/evacuate/failure',
     name: 'failure',
     components: {
-      left_draw: LeftEvacuate,
       main_view: MapLand
     }
   },

@@ -5,7 +5,7 @@ declare module '*.vue' {
 }
 
 
-// declare module 'map-gl'
+// declare module 'core-gl'
 // declare module 'webfontloader'
 // declare module 'axios'
 
