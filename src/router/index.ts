@@ -1,20 +1,10 @@
 import {createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw} from 'vue-router'
 
 import LeftIndex from "@/components/main/sidebar/BarLeft.vue"
-// import LeftFinance from "@/components/main/sidebar/left_drawer/LeftFinance.vue"
-// import LeftMeteorology from "@/components/main/sidebar/left_drawer/LeftMeteorology.vue"
-// import LeftNuclear from "@/components/main/sidebar/left_drawer/LeftNuclear.vue"
-// import LeftEvacuate from "@/components/main/sidebar/left_drawer/LeftEvacuate.vue"
-import MapIndex from "@/components/main/core/map/MapIndex.vue"
-import MapLand from "@/components/main/core/map/MapLand.vue"
-import MapElevation from "@/components/main/core/map/MapElevation.vue"
+import MapIndex from "@/components/main/core/map/Index.vue"
+import MapLand from "@/components/main/core/map/Land.vue"
+import MapElevation from "@/components/main/core/map/Elevation.vue"
 import MapSPF from "@/components/main/core/evaluation/MapSPF.vue";
-import MapPopulation from "@/components/main/core/finance/MapPopulation.vue";
-import MapWorldMeteorology from "@/components/main/core/meteorology/MapWorldMeteorology.vue";
-import MapTyphoon from "@/components/main/core/meteorology/MapTyphoon.vue";
-import MapInversion from "@/components/main/core/meteorology/MapInversion.vue";
-import MapDose from "@/components/main/core/evaluation/MapDose.vue";
-import MapDiffusion from "@/components/main/core/evaluation/MapDiffusion.vue";
 //routers
 const routes: Array<RouteRecordRaw> = [
   {
@@ -95,49 +85,42 @@ const routes: Array<RouteRecordRaw> = [
     path: '/finance/density',
     name: 'density',
     components: {
-      main_view: MapPopulation
     }
   },
   {
     path: '/meteorology/weather',
     name: 'weather',
     components: {
-      main_view: MapWorldMeteorology
     }
   },
   {
     path: '/meteorology/typhoon',
     name: 'typhoon',
     components: {
-      main_view: MapTyphoon
     }
   },
   {
     path: '/meteorology/inversion',
     name: 'inversion',
     components: {
-      main_view: MapInversion
     }
   },
   {
     path: '/evaluation/single',
     name: 'single',
     components: {
-      main_view: MapDose
     }
   },
   {
     path: '/evaluation/multiple',
     name: 'multiple',
     components: {
-      main_view: MapDose
     }
   },
   {
     path: '/evaluation/single',
     name: 'single',
     components: {
-      main_view: MapDose
     }
   },
   {

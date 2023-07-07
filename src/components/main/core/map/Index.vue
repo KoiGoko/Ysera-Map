@@ -71,7 +71,7 @@
 <!--<script setup lang="ts">-->
 <!--import { reactive, ref, watch } from "vue";-->
 <!--import axios from "axios";-->
-<!--import MapMain from "@/components/main/core/MapMain.vue";-->
+<!--import MapMain from "@/components/main/core/Map.vue";-->
 <!--import SearchPage from "@/components/main/card/map/SearchPage.vue";-->
 <!--let style = ref('mapbox://styles/mapbox/light-v11');-->
 <!--const data = reactive({features: []});-->

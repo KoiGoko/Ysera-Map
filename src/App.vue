@@ -1,17 +1,10 @@
 <template>
-  <MainLayout></MainLayout>
+  <AppLayout></AppLayout>
 </template>
 
-<script lang="ts">
-import MainLayout from "@/components/main/AppLayout.vue"
-
-export default {
-  components: {MainLayout},
-}
+<script setup lang="ts">
+import AppLayout from "@/components/main/AppLayout.vue"
 </script>
 
 <style lang="scss" scoped>
-.v-application {
-  font-family: 'Poppins', sans-serif;
-}
 </style>

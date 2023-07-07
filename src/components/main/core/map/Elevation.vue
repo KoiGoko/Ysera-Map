@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import MapMain from "@/components/main/core/MapMain.vue";
+import MapMain from "@/components/main/core/Map.vue";
 import RightFunctionMain from "@/components/main/tools/RightFunctionMain.vue";
 </script>
 

@@ -55,7 +55,7 @@
 <script setup lang="ts">
 import {ref} from "vue";
 import * as turf from "@turf/turf"
-import MapMain from "@/components/main/core/MapMain.vue";
+import MapMain from "@/components/main/core/Map.vue";
 let bpm = ref(50)
 let data = ref()
 
