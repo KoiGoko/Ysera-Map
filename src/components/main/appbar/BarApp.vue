@@ -21,6 +21,9 @@
         <v-list-item>
           <v-list-item-title>退出登录</v-list-item-title>
         </v-list-item>
+        <v-list-item>
+          <v-list-item-title>退出登录</v-list-item-title>
+        </v-list-item>
       </v-list>
     </v-menu>
   </v-app-bar>
