@@ -1,9 +1,6 @@
 import {createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw} from 'vue-router'
 
 import LeftIndex from "@/components/main/sidebar/BarLeft.vue"
-import MapIndex from "@/components/main/core/map/Index.vue"
-import MapLand from "@/components/main/core/map/Land.vue"
-import MapElevation from "@/components/main/core/map/Elevation.vue"
 import MapSPF from "@/components/main/core/evaluation/MapSPF.vue";
 //routers
 const routes: Array<RouteRecordRaw> = [
@@ -11,7 +8,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     components: {
       left_draw: LeftIndex,
-      main_view: MapIndex
     }
   },
   {
@@ -19,28 +15,24 @@ const routes: Array<RouteRecordRaw> = [
     name: 'index',
     components: {
       left_draw: LeftIndex,
-      main_view: MapIndex
     }
   },
   {
     path: '/finance',
     name: 'finance',
     components: {
-      main_view: MapIndex
     }
   },
   {
     path: '/meteorology',
     name: 'meteorology',
     components: {
-      main_view: MapIndex
     }
   },
   {
     path: '/evaluation',
     name: 'nuclear',
     components: {
-      main_view: MapIndex
     }
   },
   {
@@ -55,7 +47,6 @@ const routes: Array<RouteRecordRaw> = [
     name: 'sub_index',
     components: {
       left_draw: LeftIndex,
-      main_view: MapIndex
     }
   },
   {
@@ -63,7 +54,6 @@ const routes: Array<RouteRecordRaw> = [
     name: 'land',
     components: {
       left_draw: LeftIndex,
-      main_view: MapLand
     }
   },
   {
@@ -71,14 +61,12 @@ const routes: Array<RouteRecordRaw> = [
     name: 'elevation',
     components: {
       left_draw: LeftIndex,
-      main_view: MapElevation
     }
   },
   {
     path: '/finance/gdp',
     name: 'gdp',
     components: {
-      main_view: MapIndex
     }
   },
   {
@@ -127,14 +115,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/evacuate/success',
     name: 'success',
     components: {
-      main_view: MapLand
     }
   },
   {
     path: '/evacuate/failure',
     name: 'failure',
     components: {
-      main_view: MapLand
     }
   },
 ]
