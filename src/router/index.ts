@@ -1,7 +1,7 @@
 import {createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw} from 'vue-router'
 
-import LeftIndex from "@/components/main/sidebar/BarLeft.vue"
-import MapSPF from "@/components/main/core/evaluation/MapSPF.vue";
+// import LeftIndex from "@/components/main/sidebar/BarLeft.vue"
+// import MapSPF from "@/components/main/core/evaluation/MapSPF.vue";
 //routers
 const routes: Array<RouteRecordRaw> = [
   {
