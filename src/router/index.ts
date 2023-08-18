@@ -5,19 +5,6 @@ import {createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw} fr
 //routers
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/',
-    components: {
-      left_draw: LeftIndex,
-    }
-  },
-  {
-    path: '/map',
-    name: 'index',
-    components: {
-      left_draw: LeftIndex,
-    }
-  },
-  {
     path: '/finance',
     name: 'finance',
     components: {
@@ -33,34 +20,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/evaluation',
     name: 'nuclear',
     components: {
-    }
-  },
-  {
-    path: '/evacuate',
-    name: 'evacuate',
-    components: {
-      main_view: MapSPF
-    }
-  },
-  {
-    path: '/map/map',
-    name: 'sub_index',
-    components: {
-      left_draw: LeftIndex,
-    }
-  },
-  {
-    path: '/map/land',
-    name: 'land',
-    components: {
-      left_draw: LeftIndex,
-    }
-  },
-  {
-    path: '/map/elevation',
-    name: 'elevation',
-    components: {
-      left_draw: LeftIndex,
     }
   },
   {
