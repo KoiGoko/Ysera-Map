@@ -4,18 +4,21 @@
     location="left"
     temporary
   >
-    <v-list
-      :items="items"
-    ></v-list>
+    <v-list nav>
+      <v-list-item prepend-icon="mdi-email" title="Inbox" value="inbox"></v-list-item>
+      <v-list-item prepend-icon="mdi-account-supervisor-circle" title="Supervisors" value="supervisors"></v-list-item>
+      <v-list-item prepend-icon="mdi-clock-start" title="Clock-in" value="clockin"></v-list-item>
+    </v-list>
   </v-navigation-drawer>
 
   <v-navigation-drawer
     location="left"
-    width="64"
+    width="72"
+    permanent
   >
     <v-list>
-      <v-btn class="rounded-circle" variant="plain">
-        <v-icon @click.stop="drawer = !drawer">mdi-menu</v-icon>
+      <v-btn variant="plain">
+        <v-icon size="x-large" @click.stop="drawer = !drawer">mdi-menu</v-icon>
       </v-btn>
     </v-list>
 
@@ -28,12 +31,6 @@ import {ref, watch} from 'vue';
 const drawer = ref(false);
 const group = ref<string | null>(null);
 
-const items = [
-  {title: 'Foo', value: 'foo'},
-  {title: 'Bar', value: 'bar'},
-  {title: 'Fizz', value: 'fizz'},
-  {title: 'Buzz', value: 'buzz'},
-];
 
 watch(group, () => {
   drawer.value = false;
