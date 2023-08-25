@@ -1,16 +1,23 @@
-import {createApp} from 'vue'
+/**
+ * main.ts
+ *
+ * Bootstraps Vuetify and other plugins then mounts the App`
+ */
+
+// Components
 import App from './App.vue'
 
-import MapVue from "mapvue";
-import "mapbox-gl/dist/mapbox-gl.css";
-// Vuetify
-import 'vuetify/styles'
-import vuetify from "@/plugins/vuetify"
 
-import router from "@/router"
+// Composables
+import { createApp } from 'vue'
+import MapVue from "mapvue"
+import "mapbox-gl/dist/mapbox-gl.css"
 
-createApp(App)
-  .use(router)
-  .use(vuetify)
-  .use(MapVue)
-  .mount('#app')
+// Plugins
+import { registerPlugins } from '@/plugins'
+
+const app = createApp(App)
+
+registerPlugins(app)
+
+app.use(MapVue).mount('#app')

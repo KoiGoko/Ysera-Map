@@ -1,15 +1,16 @@
 <template>
-  <v-map
-    ref="mapRef"
-    :accessToken="accessToken"
-    :options="options"
-  >
-  </v-map>
+  <div>
+    <v-map
+        ref="mapRef"
+        accessToken="pk.eyJ1Ijoia29pZ29rb3JvIiwiYSI6ImNsOXAxZDIzZDA0OHQ0MW1wMHd2Y3Rxa3IifQ.X9ACqkqRQ_m3IvwqsGYy0w"
+        :options="options"
+    >
+    </v-map>
+  </div>
 </template>
 
 <script setup lang="ts">
 import {ref, reactive} from "vue";
-import {accessToken} from "@/utils/mapUtils"
 
 const options = reactive({
   center: [120, 30],
