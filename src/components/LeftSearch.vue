@@ -1,12 +1,10 @@
 <script setup lang="ts">
-
-
 </script>
 
 <template>
-  <v-container>
+  <v-responsive>
     <v-text-field></v-text-field>
-  </v-container>
+  </v-responsive>
 
 </template>
 

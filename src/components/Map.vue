@@ -5,6 +5,25 @@
         accessToken="pk.eyJ1Ijoia29pZ29rb3JvIiwiYSI6ImNsOXAxZDIzZDA0OHQ0MW1wMHd2Y3Rxa3IifQ.X9ACqkqRQ_m3IvwqsGYy0w"
         :options="options"
     >
+      <v-attribution-control
+          id="attribution-control-id"
+          compact="compact"
+          customAttribution="customAttribution"
+          position="bottom-right"
+      />
+
+      <v-scale-control
+          id="scale-control-id"
+          unit="unit"
+          position="bottom-right"
+      />
+
+      <v-navigation-control
+          id="navigation-control-id"
+          position="bottom-right"
+      />
+
+
     </v-map>
   </div>
 </template>

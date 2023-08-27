@@ -1,11 +1,14 @@
 <template>
   <v-app>
-    <default-view />
-    <default-bar />
+
+    <default-view/>
+
+
   </v-app>
 </template>
 
 <script lang="ts" setup>
-  import DefaultBar from "./LeftBar.vue"
-  import DefaultView from './View.vue'
+
+import DefaultView from './View.vue'
+
 </script>
