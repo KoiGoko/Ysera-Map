@@ -1,11 +1,10 @@
 <script setup lang="ts">
+
+import RightNav from "@/components/bar/RightNav.vue";
 </script>
 
 <template>
-  <v-responsive>
-    <v-text-field></v-text-field>
-  </v-responsive>
-
+  <right-nav></right-nav>
 </template>
 
 <style scoped>
