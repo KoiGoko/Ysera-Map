@@ -13,6 +13,7 @@ import TopBar from "@/layouts/default/Top.vue";
 import BottomBar from "@/layouts/default/Bottom.vue";
 import LeftBar from "@/layouts/default/Left.vue";
 import Right from "@/layouts/default/Right.vue";
+import Map from "@/components/Map.vue";
 </script>
 
 <style scoped>
