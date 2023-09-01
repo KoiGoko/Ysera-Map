@@ -16,6 +16,7 @@ const styleItems = ref([
   {name: 'navigation-day', avatar: 'https://yesra.oss-rg-china-mainland.aliyuncs.com/map-style-images/styles/navigation-day-v1.png?Expires=1693460481&OSSAccessKeyId=TMP.3KfJbMhQEXmykEx8vx8SCAVA4rjmDqytCT7WkrmbnWx5MymydhCphKurgpXa3usWL4QJHKF91KJXBUM9nuYMJZRu6nGhuP&Signature=R3HXuD%2FP5coFdyltzGMzl%2F7vdRc%3D'},
   {name: 'navigation-night', avatar: 'https://yesra.oss-rg-china-mainland.aliyuncs.com/map-style-images/styles/navigation-night-v1.png?Expires=1693460500&OSSAccessKeyId=TMP.3KfJbMhQEXmykEx8vx8SCAVA4rjmDqytCT7WkrmbnWx5MymydhCphKurgpXa3usWL4QJHKF91KJXBUM9nuYMJZRu6nGhuP&Signature=iCLgimfwXxYRY7f6his1i%2F7rKyk%3D'},
 ])
+
 </script>
 
 <template>
