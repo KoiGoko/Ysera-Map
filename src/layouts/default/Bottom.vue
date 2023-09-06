@@ -1,14 +1,11 @@
 <script setup lang="ts">
-import {ref} from "vue"
 import SwitchLayer from "@/components/bar/SwitchLayer.vue";
-
-const layerSelected = ref(false)
 
 </script>
 
 <template>
   <div class="switch-layer">
-    <switch-layer/>
+    <router-view name="bottom"></router-view>
   </div>
 </template>
 

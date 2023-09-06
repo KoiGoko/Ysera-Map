@@ -1,23 +1,24 @@
 <template>
   <v-navigation-drawer
-    location="left"
-    temporary
-    v-model="drawer"
+      location="left"
+      temporary
+      v-model="drawer"
   >
     <v-list
-      :lines="false"
-      density="compact"
-      nav
+        :lines="false"
+        density="compact"
+        nav
     >
       <v-list-item-subtitle>
         <span class="font-weight-bold text-black">Ysera灾害分析系统</span>
       </v-list-item-subtitle>
       <v-list-item
-        v-for="(item, i) in nuclearItems"
-        :key="i"
-        :value="item"
-        color="primary"
-        class="mt-2"
+          v-for="(item, i) in nuclearItems"
+          :key="i"
+          :value="item"
+          color="primary"
+          class="mt-2"
+          @click="navigateToRoute(item.to)"
       >
         <template v-slot:prepend>
           <v-icon :icon="item.icon"></v-icon>
@@ -26,11 +27,12 @@
       </v-list-item>
       <v-divider class="mt-2 mx-1"></v-divider>
       <v-list-item
-        v-for="(item, i) in atmosphereItems"
-        :key="i"
-        :value="item"
-        color="primary"
-        class="mt-2"
+          v-for="(item, i) in atmosphereItems"
+          :key="i"
+          :value="item"
+          color="primary"
+          class="mt-2"
+          @click="navigateToRoute(item.to)"
       >
         <template v-slot:prepend>
           <v-icon :icon="item.icon"></v-icon>
@@ -42,17 +44,17 @@
   </v-navigation-drawer>
 
   <v-navigation-drawer
-    class="px-0"
-    location="left"
-    width="80"
-    permanent
+      class="px-0"
+      location="left"
+      width="80"
+      permanent
   >
     <v-list nav>
       <v-list-item>
         <v-btn
-          @click.stop="drawer = !drawer"
-          icon
-          variant="text"
+            @click.stop="drawer = !drawer"
+            icon
+            variant="text"
         >
           <v-icon>mdi-menu</v-icon>
         </v-btn>
@@ -84,15 +86,15 @@
               </p>
               <v-divider class="my-3"></v-divider>
               <v-btn
-                rounded
-                variant="text"
+                  rounded
+                  variant="text"
               >
                 <span>编辑</span>
               </v-btn>
               <v-divider class="my-3"></v-divider>
               <v-btn
-                rounded
-                variant="text"
+                  rounded
+                  variant="text"
               >
                 <span>退出</span>
               </v-btn>
@@ -106,32 +108,36 @@
 
 <script setup lang="ts">
 import {ref, watch} from 'vue';
+import {useRouter} from "vue-router";
+const router = useRouter();
 
 const drawer = ref(false);
 const drawerRight = ref(false);
 const group = ref<string | null>(null);
-
 
 watch(group, () => {
   drawer.value = false;
   drawerRight.value = false;
 });
 const atmosphereItems = ref([
-  {text: '气象预测', icon: 'mdi-history'},
-  {text: '撤离预测', icon: 'mdi-check-circle'},
-  {text: 'Uploads', icon: 'mdi-upload'},
-  {text: 'Backups', icon: 'mdi-cloud-upload'},
+  {text: 'Uploads', icon: 'mdi-upload', to: '/Uploads'},
+  {text: 'Backups', icon: 'mdi-cloud-upload', to: '/Backups'},
 ]);
 
 const nuclearItems = ref([
-  {text: '全球核电', icon: 'mdi-home'},
-  {text: '深度学习反演', icon: 'mdi-account-multiple'},
-  {text: '大气科学', icon: 'mdi-star'},
+  {text: '台站信息', icon: 'mdi-home', to: '/station'},
 ]);
 
 watch(group, () => {
   drawer.value = false;
 });
+
+
+// 点击事件处理函数，用于导航到指定路由
+const navigateToRoute = (to:any) => {
+  router.push(to);
+};
+
 </script>
 
 <style scoped>

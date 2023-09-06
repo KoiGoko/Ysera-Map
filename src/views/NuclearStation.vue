@@ -3,7 +3,10 @@
 </script>
 
 <template>
-  <router-view name="right"></router-view>
+  <v-main>
+    <router-view></router-view>
+    <h1>Nuclear Station</h1>
+  </v-main>
 </template>
 
 <style scoped>

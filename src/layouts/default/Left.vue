@@ -1,11 +1,8 @@
 <template>
-  <div>
-    <left-nav></left-nav>
-  </div>
+  <router-view name="left"></router-view>
 </template>
 
 <script setup lang="ts">
-import LeftNav from "@/components/bar/LeftNav.vue";
 </script>
 
 <style scoped>

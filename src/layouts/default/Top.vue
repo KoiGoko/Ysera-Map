@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import TopChip from "@/components/bar/TopChip.vue";
 </script>
 
 <template>
-  <div>
-    <top-chip></top-chip>
-  </div>
-
+  <router-view name="top"></router-view>
 </template>
 
 <style scoped>
