@@ -6,6 +6,12 @@ const switchLayer = (name: string) => {
   useMap.getMapStyle(name);
 };
 
+import {useLayoutSize} from '@/store/LayoutSize'
+
+const leftNavMainWidth = useLayoutSize().leftNavMainWidth
+
+
+
 const styleItems = ref([
   {name: 'streets', avatar: 'https://yesra.oss-rg-china-mainland.aliyuncs.com/map-style-images/styles/streets-v12.png?Expires=1693460584&OSSAccessKeyId=TMP.3KfJbMhQEXmykEx8vx8SCAVA4rjmDqytCT7WkrmbnWx5MymydhCphKurgpXa3usWL4QJHKF91KJXBUM9nuYMJZRu6nGhuP&Signature=B0VS1kWp%2Fk74UDvcUWjdAxd96e4%3D'},
   {name: 'outdoors', avatar: 'https://yesra.oss-rg-china-mainland.aliyuncs.com/map-style-images/styles/outdoors-v12.png?Expires=1693460529&OSSAccessKeyId=TMP.3KfJbMhQEXmykEx8vx8SCAVA4rjmDqytCT7WkrmbnWx5MymydhCphKurgpXa3usWL4QJHKF91KJXBUM9nuYMJZRu6nGhuP&Signature=cxa10c7eYMBRKXqiaNCeUI9Cqeo%3D'},
@@ -19,7 +25,8 @@ const styleItems = ref([
 </script>
 
 <template>
-  <v-menu>
+  <div class="switch-menu">
+    <v-menu>
     <template v-slot:activator="{ props }">
       <v-btn class="mb-3" icon
              v-bind="props"
@@ -51,6 +58,7 @@ const styleItems = ref([
       </v-card-text>
     </v-card>
   </v-menu>
+  </div>
 </template>
 
 <style scoped>

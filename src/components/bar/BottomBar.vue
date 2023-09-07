@@ -1,9 +1,19 @@
 <script setup lang="ts">
+
+
 </script>
 
 <template>
-  <router-view name="top"></router-view>
+  <div class="bottom">
+
+  </div>
+
 </template>
 
 <style scoped>
+.bottom {
+  left: 80px;
+  bottom: 10px;
+}
+
 </style>

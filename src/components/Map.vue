@@ -1,27 +1,27 @@
 <template>
   <div>
     <v-map
-      ref="mapRef"
-      :accessToken="accessToken"
-      :options="options"
-      @loaded="initMap"
+        ref="mapRef"
+        :accessToken="accessToken"
+        :options="options"
+        @loaded="initMap"
     >
       <v-attribution-control
-        id="attribution-control-id"
-        compact="compact"
-        customAttribution="customAttribution"
-        position="bottom-right"
+          id="attribution-control-id"
+          compact="compact"
+          customAttribution="customAttribution"
+          position="bottom-right"
       />
 
       <v-scale-control
-        id="scale-control-id"
-        unit="unit"
-        position="bottom-right"
+          id="scale-control-id"
+          unit="unit"
+          position="bottom-right"
       />
 
       <v-navigation-control
-        id="navigation-control-id"
-        position="bottom-right"
+          id="navigation-control-id"
+          position="bottom-right"
       />
     </v-map>
   </div>
@@ -34,8 +34,10 @@ import {useMapStyle} from '@/store/mapStyle'
 
 const accessToken = useAccessToken().token
 const mapStyle = computed(
-  () => useMapStyle().mapStyle
+    () => useMapStyle().mapStyle
 )
+
+
 const options = ref({
   style: mapStyle,
   center: [116, 39],
@@ -46,8 +48,16 @@ const options = ref({
 
 let initialCircleRadius = 4;
 
+onMounted(() => {
+  const map = mapRef.value.map
+  map.resize()
+  console.log('map 改变大小')
+})
+
 const initMap = () => {
   const map = mapRef.value.map
+
+
   map.addSource('stations', {
     'type': 'geojson',
     'data': 'http://127.0.0.1:8000/hello'

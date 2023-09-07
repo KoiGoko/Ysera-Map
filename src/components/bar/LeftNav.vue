@@ -46,7 +46,7 @@
   <v-navigation-drawer
       class="px-0"
       location="left"
-      width="80"
+      :width="leftNavMainWidth"
       permanent
   >
     <v-list nav>
@@ -109,6 +109,10 @@
 <script setup lang="ts">
 import {ref, watch} from 'vue';
 import {useRouter} from "vue-router";
+import {useLayoutSize} from '@/store/LayoutSize'
+
+const leftNavMainWidth = useLayoutSize().leftNavMainWidth
+
 const router = useRouter();
 
 const drawer = ref(false);
@@ -131,7 +135,6 @@ const nuclearItems = ref([
 watch(group, () => {
   drawer.value = false;
 });
-
 
 // 点击事件处理函数，用于导航到指定路由
 const navigateToRoute = (to:any) => {

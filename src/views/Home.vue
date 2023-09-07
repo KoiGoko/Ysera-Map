@@ -1,7 +1,5 @@
 <template>
-  <v-main>
     <Map></Map>
-  </v-main>
 </template>
 
 <script lang="ts" setup>

@@ -1,16 +1,21 @@
 // Composables
 import {createRouter, createWebHistory} from 'vue-router'
 
-import View from '@/views/Home.vue'
+import HomeRightNav from "@/components/home/HomeRightNav.vue";
+import SwitchLayer from "@/components/bar/SwitchLayer.vue";
 
 const routes = [
     {
         path: '/',
-        component: {
-            default: View,
+        components: {
+            map: () => import('@/views/Home.vue'),
+            left: () => import('@/components/bar/LeftNav.vue'),
+            right: () => import('@/components/home/HomeRightNav.vue'),
+            bottom: () => import('@/components/bar/SwitchLayer.vue'),
         }
     },
 ]
+
 
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
