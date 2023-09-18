@@ -1,5 +1,5 @@
 /**
- * plugins/index.ts
+ * plugins/language.js
  *
  * Automatically included in `./src/main.ts`
  */

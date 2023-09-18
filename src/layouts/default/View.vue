@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="NotoFont">
     <!--map main-->
     <div>
       <router-view name="map"></router-view>
@@ -9,6 +9,8 @@
     <v-main>
       <router-view name="no-map-main"></router-view>
     </v-main>
+
+    <StationInfo></StationInfo>
 
     <!--left-->
     <div>
@@ -34,7 +36,13 @@
 
 <script lang="ts" setup>
 
+import StationInfo from "@/components/meteorological/StationInfo.vue";
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500&family=Noto+Sans:wght@500&display=swap');
+
+.NotoFont {
+  font-family: 'Noto Sans SC', sans-serif;
+}
 </style>

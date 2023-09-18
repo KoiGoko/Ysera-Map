@@ -23,23 +23,67 @@ const show = ref(false)
           divided
           variant="outlined"
       >
-        <v-btn width="64" icon="mdi-format-align-left"></v-btn>
-        <v-btn width="64" icon="mdi-format-align-center"></v-btn>
-        <v-btn width="64" icon="mdi-format-align-right"></v-btn>
-        <v-btn @click="show = !show" width="64" icon="mdi-format-align-justify"></v-btn>
+        <v-btn width="72" icon="mdi-format-align-left"></v-btn>
+        <v-btn width="72" icon="mdi-format-align-center"></v-btn>
+        <v-btn width="72" icon="mdi-format-align-right"></v-btn>
+        <v-btn @click="show = !show" width="72" icon="mdi-format-align-justify"></v-btn>
       </v-btn-toggle>
     </v-card-item>
 
     <v-expand-transition>
       <div v-show="show">
         <v-divider></v-divider>
-        <v-radio-group class="mx-2 mt-2">
+        <v-radio-group class="mx-5 mt-2">
           <v-radio label="Radio 1" value="1"></v-radio>
 
           <v-card-item>
-            <v-card-text>Hello</v-card-text>
+            <p>
+              <span>Nan Jia</span>
+              <input style="border: solid 1px; width: 72px;height: 26px">
+              <select class="ml-2" style="border: solid 1px; width: 72px; height: 26px">
+                <option>1</option>
+                <option>2</option>
+              </select>
+
+              <v-btn class="ml-2 mb-1" variant="outlined" height="26" width="48">summit</v-btn>
+            </p>
+
+            <p>
+              <span>Nan Jia</span>
+              <input style="border: solid 1px; width: 72px;height: 26px">
+              <select class="ml-2" style="border: solid 1px; width: 72px; height: 26px">
+                <option>1</option>
+                <option>2</option>
+              </select>
+
+              <v-btn class="ml-2 mb-1" variant="outlined" height="26" width="48">summit</v-btn>
+            </p>
           </v-card-item>
           <v-radio label="Radio 2" value="2"></v-radio>
+
+          <v-card-item>
+            <p>
+              <span>Nan Jia</span>
+              <input style="border: solid 1px; width: 72px;height: 26px">
+              <select class="ml-2 custom-select" style="border: solid 1px; width: 72px; height: 26px">
+                <option>1</option>
+                <option>2</option>
+              </select>
+
+              <v-btn class="ml-2 mb-1" variant="outlined" height="26" width="48">summit</v-btn>
+            </p>
+
+            <p>
+              <span>Nan Jia</span>
+              <input style="border: solid 1px; width: 72px;height: 26px">
+              <select class="ml-2" style="border: solid 1px; width: 72px; height: 26px">
+                <option>1</option>
+                <option>2</option>
+              </select>
+
+              <v-btn class="ml-2 mb-1" variant="outlined" height="26" width="48">summit</v-btn>
+            </p>
+          </v-card-item>
         </v-radio-group>
 
       </div>
@@ -53,4 +97,5 @@ const show = ref(false)
   top: 8px;
   right: 8px;
 }
+
 </style>

@@ -1,27 +1,27 @@
 <template>
   <div>
     <v-map
-        ref="mapRef"
-        :accessToken="accessToken"
-        :options="options"
-        @loaded="initMap"
+      ref="mapRef"
+      :accessToken="accessToken"
+      :options="options"
+      @loaded="initMap"
     >
       <v-attribution-control
-          id="attribution-control-id"
-          compact="compact"
-          customAttribution="customAttribution"
-          position="bottom-right"
+        id="attribution-control-id"
+        compact="compact"
+        customAttribution="customAttribution"
+        position="bottom-right"
       />
 
       <v-scale-control
-          id="scale-control-id"
-          unit="unit"
-          position="bottom-right"
+        id="scale-control-id"
+        unit="unit"
+        position="bottom-right"
       />
 
       <v-navigation-control
-          id="navigation-control-id"
-          position="bottom-right"
+        id="navigation-control-id"
+        position="bottom-right"
       />
     </v-map>
   </div>
@@ -29,15 +29,19 @@
 
 <script setup lang="ts">
 import {ref, computed, watch, onMounted} from "vue";
+import MapboxLanguage from '@/plugins/language';
 import {useAccessToken} from '@/store/accessToken'
 import {useMapStyle} from '@/store/mapStyle'
 
+
+import MapboxDraw from "@mapbox/mapbox-gl-draw";
+import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
+
+var Draw = new MapboxDraw();
 const accessToken = useAccessToken().token
 const mapStyle = computed(
-    () => useMapStyle().mapStyle
+  () => useMapStyle().mapStyle
 )
-
-
 const options = ref({
   style: mapStyle,
   center: [116, 39],
@@ -45,9 +49,7 @@ const options = ref({
   projection: "mercator",
 })
 
-
 let initialCircleRadius = 4;
-
 onMounted(() => {
   const map = mapRef.value.map
   map.resize()
@@ -63,7 +65,6 @@ const initMap = () => {
     'data': 'http://127.0.0.1:8000/hello'
   });
 
-
   map.addLayer({
     'id': 'stations-maker',
     'type': 'circle',
@@ -73,6 +74,8 @@ const initMap = () => {
       'circle-color': '#223ab4'
     },
   });
+
+  map.addControl(Draw, 'bottom-right');
 
   // 添加地图缩放事件监听器，监听地图层级的变化
   map.on('zoom', () => {
@@ -102,12 +105,17 @@ const initMap = () => {
     // // 更新图层的 circle-radius
     map.setPaintProperty('stations-maker', 'circle-radius', radius);
   });
+
+  // const language = new MapboxLanguage();
+  // let zh = 12
+  // setInterval(function () {
+  //   map.setStyle(language.setLanguage(map.getStyle(), language.supportedLanguages[zh]));
+  // });
 }
 
 watch(mapStyle, (newStyle, oldStyle) => {
   console.log('hello')
 });
-
 
 const mapRef = ref()
 

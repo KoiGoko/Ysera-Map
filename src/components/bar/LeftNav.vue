@@ -124,8 +124,8 @@ watch(group, () => {
   drawerRight.value = false;
 });
 const atmosphereItems = ref([
-  {text: 'Uploads', icon: 'mdi-upload', to: '/Uploads'},
-  {text: 'Backups', icon: 'mdi-cloud-upload', to: '/Backups'},
+  {text: '大气科学', icon: 'mdi-upload', to: '/Uploads'},
+  {text: '数据科学', icon: 'mdi-cloud-upload', to: '/Backups'},
 ]);
 
 const nuclearItems = ref([
