@@ -43,75 +43,14 @@
     </v-list>
   </v-navigation-drawer>
 
-  <v-navigation-drawer
-      class="px-0"
-      location="left"
-      :width="leftNavMainWidth"
-      permanent
-  >
-    <v-list nav>
-      <v-list-item>
-        <v-btn
-            @click.stop="drawer = !drawer"
-            icon
-            variant="text"
-        >
-          <v-icon>mdi-menu</v-icon>
-        </v-btn>
-      </v-list-item>
-    </v-list>
-    <template v-slot:append>
-      <v-menu>
-        <template v-slot:activator="{ props }">
-          <v-list-item class="mb-4">
-            <v-btn icon variant="tonal"
-                   v-bind="props"
-            >
-              <v-icon>mdi-account</v-icon>
-            </v-btn>
-          </v-list-item>
-        </template>
-
-        <v-card>
-          <v-card-text>
-            <div class="mx-auto text-center">
-              <v-avatar
-
-              >
-                <v-icon>mdi-account</v-icon>
-              </v-avatar>
-              <h3>Nan Jia</h3>
-              <p class="text-caption mt-1">
-                KoiGoko@outlook.com
-              </p>
-              <v-divider class="my-3"></v-divider>
-              <v-btn
-                  rounded
-                  variant="text"
-              >
-                <span>编辑</span>
-              </v-btn>
-              <v-divider class="my-3"></v-divider>
-              <v-btn
-                  rounded
-                  variant="text"
-              >
-                <span>退出</span>
-              </v-btn>
-            </div>
-          </v-card-text>
-        </v-card>
-      </v-menu>
-    </template>
-  </v-navigation-drawer>
+  <DefaultNav></DefaultNav>
 </template>
 
 <script setup lang="ts">
 import {ref, watch} from 'vue';
 import {useRouter} from "vue-router";
-import {useLayoutSize} from '@/store/LayoutSize'
+import DefaultNav from "@/components/nav/DefaultNav.vue";
 
-const leftNavMainWidth = useLayoutSize().leftNavMainWidth
 
 const router = useRouter();
 
@@ -140,7 +79,6 @@ watch(group, () => {
 const navigateToRoute = (to:any) => {
   router.push(to);
 };
-
 </script>
 
 <style scoped>

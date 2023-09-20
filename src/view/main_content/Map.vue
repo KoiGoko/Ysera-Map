@@ -29,10 +29,8 @@
 
 <script setup lang="ts">
 import {ref, computed, watch, onMounted} from "vue";
-import MapboxLanguage from '@/plugins/language';
-import {useAccessToken} from '@/store/accessToken'
-import {useMapStyle} from '@/store/mapStyle'
-
+import {useAccessToken} from '@/store/accessToken.ts'
+import {useMapStyle} from '@/store/mapStyle.ts'
 
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
@@ -77,14 +75,10 @@ const initMap = () => {
 
   map.addControl(Draw, 'bottom-right');
 
-  // 添加地图缩放事件监听器，监听地图层级的变化
   map.on('zoom', () => {
     // 获取当前地图层级
     const currentZoom = map.getZoom();
 
-    // // 根据地图层级动态更新 circle-radius 的大小
-    // // 这里你可以根据你的需求定义不同的规则来更新大小
-    // // 例如，将 initialCircleRadius 与 currentZoom 相关联
     const roundedZoom = Math.floor(currentZoom);
     let radius = 0
 
@@ -101,8 +95,8 @@ const initMap = () => {
     }
 
     console.log(roundedZoom)
-    //
-    // // 更新图层的 circle-radius
+
+
     map.setPaintProperty('stations-maker', 'circle-radius', radius);
   });
 

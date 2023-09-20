@@ -17,18 +17,15 @@
     "mapbox-gl-draw-rectangle-mode": "^1.0.4",
     "mapvue": "^0.3.1",
     "pinia": "^2.0.0",
-    "roboto-fontface": "*",
     "vue": "^3.2.0",
     "vue-router": "^4.0.0",
-    "vuetify": "^3.0.0",
-    "webfontloader": "^1.0.0"
+    "vuetify": "^3.0.0"
   },
   "devDependencies": {
     "@babel/types": "^7.21.4",
     "@types/mapbox__mapbox-gl-draw": "^1.4.0",
     "@types/mapbox-gl": "^2.7.13",
     "@types/node": "^18.15.0",
-    "@types/webfontloader": "^1.6.35",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/eslint-config-typescript": "^11.0.0",
     "eslint": "^8.37.0",
