@@ -7,8 +7,16 @@ const routes = [
         path: '/',
         components: {
             map: () => import('@/view/main_content/Map.vue'),
-            left: () => import('@/view/left_nav/index_left.vue'),
-        }
+            left: () => import('@/components/nav/HomeLeftNav.vue'),
+
+        },
+    },
+    {
+        path: '/stations',
+        components: {
+            map: () => import('@/view/main_content/Map.vue'),
+            left: () => import('@/components/nav/HomeLeftNav.vue'),
+        },
     },
 ]
 

@@ -9,8 +9,6 @@
       <router-view name="no-map-main"></router-view>
     </v-main>
 
-    <StationInfo></StationInfo>
-
     <div>
       <router-view name="left"></router-view>
     </div>
@@ -31,7 +29,7 @@
 
 <script lang="ts" setup>
 
-import StationInfo from "@/components/meteorological/StationInfo.vue";
+import StationInfo from "@/components/nav/meteorological/StationInfo.vue";
 </script>
 
 <style scoped>

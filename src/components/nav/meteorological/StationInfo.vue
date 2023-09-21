@@ -11,20 +11,6 @@ export default {
     class="mx-auto stations-info h-100"
     width="380"
   >
-<!--    <v-card-item>-->
-<!--      <v-card-title>-->
-<!--        Station List-->
-<!--      </v-card-title>-->
-
-<!--      <template v-slot:append>-->
-<!--        <v-btn-->
-<!--          color="white"-->
-<!--          icon="mdi-plus"-->
-<!--          size="small"-->
-<!--        ></v-btn>-->
-<!--      </template>-->
-<!--    </v-card-item>-->
-
     <v-virtual-scroll
       :items="items"
       item-height="72"

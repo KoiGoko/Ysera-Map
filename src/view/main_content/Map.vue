@@ -31,7 +31,6 @@
 import {ref, computed, watch, onMounted} from "vue";
 import {useAccessToken} from '@/store/accessToken.ts'
 import {useMapStyle} from '@/store/mapStyle.ts'
-
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
 
@@ -56,8 +55,6 @@ onMounted(() => {
 
 const initMap = () => {
   const map = mapRef.value.map
-
-
   map.addSource('stations', {
     'type': 'geojson',
     'data': 'http://127.0.0.1:8000/hello'
@@ -74,14 +71,11 @@ const initMap = () => {
   });
 
   map.addControl(Draw, 'bottom-right');
-
   map.on('zoom', () => {
     // 获取当前地图层级
     const currentZoom = map.getZoom();
-
     const roundedZoom = Math.floor(currentZoom);
     let radius = 0
-
     if (roundedZoom < 5) {
       radius = 3
     } else if (roundedZoom < 7) {
@@ -93,10 +87,7 @@ const initMap = () => {
     } else {
       radius = 10
     }
-
     console.log(roundedZoom)
-
-
     map.setPaintProperty('stations-maker', 'circle-radius', radius);
   });
 

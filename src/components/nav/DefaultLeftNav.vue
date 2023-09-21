@@ -1,11 +1,14 @@
 <script setup lang="ts">
+import {computed} from "vue";
 import {useLayoutSize} from '@/store/LayoutSize.ts'
-import {ref} from "vue";
+import {useLeftDrawer} from "@/store/useLeftDrawer.ts";
 
-const leftNavMainWidth = useLayoutSize().leftNavMainWidth
-const drawer = ref(false);
-
+const leftNavMainWidth = computed(() => useLayoutSize().leftNavMainWidth)
+const toggleDrawer = () => {
+  useLeftDrawer().toggleDrawer()
+}
 </script>
+
 <template>
   <v-navigation-drawer
       class="px-0"
@@ -16,7 +19,7 @@ const drawer = ref(false);
     <v-list nav>
       <v-list-item>
         <v-btn
-            @click.stop="drawer = !drawer"
+            @click.stop="toggleDrawer"
             icon
             variant="text"
         >
@@ -67,7 +70,7 @@ const drawer = ref(false);
       </v-menu>
     </template>
   </v-navigation-drawer>
+
 </template>
 <style scoped>
-
 </style>

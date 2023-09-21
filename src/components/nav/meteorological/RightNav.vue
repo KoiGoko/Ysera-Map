@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {ref} from "vue";
-
 const drawerRight = ref(false)
 
 </script>
@@ -31,9 +30,9 @@ const drawerRight = ref(false)
         </v-list-subheader>
         <v-divider class="mt-2 mx-2"></v-divider>
       </v-list>
-      <v-card>
 
-      </v-card>
+      <router-view name="home"></router-view>
+
     </v-navigation-drawer>
   </div>
 
