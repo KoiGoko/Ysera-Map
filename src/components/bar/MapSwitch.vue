@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import {computed, ref} from "vue"
 import {useMapStyle} from "@/store/mapStyle";
-import {useStyleAvatar} from "@/store/useStyleAvatar.ts";
+import {styleAvatar} from "@/store/styleAvatar.ts";
 const switchLayer = (name: string) => {
   useMapStyle().getMapStyle(name);
 };
-const styleItems = computed(() => useStyleAvatar().styleItems)
+const styleItems = computed(() => styleAvatar().styleItems)
 </script>
 
 <template>

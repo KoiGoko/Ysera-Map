@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import {computed} from "vue";
 import {useLayoutSize} from '@/store/LayoutSize.ts'
-import {useLeftDrawer} from "@/store/useLeftDrawer.ts";
+import {leftDrawer} from "@/store/LeftDrawer.ts";
 
 const leftNavMainWidth = computed(() => useLayoutSize().leftNavMainWidth)
 const toggleDrawer = () => {
-  useLeftDrawer().toggleDrawer()
+  leftDrawer().toggleDrawer()
 }
 </script>
 

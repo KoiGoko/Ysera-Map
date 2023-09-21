@@ -1,0 +1,9 @@
+<template>
+  <v-attribution-control
+      id="attribution-control-id"
+      compact="compact"
+      customAttribution="customAttribution"
+      position="bottom-right"
+  >
+  </v-attribution-control>
+</template>

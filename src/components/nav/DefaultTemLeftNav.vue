@@ -2,20 +2,20 @@
 import {computed} from 'vue';
 import {useRouter} from "vue-router";
 const router = useRouter();
-import {useLeftNavList} from "@/store/useLeftNavList.ts";
-import {useLeftDrawer} from "@/store/useLeftDrawer.ts";
+import {leftNavList} from "@/store/LeftNavList.ts";
+import {leftDrawer} from "@/store/LeftDrawer.ts";
 
-const atmosphereItems = computed(() => useLeftNavList().atmosphereItems)
-const nuclearItems = computed(() => useLeftNavList().nuclearItems)
-const evacuateItems = computed(() => useLeftNavList().evacuateItems)
-const drawerValue = computed(() => useLeftDrawer().drawer)
+const atmosphereItems = computed(() => leftNavList().atmosphereItems)
+const nuclearItems = computed(() => leftNavList().nuclearItems)
+const evacuateItems = computed(() => leftNavList().evacuateItems)
+const drawerValue = computed(() => leftDrawer().drawer)
 
 const navigateToRoute = (to: any) => {
   router.push(to);
 };
 
 const toggleDrawer = () => {
-  useLeftDrawer().toggleDrawer()
+  leftDrawer().toggleDrawer()
 }
 </script>
 
