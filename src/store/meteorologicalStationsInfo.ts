@@ -3,9 +3,8 @@ import {defineStore} from "pinia";
 
 export const useMeteorologicalStationsInfo = defineStore('meteorologicalStationsInfo', () => {
 
-    let initialCircleRadius = 4;
-    const initMap = (mapRef: any) => {
-        const map = mapRef.value.map
+    const initialCircleRadius = 4;
+    const initMap = (map: any) => {
         map.addSource('stations', {
             'type': 'geojson',
             'data': 'http://127.0.0.1:8000/hello'
@@ -37,6 +36,12 @@ export const useMeteorologicalStationsInfo = defineStore('meteorologicalStations
             console.log(roundedZoom)
             map.setPaintProperty('stations-maker', 'circle-radius', radius);
         });
+
+        // const language = new MapboxLanguage();
+        // let zh = 12
+        // setInterval(function () {
+        //   map.setStyle(language.setLanguage(map.getStyle(), language.supportedLanguages[zh]));
+        // });
     }
     return {initMap}
 })
