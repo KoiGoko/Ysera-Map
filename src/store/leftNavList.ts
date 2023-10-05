@@ -8,7 +8,7 @@ export const useLeftNavList = defineStore('leftNavList', () => {
     ]);
 
     const atmosphereItems = ref([
-        {text: '气象台站', icon: 'mdi-home', to: '/stations'},
+        {text: '气象台站', icon: 'mdi-home', to: '/meteorological'},
     ]);
 
     const evacuateItems = ref([

@@ -6,7 +6,7 @@
     </div>
 
     <v-main>
-      <router-view name="no-map-main"></router-view>
+      <router-view name="main"></router-view>
     </v-main>
 
     <div>

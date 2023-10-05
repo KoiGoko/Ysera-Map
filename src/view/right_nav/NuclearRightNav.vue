@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {ref} from "vue";
-const drawerRight = ref(false)
+const drawerRight = ref(true)
 
 </script>
 <template>

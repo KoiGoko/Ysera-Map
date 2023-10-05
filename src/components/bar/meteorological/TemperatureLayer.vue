@@ -3,9 +3,9 @@
 </script>
 
 <template>
-  <v-navigation-drawer>
-
-  </v-navigation-drawer>
+  <div>
+    <v-btn></v-btn>
+  </div>
 </template>
 
 <style scoped>

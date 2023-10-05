@@ -65,8 +65,10 @@
               <div
                   class="text-grey text-center text-caption font-weight-bold text-uppercase my-5"
               >
+                hello
               </div>
 
+              <!-- external providers list -->
 
               <div v-if="errorProvider" class="error--text my-2">
                 {{ errorProviderMessages }}

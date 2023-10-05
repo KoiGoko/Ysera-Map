@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import {ref} from "vue";
-const drawerRight = ref(false)
+const drawerRight = ref(true)
 
 </script>
-
 <template>
   <div>
     <v-btn class="right-nav-open" @click="drawerRight = !drawerRight"
@@ -15,7 +14,6 @@ const drawerRight = ref(false)
       location="right"
       width="364"
       v-model="drawerRight"
-      temporary
     >
       <v-list>
         <v-list-subheader class="justify-start align-center">
@@ -30,12 +28,8 @@ const drawerRight = ref(false)
         </v-list-subheader>
         <v-divider class="mt-2 mx-2"></v-divider>
       </v-list>
-
-      <router-view name="home"></router-view>
-
     </v-navigation-drawer>
   </div>
-
 </template>
 
 <style scoped>
