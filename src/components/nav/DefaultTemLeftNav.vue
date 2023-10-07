@@ -25,6 +25,7 @@ const toggleDrawer = () => {
       temporary
       v-model="drawerValue"
       @update:modelValue="toggleDrawer"
+      color="secondary"
   >
     <v-list
         :lines="false"

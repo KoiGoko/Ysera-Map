@@ -15,6 +15,7 @@ const toggleDrawer = () => {
       location="left"
       :width="leftNavMainWidth"
       permanent
+      color="third"
   >
     <v-list nav>
       <v-list-item>

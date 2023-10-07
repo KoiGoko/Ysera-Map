@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {ref} from "vue";
+
 const drawerRight = ref(true)
 
 </script>
@@ -21,12 +22,15 @@ const drawerRight = ref(true)
             icon
             @click.stop="drawerRight = !drawerRight"
             color="primary"
-            variant="text"
+            variant="outlined"
           >
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-list-subheader>
-        <v-divider class="mt-2 mx-2"></v-divider>
+
+        <v-card class="ma-4" width="300" height="500" elevation="0">
+
+        </v-card>
       </v-list>
     </v-navigation-drawer>
   </div>

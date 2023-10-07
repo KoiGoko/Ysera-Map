@@ -21,7 +21,7 @@
                   required
                   :error="error"
                   density="default"
-                  variant="underlined"
+                  variant="outlined"
                   color="primary"
                   bg-color="#fff"
                   :rules="emailRules"
@@ -39,7 +39,7 @@
                   :error="error"
                   :error-messages="errorMessages"
                   density="default"
-                  variant="underlined"
+                  variant="outlined"
                   color="primary"
                   bg-color="#fff"
                   :rules="passwordRules"

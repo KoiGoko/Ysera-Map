@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {ref} from "vue";
+
 const drawerRight = ref(true)
 
 </script>
@@ -26,6 +27,30 @@ const drawerRight = ref(true)
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-list-subheader>
+        <v-divider class="mt-2 mx-2"></v-divider>
+
+        <v-card class="ma-4" width="300" height="500" elevation="0">
+          <v-card-item>
+            <v-card-subtitle class="text-start">
+              <h4>气象站</h4>
+            </v-card-subtitle>
+            <v-btn color="primary mt-1" variant="flat" class="rounded-pill">hello</v-btn>
+          </v-card-item>
+
+          <v-card-item>
+            <v-card-subtitle class="text-start">
+              <h4>气象站</h4>
+            </v-card-subtitle>
+            <v-btn color="primary mt-1" variant="flat" class="rounded-pill">hello</v-btn>
+          </v-card-item>
+
+          <v-card-item>
+            <v-card-subtitle class="text-start">
+              <h4>气象站</h4>
+            </v-card-subtitle>
+            <v-btn color="primary mt-1" variant="flat" class="rounded-pill">hello</v-btn>
+          </v-card-item>
+        </v-card>
         <v-divider class="mt-2 mx-2"></v-divider>
       </v-list>
     </v-navigation-drawer>
