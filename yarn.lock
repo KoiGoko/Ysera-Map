@@ -162,6 +162,14 @@
     "@babel/runtime" "^7.0.0"
     "@types/mapbox-gl" "^2.6.3"
 
+"@deck.gl/mapbox@^8.9.31":
+  version "8.9.31"
+  resolved "https://registry.yarnpkg.com/@deck.gl/mapbox/-/mapbox-8.9.31.tgz#39c5315d8c05442da78576891eb4737c38310451"
+  integrity sha512-EU/FRXHa+rQGwBnCj1qq53q3iM90nIYJgcu4z9icGiD6MocoiZZc99XZEsbqCl1uWENeEbpon64HyGcfQK9Mbg==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    "@types/mapbox-gl" "^2.6.3"
+
 "@deck.gl/mesh-layers@8.9.30":
   version "8.9.30"
   resolved "https://registry.npmjs.org/@deck.gl/mesh-layers/-/mesh-layers-8.9.30.tgz"

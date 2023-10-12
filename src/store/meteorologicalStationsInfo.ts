@@ -3,11 +3,13 @@ import {defineStore} from "pinia";
 
 export const useMeteorologicalStationsInfo = defineStore('meteorologicalStationsInfo', () => {
 
+    const meteorologicalStationsData = ref('http://127.0.0.1:8000/me_stations_info');
     const initialCircleRadius = 4;
-    const initMap = (map: any) => {
+    const meteorologicalStationsColor = ref('#0D47A1');
+    const initMeteorologicalStationsMap = (map: any) => {
         map.addSource('stations', {
             'type': 'geojson',
-            'data': 'http://127.0.0.1:8000/hello'
+            'data': meteorologicalStationsData.value,
         });
         map.addLayer({
             'id': 'stations-maker',
@@ -15,7 +17,7 @@ export const useMeteorologicalStationsInfo = defineStore('meteorologicalStations
             'source': 'stations',
             'paint': {
                 'circle-radius': initialCircleRadius,
-                'circle-color': '#223ab4'
+                'circle-color': meteorologicalStationsColor.value,
             },
         });
         map.on('zoom', () => {
@@ -43,5 +45,5 @@ export const useMeteorologicalStationsInfo = defineStore('meteorologicalStations
         //   map.setStyle(language.setLanguage(map.getStyle(), language.supportedLanguages[zh]));
         // });
     }
-    return {initMap}
+    return {initMap: initMeteorologicalStationsMap}
 })

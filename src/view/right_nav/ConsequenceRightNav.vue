@@ -1,57 +1,49 @@
 <script setup lang="ts">
 import {ref} from "vue";
+import RightMenuIcon from "@/components/bar/RightMenuIcon.vue";
 
 const drawerRight = ref(true)
 
 </script>
 <template>
   <div>
-    <v-btn class="right-nav-open" @click="drawerRight = !drawerRight"
+    <v-btn color="primary" class="right-nav-open" @click="drawerRight = !drawerRight"
            icon
+           elevation="1"
     >
-      <v-icon>mdi-menu</v-icon>
+      <RightMenuIcon></RightMenuIcon>
     </v-btn>
     <v-navigation-drawer
-      location="right"
-      width="364"
-      v-model="drawerRight"
+        location="right"
+        width="364"
+        height="100%"
+        v-model="drawerRight"
+        color="primary"
     >
       <v-list>
-        <v-list-subheader class="justify-start align-center">
+        <v-list-subheader elevation="4" class="justify-start align-center">
           <v-btn
-            icon
-            @click.stop="drawerRight = !drawerRight"
-            color="primary"
-            variant="text"
+              icon
+              @click.stop="drawerRight = !drawerRight"
+              color="primary"
+              variant="flat"
           >
             <v-icon>mdi-close</v-icon>
           </v-btn>
+          <v-divider vertical></v-divider>
+          <v-btn :color="rightNavSubHeaderIconColor" variant="outlined" class="ml-4" icon="mdi-vector-point"></v-btn>
+          <v-btn :color="rightNavSubHeaderIconColor" variant="outlined" class="ml-1"
+                 icon="mdi-rectangle-outline"></v-btn>
+          <v-btn :color="rightNavSubHeaderIconColor" variant="outlined" class="ml-1"
+                 icon="mdi-shape-polygon-plus"></v-btn>
+
+          <v-btn :color="rightNavSubHeaderIconColor" variant="outlined" height="48" width="96" class="rounded-pill ml-4"
+                 icon="mdi-trash-can-outline"></v-btn>
         </v-list-subheader>
-        <v-divider class="mt-2 mx-2"></v-divider>
+        <v-divider class="mt-2 mx-2 mb-2"></v-divider>
+        <v-list class="px-2">
+        </v-list>
 
-        <v-card class="ma-4" width="300" height="500" elevation="0">
-          <v-card-item>
-            <v-card-subtitle class="text-start">
-              <h4>气象站</h4>
-            </v-card-subtitle>
-            <v-btn color="primary mt-1" variant="flat" class="rounded-pill">hello</v-btn>
-          </v-card-item>
-
-          <v-card-item>
-            <v-card-subtitle class="text-start">
-              <h4>气象站</h4>
-            </v-card-subtitle>
-            <v-btn color="primary mt-1" variant="flat" class="rounded-pill">hello</v-btn>
-          </v-card-item>
-
-          <v-card-item>
-            <v-card-subtitle class="text-start">
-              <h4>气象站</h4>
-            </v-card-subtitle>
-            <v-btn color="primary mt-1" variant="flat" class="rounded-pill">hello</v-btn>
-          </v-card-item>
-        </v-card>
-        <v-divider class="mt-2 mx-2"></v-divider>
       </v-list>
     </v-navigation-drawer>
   </div>

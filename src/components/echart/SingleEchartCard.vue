@@ -3,7 +3,10 @@
 </script>
 
 <template>
-    <v-btn ></v-btn>
+  <v-card max-height="200" max-width="200">
+
+  </v-card>
+
 </template>
 
 <style scoped>

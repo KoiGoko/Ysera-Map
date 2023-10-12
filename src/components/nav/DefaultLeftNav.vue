@@ -15,7 +15,8 @@ const toggleDrawer = () => {
       location="left"
       :width="leftNavMainWidth"
       permanent
-      color="third"
+      color="primary"
+      elevation="2"
   >
     <v-list nav>
       <v-list-item>
@@ -32,10 +33,10 @@ const toggleDrawer = () => {
       <v-menu>
         <template v-slot:activator="{ props }">
           <v-list-item class="mb-4">
-            <v-btn icon variant="tonal"
+            <v-btn variant="tonal"
                    v-bind="props"
+                   icon="mdi-account"
             >
-              <v-icon>mdi-account</v-icon>
             </v-btn>
           </v-list-item>
         </template>

@@ -25,7 +25,7 @@ const toggleDrawer = () => {
       temporary
       v-model="drawerValue"
       @update:modelValue="toggleDrawer"
-      color="secondary"
+      color="primary"
   >
     <v-list
         :lines="false"
@@ -39,7 +39,6 @@ const toggleDrawer = () => {
           v-for="(item, i) in nuclearItems"
           :key="i"
           :value="item"
-          color="primary"
           class="mt-2"
           @click="navigateToRoute(item.to)"
       >
@@ -52,7 +51,6 @@ const toggleDrawer = () => {
           v-for="(item, i) in atmosphereItems"
           :key="i"
           :value="item"
-          color="primary"
           class="mt-2"
           @click="navigateToRoute(item.to)"
       >
@@ -65,7 +63,6 @@ const toggleDrawer = () => {
           v-for="(item, i) in evacuateItems"
           :key="i"
           :value="item"
-          color="primary"
           class="mt-2"
           @click="navigateToRoute(item.to)"
       >
