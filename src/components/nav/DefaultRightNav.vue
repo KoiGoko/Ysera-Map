@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import {ref} from "vue";
+import {useMapControl} from "@/store/mapControl.ts";
 const drawerRight = ref(false)
+
+const collapseMap = () => {
+  useMapControl().collapseControl(0, 0, true)
+}
 
 </script>
 <template>
   <div>
-    <v-btn class="right-nav-open" @click="drawerRight = !drawerRight"
+    <v-btn class="right-nav-open" @click="drawerRight = !drawerRight, collapseMap()"
            icon
     >
       <v-icon>mdi-menu</v-icon>

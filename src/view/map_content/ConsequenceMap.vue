@@ -4,6 +4,8 @@ import {useMapOption} from "@/store/mapOption.ts";
 import MapControls from "@/components/control/MapControls.vue";
 import MapSwitch from "@/components/bar/MapSwitch.vue";
 const mapRef = ref()
+import RulerControl from '@mapbox-controls/ruler';
+import '@mapbox-controls/ruler/src/index.css';
 const options = computed(
     () => useMapOption().options
 )

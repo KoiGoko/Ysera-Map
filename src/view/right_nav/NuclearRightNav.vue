@@ -1,14 +1,21 @@
 <script setup lang="ts">
-import {ref} from "vue";
+import {computed, ref} from "vue";
 import TimeLine from "@/components/bar/TimeLine.vue";
 import RightMenuIcon from "@/components/bar/RightMenuIcon.vue";
+import {useMapControl} from "@/store/mapControl.ts";
 
 const drawerRight = ref(true)
 
+
+function drawSwitch() {
+  drawerRight.value = !drawerRight.value
+  useMapControl().collapseControl(0, 0, drawerRight.value)
+  console.log(computed(() => useMapControl().isControlCollapsed))
+}
 </script>
 <template>
   <div>
-    <v-btn elevation="1" color="primary" class="right-nav-open" @click="drawerRight = !drawerRight"
+    <v-btn elevation="1" color="primary" class="right-nav-open" @click="drawSwitch"
            icon
     >
       <RightMenuIcon></RightMenuIcon>
@@ -24,7 +31,7 @@ const drawerRight = ref(true)
         <v-list-subheader elevation="4" class="justify-start align-center">
           <v-btn
               icon
-              @click.stop="drawerRight = !drawerRight"
+              @click.stop="drawSwitch"
               color="black"
               variant="text"
           >

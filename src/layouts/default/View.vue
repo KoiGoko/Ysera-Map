@@ -28,8 +28,6 @@
 </template>
 
 <script lang="ts" setup>
-
-import StationInfo from "@/components/nav/meteorological/StationInfo.vue";
 </script>
 
 <style scoped>
