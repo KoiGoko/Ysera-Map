@@ -21,6 +21,7 @@ const initMeteorologicalMap = () => {
   useMapControl().initRulerControl(map)
   useMapControl().initZoomControl(map)
   useMapControl().initImageControl(map)
+  map.addControl(draw)
   geocoderRef.value.appendChild(geocoder.onAdd(map));
   useMeteorologicalStationsInfo().initMeteorologicalStationsMap(map)
 

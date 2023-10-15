@@ -22,9 +22,6 @@ export const useMapboxDraw = defineStore('mapboxDraw', () => {
         draw.changeMode('draw_polygon');
     }
 
-    function drawLineString() {
-        draw.changeMode('draw_line_string');
-    }
 
     function drawPoint() {
         draw.changeMode('draw_point');
@@ -34,5 +31,5 @@ export const useMapboxDraw = defineStore('mapboxDraw', () => {
         draw.deleteAll()
     }
 
-    return {draw, drawRectangle, drawPolygon, drawLineString, drawPoint, deleteAll}
+    return {draw, drawRectangle, drawPolygon, drawPoint, deleteAll}
 });

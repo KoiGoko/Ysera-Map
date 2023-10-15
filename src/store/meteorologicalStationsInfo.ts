@@ -1,5 +1,6 @@
 import {ref} from "vue";
 import {defineStore} from "pinia";
+import axios from "axios";
 
 export const useMeteorologicalStationsInfo = defineStore('meteorologicalStationsInfo', () => {
     const meteorologicalStationsData = ref('http://127.0.0.1:8001/me_stations_info');
@@ -39,5 +40,13 @@ export const useMeteorologicalStationsInfo = defineStore('meteorologicalStations
             map.setPaintProperty('meteorologicalStations-point', 'circle-radius', radius);
         });
     }
-    return {initMeteorologicalStationsMap}
+
+    const getMeteorologicalStationsData = () => {
+        axios.get(meteorologicalStationsData.value).then((response: any) => {
+            console.log(response)
+        }).catch((error: any) => {
+            console.log(error)
+        })
+    }
+    return {initMeteorologicalStationsMap, getMeteorologicalStationsData}
 })

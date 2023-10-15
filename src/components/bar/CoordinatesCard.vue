@@ -10,7 +10,7 @@
 <style scoped>
 .coordinates {
   position: absolute;
-  bottom: 24px;
-  left: 184px;
+  top: 69px;
+  left: 96px;
 }
 </style>
