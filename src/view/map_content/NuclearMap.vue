@@ -1,38 +1,31 @@
 <script setup lang="ts">
-import {ref, computed} from "vue";
+import {computed, ref} from "vue";
 import {useMapOption} from "@/store/mapOption.ts";
 import {useNuclearStationsInfo} from "@/store/nuclearStationsInfo.ts";
 import MapControls from "@/components/control/MapControls.vue";
 import {useMapControl} from "@/store/mapControl.ts";
+import {useMapboxGeocoder} from "@/store/MapboxGeocoder.ts";
 
 const mapRef = ref()
 const geocoderRef = ref()
 const options = computed(
     () => useMapOption().options
 )
-
-
-import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
-import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
-import mapboxgl from "mapbox-gl";
+const geocoder = useMapboxGeocoder().geocoder
 
 const initNuclearMap = () => {
   const map = mapRef.value.map
 
-  computed(() => useMapControl().initRulerControl(map))
-  // useMapControl().initZoomControl(map)
-  // useMapControl().initImageControl(map)
-
-
-  const geocoder = new MapboxGeocoder({
-    accessToken: 'pk.eyJ1Ijoia29pZ29rb3JvIiwiYSI6ImNsOXAxZDIzZDA0OHQ0MW1wMHd2Y3Rxa3IifQ.X9ACqkqRQ_m3IvwqsGYy0w',
-    mapboxgl: mapboxgl
-  });
+  useMapControl().initRulerControl(map)
+  useMapControl().initZoomControl(map)
+  useMapControl().initImageControl(map)
 
   geocoderRef.value.appendChild(geocoder.onAdd(map));
-
-
   useNuclearStationsInfo().initNuclearStationsMap(map)
+  map.on('style.load', () => {
+    useNuclearStationsInfo().initNuclearStationsMap(map)
+    console.log('style loaded')
+  });
 }
 </script>
 <template>
@@ -43,23 +36,12 @@ const initNuclearMap = () => {
   >
     <MapControls/>
   </v-map>
-
-  <div id="geocoder" class="geocoder" ref="geocoderRef"></div>
-  <v-card class="coordinates" height="36" width="192">
-
-  </v-card>
-
+  <div class="geocoder" ref="geocoderRef"></div>
 </template>
 <style scoped>
-#geocoder {
+.geocoder {
   position: absolute;
-  top: 8px;
-  left: 400px;
-}
-
-.coordinates {
-  position: absolute;
-  bottom: 100px;
-  left: 300px;
+  top: 16px;
+  left: 96px;
 }
 </style>

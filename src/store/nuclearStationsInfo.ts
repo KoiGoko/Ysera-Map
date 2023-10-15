@@ -2,48 +2,67 @@ import {ref} from "vue";
 import {defineStore} from "pinia";
 
 export const useNuclearStationsInfo = defineStore('nuclearStationsInfo', () => {
-    const meteorologicalStationsData = ref('http://127.0.0.1:8000/me_stations_info');
-    const initialCircleRadius = 4;
-    const meteorologicalStationsColor = ref('#0D47A1');
+    const NuclearStationsData = ref('http://127.0.0.1:8002/nu_stations_info');
     const initNuclearStationsMap = (map: any) => {
-        map.addSource('stations', {
-            'type': 'geojson',
-            'data': meteorologicalStationsData.value,
-        });
-        map.addLayer({
-            'id': 'stations-maker',
-            'type': 'circle',
-            'source': 'stations',
-            'paint': {
-                'circle-radius': initialCircleRadius,
-                'circle-color': meteorologicalStationsColor.value,
-            },
-        });
-        map.on('zoom', () => {
-            const currentZoom = map.getZoom();
-            const roundedZoom = Math.floor(currentZoom);
-            let radius = 0
-            if (roundedZoom < 5) {
-                radius = 3
-            } else if (roundedZoom < 7) {
-                radius = 4
-            } else if (roundedZoom < 9) {
-                radius = 6
-            } else if (roundedZoom < 11) {
-                radius = 8
-            } else {
-                radius = 10
-            }
-            console.log(roundedZoom)
-            map.setPaintProperty('stations-maker', 'circle-radius', radius);
+        map.addSource('earthquakes', {
+            type: 'geojson',
+            data: NuclearStationsData.value,
+            cluster: true,
+            clusterMaxZoom: 14, // Max zoom to cluster points on
+            clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
         });
 
-        // const language = new MapboxLanguage();
-        // let zh = 12
-        // setInterval(function () {
-        //   map.setStyle(language.setLanguage(map.getStyle(), language.supportedLanguages[zh]));
-        // });
+        map.addLayer({
+            id: 'clusters',
+            type: 'circle',
+            source: 'earthquakes',
+            filter: ['has', 'point_count'],
+            paint: {
+                'circle-color': [
+                    'step',
+                    ['get', 'point_count'],
+                    '#51bbd6',
+                    100,
+                    '#f1f075',
+                    750,
+                    '#f28cb1'
+                ],
+                'circle-radius': [
+                    'step',
+                    ['get', 'point_count'],
+                    20,
+                    100,
+                    30,
+                    750,
+                    40
+                ]
+            }
+        });
+
+        map.addLayer({
+            id: 'cluster-count',
+            type: 'symbol',
+            source: 'earthquakes',
+            filter: ['has', 'point_count'],
+            layout: {
+                'text-field': ['get', 'point_count_abbreviated'],
+                'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+                'text-size': 12
+            }
+        });
+
+        map.addLayer({
+            id: 'unclustered-point',
+            type: 'circle',
+            source: 'earthquakes',
+            filter: ['!', ['has', 'point_count']],
+            paint: {
+                'circle-color': '#11b4da',
+                'circle-radius': 4,
+                'circle-stroke-width': 1,
+                'circle-stroke-color': '#fff'
+            }
+        });
     }
     return {initNuclearStationsMap}
-
 })

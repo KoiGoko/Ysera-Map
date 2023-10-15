@@ -6,3 +6,5 @@
   >
   </v-scale-control>
 </template>
+<style scoped>
+</style>

@@ -13,6 +13,7 @@ import '@mapbox-controls/image/src/index.css';
 import CompassControl from '@mapbox-controls/compass';
 import '@mapbox-controls/compass/src/index.css';
 
+
 export const useMapControl = defineStore('mapControl', () => {
     const rulerControl = new RulerControl();
     const zoomControl = new ZoomControl();

@@ -2,19 +2,20 @@ import {ref} from "vue";
 import {defineStore} from "pinia";
 
 export const useMeteorologicalStationsInfo = defineStore('meteorologicalStationsInfo', () => {
+    const meteorologicalStationsData = ref('http://127.0.0.1:8001/me_stations_info');
 
-    const meteorologicalStationsData = ref('http://127.0.0.1:8000/me_stations_info');
     const initialCircleRadius = 4;
     const meteorologicalStationsColor = ref('#0D47A1');
+
     const initMeteorologicalStationsMap = (map: any) => {
-        map.addSource('stations', {
+        map.addSource('meteorologicalStations', {
             'type': 'geojson',
             'data': meteorologicalStationsData.value,
         });
         map.addLayer({
-            'id': 'stations-maker',
+            'id': 'meteorologicalStations-point',
             'type': 'circle',
-            'source': 'stations',
+            'source': 'meteorologicalStations',
             'paint': {
                 'circle-radius': initialCircleRadius,
                 'circle-color': meteorologicalStationsColor.value,
@@ -35,15 +36,8 @@ export const useMeteorologicalStationsInfo = defineStore('meteorologicalStations
             } else {
                 radius = 10
             }
-            console.log(roundedZoom)
-            map.setPaintProperty('stations-maker', 'circle-radius', radius);
+            map.setPaintProperty('meteorologicalStations-point', 'circle-radius', radius);
         });
-
-        // const language = new MapboxLanguage();
-        // let zh = 12
-        // setInterval(function () {
-        //   map.setStyle(language.setLanguage(map.getStyle(), language.supportedLanguages[zh]));
-        // });
     }
-    return {initMap: initMeteorologicalStationsMap}
+    return {initMeteorologicalStationsMap}
 })
