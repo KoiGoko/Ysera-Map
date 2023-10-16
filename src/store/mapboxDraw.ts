@@ -13,7 +13,6 @@ export const useMapboxDraw = defineStore('mapboxDraw', () => {
             draw_rectangle: DrawRectangle,
         },
     });
-
     function drawRectangle() {
         draw.changeMode('draw_rectangle');
     }
@@ -22,14 +21,11 @@ export const useMapboxDraw = defineStore('mapboxDraw', () => {
         draw.changeMode('draw_polygon');
     }
 
-
     function drawPoint() {
         draw.changeMode('draw_point');
     }
-
     function deleteAll() {
         draw.deleteAll()
     }
-
     return {draw, drawRectangle, drawPolygon, drawPoint, deleteAll}
 });

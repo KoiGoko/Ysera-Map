@@ -1,10 +1,12 @@
 import {ref} from "vue";
 import {defineStore} from "pinia";
+import mapboxgl from "mapbox-gl";
 
 export const useNuclearStationsInfo = defineStore('nuclearStationsInfo', () => {
     const NuclearStationsData = ref('http://127.0.0.1:8002/nu_stations_info');
+    const nuclearStation = ref(null)
     const initNuclearStationsMap = (map: any) => {
-        map.addSource('earthquakes', {
+        map.addSource('NuclearStationsData', {
             type: 'geojson',
             data: NuclearStationsData.value,
             cluster: true,
@@ -15,7 +17,7 @@ export const useNuclearStationsInfo = defineStore('nuclearStationsInfo', () => {
         map.addLayer({
             id: 'clusters',
             type: 'circle',
-            source: 'earthquakes',
+            source: 'NuclearStationsData',
             filter: ['has', 'point_count'],
             paint: {
                 'circle-color': [
@@ -38,11 +40,10 @@ export const useNuclearStationsInfo = defineStore('nuclearStationsInfo', () => {
                 ]
             }
         });
-
         map.addLayer({
             id: 'cluster-count',
             type: 'symbol',
-            source: 'earthquakes',
+            source: 'NuclearStationsData',
             filter: ['has', 'point_count'],
             layout: {
                 'text-field': ['get', 'point_count_abbreviated'],
@@ -50,11 +51,10 @@ export const useNuclearStationsInfo = defineStore('nuclearStationsInfo', () => {
                 'text-size': 12
             }
         });
-
         map.addLayer({
             id: 'unclustered-point',
             type: 'circle',
-            source: 'earthquakes',
+            source: 'NuclearStationsData',
             filter: ['!', ['has', 'point_count']],
             paint: {
                 'circle-color': '#11b4da',
@@ -63,6 +63,32 @@ export const useNuclearStationsInfo = defineStore('nuclearStationsInfo', () => {
                 'circle-stroke-color': '#fff'
             }
         });
+
+        map.on('click', 'unclustered-point', (e: any) => {
+            const {coordinates} = e.features[0].geometry
+
+            nuclearStation.value = e.features[0].properties
+            const nuclear_stations_name = e.features[0].properties['nuclear_stations_name'];
+            const country = e.features[0].properties['country'];
+            const reactor_type = e.features[0].properties['reactor_type'];
+            const latitude = e.features[0].properties['latitude'];
+            const longitude = e.features[0].properties['longitude'];
+
+            const popupContent = `
+            <div style="width: 120px">
+                <h3>${nuclear_stations_name}核电站</h3>
+                <p><b>国家</b>: ${country}</p>
+                <p><b>经度</b>: ${longitude}</p>
+                <p><b>纬度</b>: ${latitude}</p>
+                <p><b>反应堆类型</b>: ${reactor_type}</p>
+            </div>`;
+
+            new mapboxgl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(popupContent)
+                .setMaxWidth('300px')
+                .addTo(map);
+        })
     }
-    return {initNuclearStationsMap}
+    return {initNuclearStationsMap, nuclearStation}
 })

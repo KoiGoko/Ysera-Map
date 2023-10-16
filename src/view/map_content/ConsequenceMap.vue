@@ -21,7 +21,6 @@ const initConsequenceMap = () => {
   useMapControl().initZoomControl(map)
   useMapControl().initImageControl(map)
   geocoderRef.value.appendChild(geocoder.onAdd(map));
-  useNuclearStationsInfo().initNuclearStationsMap(map)
 }
 </script>
 <template>

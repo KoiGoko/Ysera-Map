@@ -21,24 +21,26 @@ function drawSwitch() {
       <RightMenuIcon></RightMenuIcon>
     </v-btn>
     <v-navigation-drawer
-        location="right"
-        width="364"
-        height="100%"
-        v-model="drawerRight"
-        color="white"
+      location="right"
+      width="364"
+      height="100%"
+      v-model="drawerRight"
+      color="white"
     >
       <v-list>
         <v-list-subheader elevation="4" class="justify-start align-center">
           <v-btn
-              icon
-              @click.stop="drawSwitch"
-              color="black"
-              variant="text"
+            icon
+            @click.stop="drawSwitch"
+            color="black"
+            variant="text"
           >
             <v-icon>mdi-close</v-icon>
           </v-btn>
           <v-divider vertical></v-divider>
-          <v-btn color="third" variant="flat" height="48" width="96" class="rounded-pill ml-4"
+          <v-btn color="third" variant="flat" height="48" class=" ml-8"
+                 icon="mdi-select"></v-btn>
+          <v-btn color="third" variant="flat" height="48" width="96" class="rounded-pill ml-8"
                  icon="mdi-plus"></v-btn>
         </v-list-subheader>
         <v-divider class="mt-2 mx-2 mb-2"></v-divider>
