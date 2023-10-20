@@ -7,7 +7,7 @@ const drawerRight = ref(true)
 </script>
 <template>
   <div>
-    <v-btn elevation="1" color="primary" class="right-nav-open" @click="drawerRight = !drawerRight"
+    <v-btn color="primary" class="right-nav-open" @click="drawerRight = !drawerRight"
            icon
     >
       <RightMenuIcon></RightMenuIcon>

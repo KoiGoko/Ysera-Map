@@ -29,7 +29,6 @@ const closeInfoBar = () => {
     </v-card>
 
   </div>
-
 </template>
 
 <style scoped>

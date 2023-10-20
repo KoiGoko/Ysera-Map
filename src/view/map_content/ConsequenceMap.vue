@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {computed, ref} from "vue";
 import {useMapOption} from "@/store/mapOption.ts";
-import MapControls from "@/components/control/MapControls.vue";
 import '@mapbox-controls/ruler/src/index.css';
 import {useMapControl} from "@/store/mapControl.ts";
 import {useNuclearStationsInfo} from "@/store/nuclearStationsInfo.ts";
@@ -29,7 +28,6 @@ const initConsequenceMap = () => {
       :options="options"
       @loaded="initConsequenceMap"
   >
-    <MapControls/>
   </v-map>
   <div class="geocoder" ref="geocoderRef"></div>
 </template>

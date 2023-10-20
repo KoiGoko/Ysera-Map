@@ -21,19 +21,19 @@ function drawSwitch() {
       <RightMenuIcon></RightMenuIcon>
     </v-btn>
     <v-navigation-drawer
-      location="right"
-      width="364"
-      height="100%"
-      v-model="drawerRight"
-      color="white"
+        location="right"
+        width="364"
+        height="100%"
+        v-model="drawerRight"
+        color="white"
     >
       <v-list>
         <v-list-subheader elevation="4" class="justify-start align-center">
           <v-btn
-            icon
-            @click.stop="drawSwitch"
-            color="black"
-            variant="text"
+              icon
+              @click.stop="drawSwitch"
+              color="black"
+              variant="text"
           >
             <v-icon>mdi-close</v-icon>
           </v-btn>
@@ -46,6 +46,63 @@ function drawSwitch() {
         <v-divider class="mt-2 mx-2 mb-2"></v-divider>
 
         <v-list class="px-2">
+          <v-list-item class="rounded" height="48" elevation="4">
+
+          </v-list-item>
+          <v-list-item class="rounded mt-1" height="48" elevation="4">
+
+          </v-list-item>
+          <v-list-item class="rounded mt-1" height="48" elevation="4">
+
+          </v-list-item>
+          <v-list-item class="rounded mt-1" height="48" elevation="4">
+
+          </v-list-item>
+          <v-list-item class="rounded mt-1" height="48" elevation="4">
+
+          </v-list-item>
+          <v-list-item class="rounded mt-1" height="48" elevation="4">
+
+          </v-list-item>
+
+          <v-list-item class="rounded" height="48" elevation="4">
+
+          </v-list-item>
+          <v-list-item class="rounded mt-1" height="48" elevation="4">
+
+          </v-list-item>
+          <v-list-item class="rounded mt-1" height="48" elevation="4">
+
+          </v-list-item>
+          <v-list-item class="rounded mt-1" height="48" elevation="4">
+
+          </v-list-item>
+          <v-list-item class="rounded mt-1" height="48" elevation="4">
+
+          </v-list-item>
+          <v-list-item class="rounded mt-1" height="48" elevation="4">
+
+          </v-list-item>
+
+          <v-list-item class="rounded" height="48" elevation="4">
+
+          </v-list-item>
+          <v-list-item class="rounded mt-1" height="48" elevation="4">
+
+          </v-list-item>
+          <v-list-item class="rounded mt-1" height="48" elevation="4">
+
+          </v-list-item>
+          <v-list-item class="rounded mt-1" height="48" elevation="4">
+
+          </v-list-item>
+          <v-list-item class="rounded mt-1" height="48" elevation="4">
+
+          </v-list-item>
+          <v-list-item class="rounded mt-1" height="48" elevation="4">
+
+          </v-list-item>
+
           <v-list-item class="rounded" height="48" elevation="4">
 
           </v-list-item>
@@ -91,6 +148,19 @@ function drawSwitch() {
         <!--        </v-card>-->
         <!--        <v-divider class="mt-2 mx-2"></v-divider>-->
       </v-list>
+      <v-card style="position: absolute; top: 0px; right: 0px;" color="" width="364"
+              height="90">
+
+        <v-btn
+            icon
+            @click.stop="drawSwitch"
+            color="black"
+            variant="text"
+        >
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+
+      </v-card>
     </v-navigation-drawer>
   </div>
 </template>

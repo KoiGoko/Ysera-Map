@@ -12,3 +12,5 @@ export const useMapboxGeocoder = defineStore('mapboxGeocoder', () => {
 
     return {geocoder}
 })
+
+

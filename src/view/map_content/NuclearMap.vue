@@ -2,7 +2,6 @@
 import {computed, ref} from "vue";
 import {useMapOption} from "@/store/mapOption.ts";
 import {useNuclearStationsInfo} from "@/store/nuclearStationsInfo.ts";
-import MapControls from "@/components/control/MapControls.vue";
 import {useMapControl} from "@/store/mapControl.ts";
 import {useMapboxGeocoder} from "@/store/MapboxGeocoder.ts";
 
@@ -34,7 +33,6 @@ const initNuclearMap = () => {
       :options="options"
       @loaded="initNuclearMap"
   >
-    <MapControls/>
   </v-map>
   <div class="geocoder" ref="geocoderRef"></div>
 </template>

@@ -6,6 +6,7 @@ const drawerRight = ref(true)
 
 </script>
 <template>
+
   <div>
     <v-btn color="primary" class="right-nav-open" @click="drawerRight = !drawerRight"
            icon

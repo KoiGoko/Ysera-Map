@@ -5,6 +5,7 @@ import mapboxgl from "mapbox-gl";
 export const useNuclearStationsInfo = defineStore('nuclearStationsInfo', () => {
     const NuclearStationsData = ref('http://127.0.0.1:8002/nu_stations_info');
     const nuclearStation = ref(null)
+    const currZoomNuclearStationInfos = ref()
     const initNuclearStationsMap = (map: any) => {
         map.addSource('NuclearStationsData', {
             type: 'geojson',
@@ -89,6 +90,12 @@ export const useNuclearStationsInfo = defineStore('nuclearStationsInfo', () => {
                 .setMaxWidth('300px')
                 .addTo(map);
         })
+
+        map.on('moveend', () => {
+            const features = map.queryRenderedFeatures({layers: ['unclustered-point']});
+            currZoomNuclearStationInfos.value = features.map((feature: any) => feature.properties);
+            console.log(currZoomNuclearStationInfos.value)
+        });
     }
     return {initNuclearStationsMap, nuclearStation}
 })

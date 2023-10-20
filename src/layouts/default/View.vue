@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="NotoFont">
     <!--map main-->
     <div>
       <router-view name="map"></router-view>

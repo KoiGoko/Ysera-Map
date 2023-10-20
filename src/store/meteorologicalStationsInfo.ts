@@ -19,12 +19,11 @@ interface MeteorologicalStationProperties {
 export const useMeteorologicalStationsInfo = defineStore('meteorologicalStationsInfo', () => {
     const meteorologicalStationsData = ref('http://127.0.0.1:8001/me_stations_info');
 
-    const initialCircleRadius= 4;
+    const initialCircleRadius = 4;
     const meteorologicalStationsColor = ref('#0D47A1');
-    const meteorologicalJson = ref<MeteorologicalStationProperties[]>([]);
     const meteorologicalStation = ref(null)
 
-
+    const currZoomMeteorologicalStationInfos = ref();
 
 
     const initMeteorologicalStationsMap = (map: any) => {
@@ -61,7 +60,6 @@ export const useMeteorologicalStationsInfo = defineStore('meteorologicalStations
 
         map.on('click', 'meteorologicalStations-point', (e: any) => {
             const {coordinates} = e.features[0].geometry
-
             meteorologicalStation.value = e.features[0].properties
             const formattedCoordinates = {
                 longitude: coordinates[0].toFixed(6),
@@ -86,9 +84,28 @@ export const useMeteorologicalStationsInfo = defineStore('meteorologicalStations
                 .setMaxWidth('300px')
                 .addTo(map);
         })
+
+        map.on('mousemove', 'meteorologicalStations-point', (e: any) => {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+
+        map.on('mouseleave', 'meteorologicalStations-point', (e: any) => {
+            map.getCanvas().style.cursor = '';
+        });
+
+        map.on('movestart', () => {
+            // map.setFilter('meteorologicalStations-point', ['has', 'id']);
+        });
+
+        map.on('moveend', () => {
+            const features = map.queryRenderedFeatures({layers: ['meteorologicalStations-point']});
+            currZoomMeteorologicalStationInfos.value = features.map((feature: any) => feature.properties);
+            // console.log(currZoomMeteorologicalStationInfos.value)
+        });
     }
 
     const getMeteorologicalStationsData = () => {
+        const meteorologicalJson = ref<MeteorologicalStationProperties[]>([]);
         axios.get(meteorologicalStationsData.value).then((response: any) => {
             meteorologicalJson.value = [];
             for (let i = 0; i < response.data.features.length; i++) {
@@ -98,7 +115,12 @@ export const useMeteorologicalStationsInfo = defineStore('meteorologicalStations
         }).catch((error: any) => {
             console.log(error)
         })
-        return meteorologicalJson.value
+        return meteorologicalJson
     }
-    return {initMeteorologicalStationsMap, getMeteorologicalStationsData, meteorologicalStation}
+    return {
+        initMeteorologicalStationsMap,
+        getMeteorologicalStationsData,
+        meteorologicalStation,
+        currZoomMeteorologicalStationInfos
+    }
 })
