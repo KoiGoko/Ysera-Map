@@ -12,8 +12,17 @@ const closeInfoBar = () => {
 </script>
 <template>
   <div v-show="infoBarStatus">
-    <v-card elevation="4" class="info-card rounded-xl mr-2 mt-2" color="primary" width="400" height="90%">
-      <v-list height="85%" bg-color="primary" class="px-1">
+    <v-card color="white" elevation="4" class="info-card rounded-xl mr-2 mt-2" width="400" height="90%">
+      <v-list bg-color="white" height="85%" class="px-1">
+        <v-list-item class="rounded-lg" elevation="4" height="200">
+
+        </v-list-item>
+
+        <v-divider class="mt-2"></v-divider>
+
+        <v-list-item class="rounded-lg" elevation="4" height="200">
+
+        </v-list-item>
 
       </v-list>
       <v-card-item class="d-flex justify-end mt-7">
@@ -22,12 +31,10 @@ const closeInfoBar = () => {
                color="secondary"
                @click="closeInfoBar"
                variant="flat">
-          close
+          <span>退 出</span>
         </v-btn>
       </v-card-item>
-
     </v-card>
-
   </div>
 </template>
 

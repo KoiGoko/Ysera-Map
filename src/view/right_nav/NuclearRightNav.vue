@@ -1,21 +1,55 @@
 <script setup lang="ts">
-import {computed, ref} from "vue";
-import TimeLine from "@/components/bar/TimeLine.vue";
+import {computed, onMounted, ref} from "vue";
+import {useMapboxDraw} from "@/store/mapboxDraw.ts";
+import {useGlobalColor} from "@/store/globalColor.ts";
+import {useInfoBar} from "@/store/infoBar.ts";
+import InfoBar from "@/components/bar/InfoBar.vue";
 import RightMenuIcon from "@/components/bar/RightMenuIcon.vue";
-import {useMapControl} from "@/store/mapControl.ts";
+import {useNuclearStationsInfo} from "@/store/nuclearStationsInfo.ts";
 
 const drawerRight = ref(true)
 
-
 function drawSwitch() {
   drawerRight.value = !drawerRight.value
-  useMapControl().collapseControl(0, 0, drawerRight.value)
-  console.log(computed(() => useMapControl().isControlCollapsed))
+}
+
+const currZoomNuclearStationInfos = computed(() => useNuclearStationsInfo().currZoomNuclearStationInfos)
+
+const drawRectangle = () => {
+  useMapboxDraw().drawRectangle()
+}
+
+const deleteAll = () => {
+  useMapboxDraw().deleteAll()
+}
+
+const drawPoint = () => {
+  useMapboxDraw().drawPoint()
+}
+
+const drawPolygon = () => {
+  useMapboxDraw().drawPolygon()
+}
+
+const rightNavSubHeaderIconColor = computed(() => {
+  return useGlobalColor().rightNavSubHeaderIconColor
+})
+
+const openInfoBar = () => {
+  useInfoBar().openInfoBar()
+}
+
+const closeInfoBar = () => {
+  useInfoBar().closeInfoBar()
+}
+const openRightNav = () => {
+  drawerRight.value = !drawerRight.value
+  closeInfoBar()
 }
 </script>
 <template>
   <div>
-    <v-btn elevation="1" color="primary" class="right-nav-open" @click="drawSwitch"
+    <v-btn color="background" class="right-nav-open" @click="drawSwitch"
            icon
     >
       <RightMenuIcon></RightMenuIcon>
@@ -23,145 +57,82 @@ function drawSwitch() {
     <v-navigation-drawer
         location="right"
         width="364"
-        height="100%"
         v-model="drawerRight"
-        color="white"
+        color="background"
     >
-      <v-list>
-        <v-list-subheader elevation="4" class="justify-start align-center">
-          <v-btn
-              icon
-              @click.stop="drawSwitch"
-              color="black"
-              variant="text"
-          >
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-          <v-divider vertical></v-divider>
-          <v-btn color="third" variant="flat" height="48" class=" ml-8"
-                 icon="mdi-select"></v-btn>
-          <v-btn color="third" variant="flat" height="48" width="96" class="rounded-pill ml-8"
-                 icon="mdi-plus"></v-btn>
-        </v-list-subheader>
-        <v-divider class="mt-2 mx-2 mb-2"></v-divider>
+      <v-list height="90" class="px-4">
 
-        <v-list class="px-2">
-          <v-list-item class="rounded" height="48" elevation="4">
-
-          </v-list-item>
-          <v-list-item class="rounded mt-1" height="48" elevation="4">
-
-          </v-list-item>
-          <v-list-item class="rounded mt-1" height="48" elevation="4">
-
-          </v-list-item>
-          <v-list-item class="rounded mt-1" height="48" elevation="4">
-
-          </v-list-item>
-          <v-list-item class="rounded mt-1" height="48" elevation="4">
-
-          </v-list-item>
-          <v-list-item class="rounded mt-1" height="48" elevation="4">
-
-          </v-list-item>
-
-          <v-list-item class="rounded" height="48" elevation="4">
-
-          </v-list-item>
-          <v-list-item class="rounded mt-1" height="48" elevation="4">
-
-          </v-list-item>
-          <v-list-item class="rounded mt-1" height="48" elevation="4">
-
-          </v-list-item>
-          <v-list-item class="rounded mt-1" height="48" elevation="4">
-
-          </v-list-item>
-          <v-list-item class="rounded mt-1" height="48" elevation="4">
-
-          </v-list-item>
-          <v-list-item class="rounded mt-1" height="48" elevation="4">
-
-          </v-list-item>
-
-          <v-list-item class="rounded" height="48" elevation="4">
-
-          </v-list-item>
-          <v-list-item class="rounded mt-1" height="48" elevation="4">
-
-          </v-list-item>
-          <v-list-item class="rounded mt-1" height="48" elevation="4">
-
-          </v-list-item>
-          <v-list-item class="rounded mt-1" height="48" elevation="4">
-
-          </v-list-item>
-          <v-list-item class="rounded mt-1" height="48" elevation="4">
-
-          </v-list-item>
-          <v-list-item class="rounded mt-1" height="48" elevation="4">
-
-          </v-list-item>
-
-          <v-list-item class="rounded" height="48" elevation="4">
-
-          </v-list-item>
-          <v-list-item class="rounded mt-1" height="48" elevation="4">
-
-          </v-list-item>
-          <v-list-item class="rounded mt-1" height="48" elevation="4">
-
-          </v-list-item>
-          <v-list-item class="rounded mt-1" height="48" elevation="4">
-
-          </v-list-item>
-          <v-list-item class="rounded mt-1" height="48" elevation="4">
-
-          </v-list-item>
-          <v-list-item class="rounded mt-1" height="48" elevation="4">
-
-          </v-list-item>
-        </v-list>
-
-        <!--        <v-card class="ma-4" width="300" height="500" elevation="0">-->
-        <!--          <v-card-item>-->
-        <!--            <v-btn @click="drawRectangle" color="primary mt-1" variant="flat" class="rounded-pill">Rectangle</v-btn>-->
-        <!--            <v-btn @click="drawPolygon" color="primary mt-1" variant="flat" class="rounded-pill">Polygon</v-btn>-->
-        <!--            <v-btn @click="deleteAll" color="primary mt-1" variant="flat" class="rounded-pill">delete</v-btn>-->
-        <!--            <v-btn @click="drawPoint, show = !show" color="primary mt-1" variant="flat" class="rounded-pill ">Point-->
-        <!--            </v-btn>-->
-        <!--          </v-card-item>-->
-
-        <!--          <v-expand-transition>-->
-        <!--            <div v-show="show">-->
-        <!--              <v-radio-group>-->
-        <!--                <v-card-item>-->
-        <!--                  <v-radio class="text-h6" label="按照半径" value="1"></v-radio>-->
-        <!--                </v-card-item>-->
-
-        <!--                <v-card-item>-->
-        <!--                  <v-radio class="text-h6" label="按照最近的台站" value="2"></v-radio>-->
-        <!--                </v-card-item>-->
-        <!--              </v-radio-group>-->
-        <!--            </div>-->
-        <!--          </v-expand-transition>-->
-        <!--        </v-card>-->
-        <!--        <v-divider class="mt-2 mx-2"></v-divider>-->
       </v-list>
-      <v-card style="position: absolute; top: 0px; right: 0px;" color="" width="364"
-              height="90">
+      <v-list
+          density="compact"
+          class="px-4">
+        <v-list-item
+            v-for="(info, index) in currZoomNuclearStationInfos"
+            :key="index"
+            @click="openInfoBar"
+            class="py-0 rounded-xl mt-2"
+            elevation="0" variant="flat"
+            :value="index + 1"
+            density="compact"
+            color="#00838F"
+            base-color="#00838F"
+        >
+          <template v-slot:append>
+            <v-icon>mdi-vector-point</v-icon>
+          </template>
+          <span>{{ info['nuclear_stations_name'] }}
+          </span>
+        </v-list-item>
+      </v-list>
 
+      <v-card style="position: absolute; top: 0px; right: 16px"
+              width="347"
+              elevation="4"
+              translate="yes"
+              color="background"
+              class="d-flex justify-center align-center rounded-0 pr-4"
+              height="90">
         <v-btn
             icon
-            @click.stop="drawSwitch"
-            color="black"
+            @click="drawSwitch"
             variant="text"
         >
           <v-icon>mdi-close</v-icon>
         </v-btn>
 
+        <v-btn @click.stop="drawPoint"
+               variant="flat"
+               color="secondary"
+               icon="mdi-vector-point"
+               class="ml-1"
+        >
+        </v-btn>
+
+        <v-btn @click="drawRectangle"
+               variant="flat"
+               color="secondary"
+               icon="mdi-rectangle-outline"
+               class="ml-1"
+        >
+        </v-btn>
+        <v-btn @click="drawPolygon"
+               variant="flat"
+               color="secondary"
+               icon="mdi-shape-polygon-plus"
+               class="ml-1"
+        >
+        </v-btn>
+        <v-btn @click="deleteAll"
+               variant="flat"
+               color="secondary"
+               height="48" width="96"
+               class="rounded-pill ml-1"
+               icon="mdi-view-grid-plus"
+        >
+        </v-btn>
       </v-card>
     </v-navigation-drawer>
+    <InfoBar></InfoBar>
   </div>
 </template>
 

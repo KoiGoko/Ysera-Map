@@ -22,9 +22,11 @@ export const useMeteorologicalStationsInfo = defineStore('meteorologicalStations
     const initialCircleRadius = 4;
     const meteorologicalStationsColor = ref('#0D47A1');
     const meteorologicalStation = ref(null)
-
     const currZoomMeteorologicalStationInfos = ref();
 
+    const setCurrZoomMeteorologicalStationInfos = (value: any) => {
+        currZoomMeteorologicalStationInfos.value = value
+    }
 
     const initMeteorologicalStationsMap = (map: any) => {
         map.addSource('meteorologicalStations', {
@@ -66,6 +68,7 @@ export const useMeteorologicalStationsInfo = defineStore('meteorologicalStations
                 latitude: coordinates[1].toFixed(6),
             };
             const description = e.features[0].properties['station_name'];
+
             // 站点级别
             const station_type = e.features[0].properties['station_type'];
 
@@ -76,8 +79,12 @@ export const useMeteorologicalStationsInfo = defineStore('meteorologicalStations
                 <p><b>纬度</b>: ${formattedCoordinates.latitude}</p>
                 <p><b>站点级别</b>: ${station_type}</p>
             </div>`;
+            map.flyTo({
+                center: coordinates,
+                zoom: 16,
+                curve: 1,
+            });
 
-            console.log(coordinates)
             new mapboxgl.Popup()
                 .setLngLat(coordinates)
                 .setHTML(popupContent)
@@ -92,15 +99,9 @@ export const useMeteorologicalStationsInfo = defineStore('meteorologicalStations
         map.on('mouseleave', 'meteorologicalStations-point', (e: any) => {
             map.getCanvas().style.cursor = '';
         });
-
-        map.on('movestart', () => {
-            // map.setFilter('meteorologicalStations-point', ['has', 'id']);
-        });
-
-        map.on('moveend', () => {
+        map.on('idle', () => {
             const features = map.queryRenderedFeatures({layers: ['meteorologicalStations-point']});
             currZoomMeteorologicalStationInfos.value = features.map((feature: any) => feature.properties);
-            // console.log(currZoomMeteorologicalStationInfos.value)
         });
     }
 
@@ -117,10 +118,12 @@ export const useMeteorologicalStationsInfo = defineStore('meteorologicalStations
         })
         return meteorologicalJson
     }
+
     return {
         initMeteorologicalStationsMap,
         getMeteorologicalStationsData,
         meteorologicalStation,
-        currZoomMeteorologicalStationInfos
+        currZoomMeteorologicalStationInfos,
+        setCurrZoomMeteorologicalStationInfos
     }
 })

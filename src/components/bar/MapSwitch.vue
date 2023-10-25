@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import {computed, ref} from "vue"
+import {ref} from "vue"
 import {useMapStyle} from "@/store/mapStyle";
-import {useStyleAvatar} from "@/store/styleAvatar.ts";
 
 const switchLayer = (name: string) => {
   useMapStyle().getMapStyle(name);
 };
-const styleItems = computed(() => useStyleAvatar().styleItems)
 const showMapSwitch = ref(false)
 
 function switchMap() {
@@ -17,46 +15,50 @@ function switchMap() {
   <v-row class="switch-menu mx-0 my-0">
     <v-btn class="mb-3" icon
            @click="switchMap"
-           color="red"
            variant="flat"
     >
       <v-icon>mdi-map</v-icon>
     </v-btn>
-      <div v-show="showMapSwitch">
-        <v-btn fab class="ml-2" variant="elevated" color="primary" @click.stop="switchLayer('outdoors'),
+    <div v-show="showMapSwitch">
+      <v-btn fab class="ml-2" variant="elevated" color="primary" @click.stop="switchLayer('outdoors'),
         showMapSwitch = !showMapSwitch" icon>
-          <v-avatar
-              size="48px"
-              density="comfortable">
-            <v-img src="https://cdn.vuetifyjs.com/images/john.jpg">
-            </v-img>
-          </v-avatar>
-        </v-btn>
-
-        <v-btn class="ml-1" variant="flat" @click.stop="switchLayer('satellite'),
-        showMapSwitch = !showMapSwitch" icon>
-          <v-avatar
-              size="48px"
-          >
-            <v-img src="https://cdn.vuetifyjs.com/images/john.jpg">
-            </v-img>
-          </v-avatar>
-        </v-btn>
-        <v-btn class="ml-1" variant="flat" color="primary" @click.stop="switchLayer('light'),
-        showMapSwitch = !showMapSwitch" icon="mdi-home">
-          <v-img src="https://cdn.vuetifyjs.com/images/john.jpg">
+        <v-avatar
+          size="48px"
+          density="comfortable">
+          <v-img src="https://s2.loli.net/2023/10/23/rPVEFYdeInk8TjD.png">
           </v-img>
-        </v-btn>
-        <v-btn class="ml-4" variant="flat" color="primary" @click.stop="switchLayer('satellite-streets'),
+        </v-avatar>
+      </v-btn>
+
+      <v-btn class="ml-1" variant="elevated" @click.stop="switchLayer('dark'),
+        showMapSwitch = !showMapSwitch" icon>
+        <v-avatar
+          size="48px"
+        >
+          <v-img src="https://s2.loli.net/2023/10/23/76oYtpOQwIiU1Pm.png">
+          </v-img>
+        </v-avatar>
+      </v-btn>
+      <v-btn class="ml-1" variant="elevated" color="primary" @click.stop="switchLayer('light'),
         showMapSwitch = !showMapSwitch" icon="mdi-home">
-          <v-avatar
-              density="comfortable"
-              class="pa-0">
-            <v-img src="https://cdn.vuetifyjs.com/images/john.jpg">
-            </v-img>
-          </v-avatar>
-        </v-btn>
-      </div>
+
+        <v-avatar
+          size="48px"
+        >
+          <v-img src="https://s2.loli.net/2023/10/23/a3UpThNj8C5E7dl.png">
+          </v-img>
+        </v-avatar>
+      </v-btn>
+      <v-btn class="ml-1" variant="elevated" color="primary" @click.stop="switchLayer('satellite-streets'),
+        showMapSwitch = !showMapSwitch" icon="mdi-home">
+        <v-avatar
+          size="48px"
+        >
+          <v-img src="https://s2.loli.net/2023/10/23/GzLf3NSVC6EUKaX.png">
+          </v-img>
+        </v-avatar>
+      </v-btn>
+    </div>
   </v-row>
 </template>
 

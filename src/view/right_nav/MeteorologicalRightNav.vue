@@ -9,7 +9,19 @@ import RightMenuIcon from "@/components/bar/RightMenuIcon.vue";
 
 const drawerRight = ref(true)
 
-const currZoomMeteorologicalStationInfos = computed(() => useMeteorologicalStationsInfo().currZoomMeteorologicalStationInfos)
+function drawSwitch() {
+  drawerRight.value = !drawerRight.value
+}
+
+const currZoomMeteorologicalStationInfos = computed(() => {
+  const currDrawMode = computed(() => useMapboxDraw().currDrawMode).value
+  if (currDrawMode === 'draw_point' || currDrawMode === 'draw_polygon' || currDrawMode === 'draw_rectangle') {
+    return useMapboxDraw().drawSelectStationData
+  }
+  else {
+    return useMeteorologicalStationsInfo().currZoomMeteorologicalStationInfos
+  }
+})
 
 const drawRectangle = () => {
   useMapboxDraw().drawRectangle()
@@ -42,19 +54,10 @@ const openRightNav = () => {
   drawerRight.value = !drawerRight.value
   closeInfoBar()
 }
-onMounted(() => {
-  const pageHeight = document.documentElement.scrollHeight;
-
-  // 获取视口（浏览器窗口）的高度
-  const viewportHeight = window.innerHeight;
-
-  console.log('页面高度：', pageHeight);
-  console.log('视口高度：', viewportHeight);
-})
 </script>
 <template>
   <div>
-    <v-btn color="background" class="right-nav-open" @click="drawerRight = !drawerRight"
+    <v-btn color="background" class="right-nav-open" @click="drawSwitch"
            icon
     >
       <RightMenuIcon></RightMenuIcon>
@@ -62,116 +65,84 @@ onMounted(() => {
     <v-navigation-drawer
         location="right"
         width="364"
-        height="100%"
         v-model="drawerRight"
         color="background"
     >
-      <v-list>
-        <v-list-item class="d-flex justify-center">
-          <v-btn
-              icon="mdi-close"
-              @click="openRightNav"
-              variant="text"
-          >
-          </v-btn>
-          <!--          <v-btn @click.stop="drawPoint" variant="flat" class=""-->
-          <!--                 icon="mdi-vector-point"></v-btn>-->
-          <!--          <v-btn @click="drawRectangle"  variant="flat" class=""-->
-          <!--                 icon="mdi-rectangle-outline"></v-btn>-->
-          <!--          <v-btn @click="drawPolygon"  variant="flat" class=""-->
-          <!--                 icon="mdi-shape-polygon-plus"></v-btn>-->
-          <!--          <v-btn @click="deleteAll"  variant="flat" height="48" width="96"-->
-          <!--                 class="rounded-pill "-->
-          <!--                 icon="mdi-trash-can-outline"></v-btn>-->
-        </v-list-item>
+      <v-list height="90" class="px-4">
+
       </v-list>
       <v-list
           density="compact"
           class="px-4">
-        <!--                <v-expand-transition>-->
-        <!--                  <div >-->
-        <!--                    <v-radio-group>-->
-        <!--                      <v-card-item>-->
-        <!--                        <v-radio class="text-h6" label="按照半径" value="1"></v-radio>-->
-        <!--                      </v-card-item>-->
-        <!--                      <v-card-item>-->
-        <!--                        <v-radio class="text-h6" label="按照最近的台站" value="2"></v-radio>-->
-        <!--                      </v-card-item>-->
-        <!--                    </v-radio-group>-->
-        <!--                  </div>-->
-        <!--                </v-expand-transition>-->
-        <!--        <v-list-item-->
-        <!--            color="primary"-->
-        <!--            v-for="(info, index) in currZoomMeteorologicalStationInfos"-->
-        <!--            :key="index"-->
-        <!--            @click="openInfoBar"-->
-        <!--            class="rounded"-->
-        <!--            variant="plain"-->
-        <!--            :value="index + 1"-->
-        <!--        >-->
-        <!--          {{ info['station_name'] }}-->
-        <!--        </v-list-item>-->
-
         <v-list-item
-            class="py-0 rounded-xl"
+            v-for="(info, index) in currZoomMeteorologicalStationInfos"
+            :key="index"
+            @click="openInfoBar"
+            class="py-0 rounded-xl mt-2"
+            elevation="0" variant="flat"
+            :value="index + 1"
             density="compact"
             color="#00838F"
             base-color="#00838F"
-            elevation="2" variant="flat" value="1">
-          <template v-slot:prepend>
-            <v-icon>mdi-vector-point</v-icon>
-          </template>
+        >
           <template v-slot:append>
             <v-icon>mdi-vector-point</v-icon>
           </template>
-          <v-spacer></v-spacer>
-          <span>北京气象站</span>
-        </v-list-item>
-
-        <v-list-item
-            density="compact"
-            class="py-0 rounded-xl mt-2" elevation="2" variant="flat" value="1">
-          <template v-slot:prepend>
-            <v-icon>mdi-vector-point</v-icon>
-          </template>
-          <span>按照半径</span>
-        </v-list-item>
-
-        <v-list-item class="mt-2" elevation="2" variant="flat" value="1">
-          <template v-slot:prepend>
-            <v-icon>mdi-vector-point</v-icon>
-          </template>
-          <span>按照半径</span>
-        </v-list-item>
-
-        <v-list-item class="mt-2" elevation="2" variant="flat" value="1">
-          <template v-slot:prepend>
-            <v-icon>mdi-vector-point</v-icon>
-          </template>
-          <span>按照半径</span>
-        </v-list-item>
-
-        <v-list-item class="mt-2" elevation="2" variant="flat" value="1">
-          <template v-slot:prepend>
-            <v-icon>mdi-vector-point</v-icon>
-          </template>
-          <span>按照半径</span>
-        </v-list-item>
-
-        <v-list-item class="mt-2" elevation="2" variant="flat" value="1">
-          <template v-slot:prepend>
-            <v-icon>mdi-vector-point</v-icon>
-          </template>
-          <span>按照半径</span>
-        </v-list-item>
-
-        <v-list-item class="mt-2" elevation="2" variant="flat" value="1">
-          <template v-slot:prepend>
-            <v-icon>mdi-vector-point</v-icon>
-          </template>
-          <span>按照半径</span>
+          <span>{{ info['station_name'] }}气象站
+          </span>
+          <span><br></span>
+          <span>
+                  {{ info['station_type'] }}
+          </span>
         </v-list-item>
       </v-list>
+
+      <v-card style="position: absolute; top: 0px; right: 16px"
+              width="347"
+              elevation="4"
+              translate="yes"
+              color="background"
+              class="d-flex justify-center align-center rounded-0 pr-4"
+              height="90">
+        <v-btn
+            icon
+            @click="drawSwitch"
+            variant="text"
+        >
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+
+        <v-btn @click.stop="drawPoint"
+               variant="flat"
+               color="secondary"
+               icon="mdi-vector-point"
+               class="ml-1"
+        >
+        </v-btn>
+
+        <v-btn @click="drawRectangle"
+               variant="flat"
+               color="secondary"
+               icon="mdi-rectangle-outline"
+               class="ml-1"
+        >
+        </v-btn>
+        <v-btn @click="drawPolygon"
+               variant="flat"
+               color="secondary"
+               icon="mdi-shape-polygon-plus"
+               class="ml-1"
+        >
+        </v-btn>
+        <v-btn @click="deleteAll"
+               variant="flat"
+               color="secondary"
+               height="48" width="96"
+               class="rounded-pill ml-1"
+               icon="mdi-trash-can-outline"
+        >
+        </v-btn>
+      </v-card>
     </v-navigation-drawer>
     <InfoBar></InfoBar>
   </div>

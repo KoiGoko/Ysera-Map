@@ -44,26 +44,30 @@ export const useMapControl = defineStore('mapControl', () => {
         map.addControl(compassControl, 'bottom-right')
     }
 
-    function collapseControl(bottom: any, top: any, isCollapsed: boolean) {
+    const initBaseControl = (map: any) => {
+        initCompassControl(map)
+        initImageControl(map)
+        initZoomControl(map)
+        initRulerControl(map)
+    }
+
+    const collapseControl = (bottom: any, top: any, isCollapsed: boolean) => {
         controlBottom.value = bottom.value;
         controlRight.value = top.value;
         isControlCollapsed.value = isCollapsed;
-    }
+    };
 
-    function expandControl() {
+    const expandControl = () => {
         controlBottom.value = null;
         controlRight.value = null;
         isControlCollapsed.value = false;
-    }
+    };
 
     return {
-        initRulerControl,
-        initZoomControl,
-        initImageControl,
         collapseControl,
         expandControl,
-        initCompassControl,
-        isControlCollapsed
+        isControlCollapsed,
+        initBaseControl
     }
 })
 

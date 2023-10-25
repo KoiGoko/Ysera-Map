@@ -25,10 +25,12 @@ export const useNuclearStationsInfo = defineStore('nuclearStationsInfo', () => {
                     'step',
                     ['get', 'point_count'],
                     '#51bbd6',
-                    100,
+                    10,
                     '#f1f075',
-                    750,
-                    '#f28cb1'
+                    50,
+                    '#f28cb1',
+                    100,
+                    '#be074b'
                 ],
                 'circle-radius': [
                     'step',
@@ -39,7 +41,7 @@ export const useNuclearStationsInfo = defineStore('nuclearStationsInfo', () => {
                     750,
                     40
                 ]
-            }
+            },
         });
         map.addLayer({
             id: 'cluster-count',
@@ -58,7 +60,7 @@ export const useNuclearStationsInfo = defineStore('nuclearStationsInfo', () => {
             source: 'NuclearStationsData',
             filter: ['!', ['has', 'point_count']],
             paint: {
-                'circle-color': '#11b4da',
+                'circle-color': '#1140da',
                 'circle-radius': 4,
                 'circle-stroke-width': 1,
                 'circle-stroke-color': '#fff'
@@ -67,14 +69,12 @@ export const useNuclearStationsInfo = defineStore('nuclearStationsInfo', () => {
 
         map.on('click', 'unclustered-point', (e: any) => {
             const {coordinates} = e.features[0].geometry
-
             nuclearStation.value = e.features[0].properties
             const nuclear_stations_name = e.features[0].properties['nuclear_stations_name'];
             const country = e.features[0].properties['country'];
             const reactor_type = e.features[0].properties['reactor_type'];
             const latitude = e.features[0].properties['latitude'];
             const longitude = e.features[0].properties['longitude'];
-
             const popupContent = `
             <div style="width: 120px">
                 <h3>${nuclear_stations_name}核电站</h3>
@@ -83,19 +83,17 @@ export const useNuclearStationsInfo = defineStore('nuclearStationsInfo', () => {
                 <p><b>纬度</b>: ${latitude}</p>
                 <p><b>反应堆类型</b>: ${reactor_type}</p>
             </div>`;
-
             new mapboxgl.Popup()
                 .setLngLat(coordinates)
                 .setHTML(popupContent)
                 .setMaxWidth('300px')
                 .addTo(map);
         })
-
-        map.on('moveend', () => {
+        map.on('idle', () => {
             const features = map.queryRenderedFeatures({layers: ['unclustered-point']});
             currZoomNuclearStationInfos.value = features.map((feature: any) => feature.properties);
             console.log(currZoomNuclearStationInfos.value)
         });
     }
-    return {initNuclearStationsMap, nuclearStation}
+    return {initNuclearStationsMap, nuclearStation, currZoomNuclearStationInfos}
 })
