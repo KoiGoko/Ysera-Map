@@ -34,45 +34,50 @@ export const useMapboxDraw = defineStore('mapboxDraw', () => {
         draw.changeMode('draw_polygon');
         currDrawMode.value = draw.getMode()
     }
-
     const drawPoint = () => {
         draw.changeMode('draw_point');
         currDrawMode.value = draw.getMode()
     }
-
     const deleteAll = () => {
         draw.deleteAll();
-        console.log('删除', currDrawMode.value)
         if (currDrawMode.value === 'draw_point') {
             map.value.getStyle().layers.forEach((layer: any) => {
                 if (layer.id === 'meteorologicalStationsCircle') {
                     map.value.removeLayer(layer.id);
+                    map.value.removeSource(layer.source);
                 }
-                // if (layer.id === 'meteorologicalStationsCircleSource') {
-                //     map.value.removeSource(layer.id);
-                // }
             })
-        }
-        if (currDrawMode.value === 'draw_rectangle') {
-            console.log('draw_rectangle')
-        }
-        if (currDrawMode.value === 'draw_polygon') {
-            console.log('draw_polygon')
         }
         currDrawMode.value = 'deleteAll'
     }
 
     function drawEvent(map: any) {
-        map.on('draw.create', async function (e: any) {
-            const drawMode = draw.getMode()
+        const currZoomMeteorologicalStationInfos = computed(() => useMeteorologicalStationsInfo().currZoomMeteorologicalStationInfos)
+        map.on('draw.update', async function (e: any) {
+            const pointInsides = ref([])
             const coordinates = e.features[0].geometry.coordinates.slice();
-            const currZoomMeteorologicalStationInfos = computed(() => useMeteorologicalStationsInfo().currZoomMeteorologicalStationInfos)
+            console.log(coordinates)
 
-            if (drawMode === 'draw_point') {
+            if (currDrawMode.value === 'draw_rectangle' || currDrawMode.value === 'draw_polygon') {
+                currZoomMeteorologicalStationInfos.value.filter((item: any) => {
+                    const point = turf.point([item.longitude, item.latitude])
+                    const polygon = turf.polygon(coordinates)
+                    const pointInside = turf.booleanPointInPolygon(point, polygon)
+                    if (pointInside) {
+                        pointInsides.value.push(item)
+                    }
+                })
+            }
+            if (currDrawMode.value === 'draw_point') {
+                map.getStyle().layers.forEach((layer: any) => {
+                    if (layer.id === 'meteorologicalStationsCircle') {
+                        map.removeLayer(layer.id);
+                        map.removeSource(layer.source);
+                    }
+                })
+
                 const center = [coordinates[0], coordinates[1]];
                 const circle = turf.circle(center, circleRadius.value);
-
-                const pointInsides = ref([])
                 currZoomMeteorologicalStationInfos.value.filter((item: any) => {
                     const point = turf.point([item.longitude, item.latitude])
                     const centerPoint = turf.point(center)
@@ -81,12 +86,6 @@ export const useMapboxDraw = defineStore('mapboxDraw', () => {
                         pointInsides.value.push(item)
                     }
                 })
-                console.log(pointInsides.value)
-
-                drawSelectStationData.value = pointInsides.value
-
-                console.log(drawSelectStationData.value)
-
                 map.addSource('meteorologicalStationsCircleSource', {
                     type: 'geojson',
                     data: circle,
@@ -101,34 +100,74 @@ export const useMapboxDraw = defineStore('mapboxDraw', () => {
                         'line-width': 2,  // 使用 line-width 定义线的宽度
                     },
                 });
+            }
+            drawSelectStationData.value = pointInsides.value
+        })
 
-                map.on('style.load', () => {
-                    if (currDrawMode.value != 'deleteAll') {
-                        map.addSource('meteorologicalStationsCircleSource', {
-                            type: 'geojson',
-                            data: circle,
-                        })
-                        map.addLayer({
-                            id: 'meteorologicalStationsCircle',
-                            type: 'line',
-                            source: 'meteorologicalStationsCircleSource',
-                            paint: {
-                                'line-color': '#f1de0f',  // 使用 line-color 定义线的颜色
-                                'line-opacity': 1,  // 使用 line-opacity 定义线的透明度
-                                'line-width': 2,  // 使用 line-width 定义线的宽度
-                            },
-                        });
+        map.on('draw.create', async function (e: any) {
+            const drawMode = draw.getMode()
+            const coordinates = e.features[0].geometry.coordinates.slice();
+            console.log('矩形', coordinates)
+
+            const pointInsides = ref([])
+            if (drawMode === 'draw_point') {
+                const center = [coordinates[0], coordinates[1]];
+                const circle = turf.circle(center, circleRadius.value);
+                currZoomMeteorologicalStationInfos.value.filter((item: any) => {
+                    const point = turf.point([item.longitude, item.latitude])
+                    const centerPoint = turf.point(center)
+                    const pointInside = turf.distance(point, centerPoint, {units: 'kilometers'})
+                    if (pointInside <= circleRadius.value) {
+                        pointInsides.value.push(item)
+                    }
+                })
+                if (currDrawMode.value === 'draw_point') {
+                    map.addSource('meteorologicalStationsCircleSource', {
+                        type: 'geojson',
+                        data: circle,
+                    })
+                    map.addLayer({
+                        id: 'meteorologicalStationsCircle',
+                        type: 'line',
+                        source: 'meteorologicalStationsCircleSource',
+                        paint: {
+                            'line-color': '#f3bf1c',  // 使用 line-color 定义线的颜色
+                            'line-opacity': 1,  // 使用 line-opacity 定义线的透明度
+                            'line-width': 2,  // 使用 line-width 定义线的宽度
+                        },
+                    });
+                    map.on('style.load', () => {
+                        if (currDrawMode.value === 'draw_point') {
+                            map.addSource('meteorologicalStationsCircleSource', {
+                                type: 'geojson',
+                                data: circle,
+                            })
+                            map.addLayer({
+                                id: 'meteorologicalStationsCircle',
+                                type: 'line',
+                                source: 'meteorologicalStationsCircleSource',
+                                paint: {
+                                    'line-color': '#f3bf1c',  // 使用 line-color 定义线的颜色
+                                    'line-opacity': 1,  // 使用 line-opacity 定义线的透明度
+                                    'line-width': 2,  // 使用 line-width 定义线的宽度
+                                },
+                            });
+                        }
+                    });
+                }
+            }
+
+            if (drawMode === 'draw_rectangle' || drawMode === 'draw_polygon') {
+                currZoomMeteorologicalStationInfos.value.filter((item: any) => {
+                    const point = turf.point([item.longitude, item.latitude])
+                    const polygon = turf.polygon(coordinates)
+                    const pointInside = turf.booleanPointInPolygon(point, polygon)
+                    if (pointInside) {
+                        pointInsides.value.push(item)
                     }
                 })
             }
-
-            if (drawMode === 'draw_rectangle') {
-                console.log('draw_rectangle')
-            }
-
-            if (drawMode === 'draw_polygon') {
-                console.log('draw_polygon')
-            }
+            drawSelectStationData.value = pointInsides.value
         });
     }
 

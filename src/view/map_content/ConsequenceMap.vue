@@ -5,6 +5,7 @@ import '@mapbox-controls/ruler/src/index.css';
 import {useMapControl} from "@/store/mapControl.ts";
 import {useNuclearStationsInfo} from "@/store/nuclearStationsInfo.ts";
 import {useMapboxGeocoder} from "@/store/MapboxGeocoder.ts";
+import {useConsequenceData} from "@/store/consequenceData.ts";
 
 const mapRef = ref()
 const geocoderRef = ref()
@@ -15,11 +16,8 @@ const geocoder = useMapboxGeocoder().geocoder
 
 const initConsequenceMap = () => {
   const map = mapRef.value.map
-
-  useMapControl().initRulerControl(map)
-  useMapControl().initZoomControl(map)
-  useMapControl().initImageControl(map)
   geocoderRef.value.appendChild(geocoder.onAdd(map));
+  useConsequenceData().getDoseData()
 }
 </script>
 <template>
