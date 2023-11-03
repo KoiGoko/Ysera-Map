@@ -2,6 +2,11 @@ import {defineStore} from "pinia";
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
 import DrawRectangle from "mapbox-gl-draw-rectangle-mode";
+
+
+import {CircleMode, DragCircleMode} from 'mapbox-gl-draw-circle';
+
+
 import * as turf from '@turf/turf'
 import {computed, ref} from "vue";
 import {useMeteorologicalStationsInfo} from "@/store/meteorologicalStationsInfo.ts";
@@ -18,13 +23,15 @@ export const useMapboxDraw = defineStore('mapboxDraw', () => {
         modes: {
             ...MapboxDraw.modes,
             draw_rectangle: DrawRectangle,
+            draw_circle: CircleMode,
+            drag_drag_circle: DragCircleMode,
         },
     });
 
     const getMapInstance = (mapInstance: any) => {
         map.value = mapInstance
     }
-
+Flexpart
     const drawRectangle = () => {
         draw.changeMode('draw_rectangle');
         currDrawMode.value = draw.getMode()
@@ -92,17 +99,17 @@ export const useMapboxDraw = defineStore('mapboxDraw', () => {
                 })
                 map.addLayer({
                     id: 'meteorologicalStationsCircle',
-                    type: 'line',
+                    type: 'fill',  // 将类型改为 'fill'
                     source: 'meteorologicalStationsCircleSource',
                     paint: {
-                        'line-color': '#f3bf1c',  // 使用 line-color 定义线的颜色
-                        'line-opacity': 1,  // 使用 line-opacity 定义线的透明度
-                        'line-width': 2,  // 使用 line-width 定义线的宽度
+                        'fill-color': '#f3bf1c',  // 使用 fill-color 定义填充颜色
+                        'fill-opacity': 1,  // 使用 fill-opacity 定义填充颜色的透明度
                     },
                 });
             }
             drawSelectStationData.value = pointInsides.value
         })
+
 
         map.on('draw.create', async function (e: any) {
             const drawMode = draw.getMode()
@@ -176,6 +183,8 @@ export const useMapboxDraw = defineStore('mapboxDraw', () => {
         drawRectangle,
         drawPolygon,
         drawPoint,
+        drawCircle,
+        drawDragCircle,
         deleteAll,
         drawEvent,
         getMapInstance,

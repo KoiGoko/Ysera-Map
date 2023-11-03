@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Circle with Turf.js and Mapbox GL JS</title>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
+  <script src="https://unpkg.com/turf@6.3.0/turf.js"></script>
+  <style>
+    body { margin: 0; padding: 0; }
+    #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+  </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script>
+
+  mapboxgl.accessToken = 'pk.eyJ1Ijoia29pZ29rb3JvIiwiYSI6ImNsOXAxZDIzZDA0OHQ0MW1wMHd2Y3Rxa3IifQ.X9ACqkqRQ_m3IvwqsGYy0w'; // 在这里替换为你的 Mapbox Access Token
+
+  // 初始化地图
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [0, 0],
+    zoom: 2
+  });
+
+  // 初始化圆的中心坐标和半径
+  var circleCenter = [112, 65];
+  var circleRadius = 1000;
+
+  // 用 Turf.js 创建圆
+  var circle = turf.circle(circleCenter, circleRadius, {steps: 50, units: 'kilometers'});
+
+  // 在地图上绘制圆
+  map.on('load', function () {
+    map.addLayer({
+      id: 'circle',
+      type: 'fill',
+      source: {
+        type: 'geojson',
+        data: circle
+      },
+      paint: {
+        'fill-color': '#f00',
+        'fill-opacity': 0.5
+      }
+    });
+
+    // 添加拖动交互
+    map.on('mousedown', 'circle', function (event) {
+      // 阻止地图拖动
+      map.dragPan.disable();
+
+      var originalCoordinates = event.lngLat;
+
+      function updateCirclePosition(event) {
+        var newCoordinates = event.lngLat;
+        var offset = {
+          lng: newCoordinates.lng - originalCoordinates.lng,
+          lat: newCoordinates.lat - originalCoordinates.lat
+        };
+
+        // 更新圆的位置
+        circleCenter[0] += offset.lng;
+        circleCenter[1] += offset.lat;
+
+        circle = turf.circle(circleCenter, circleRadius, {steps: 50, units: 'kilometers'});
+
+        // 更新图层数据
+        map.getSource('circle').setData(circle);
+        originalCoordinates = newCoordinates;
+      }
+
+      function stopUpdatingPosition() {
+        map.off('mousemove', updateCirclePosition);
+        map.off('mouseup', stopUpdatingPosition);
+
+        // 恢复地图拖动
+        map.dragPan.enable();
+      }
+
+      map.on('mousemove', updateCirclePosition);
+      map.on('mouseup', stopUpdatingPosition);
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,7 +1,6 @@
 import {defineStore} from 'pinia';
 import {ref} from "vue";
 
-
 export const useMapStyle = defineStore('mapStyle', () => {
 
     const mapStyle = ref('mapbox://styles/mapbox/streets-v12')
@@ -17,7 +16,7 @@ export const useMapStyle = defineStore('mapStyle', () => {
         {name: 'navigation-night', value: 'mapbox://styles/mapbox/navigation-night-v1'},
     ])
 
-    const getMapStyle = (styleName: string) => {
+    const setMapStyle = (styleName: string) => {
         const selectedStyle = mapStyleList.value.find(style => style.name === styleName);
         if (selectedStyle) {
             mapStyle.value = selectedStyle.value;
@@ -25,5 +24,5 @@ export const useMapStyle = defineStore('mapStyle', () => {
             console.warn(`Map style '${styleName}' not found.`);
         }
     }
-    return {getMapStyle, mapStyle}
+    return {setMapStyle, mapStyle}
 })

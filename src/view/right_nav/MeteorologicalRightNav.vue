@@ -39,6 +39,10 @@ const drawPolygon = () => {
   useMapboxDraw().drawPolygon()
 }
 
+const drawCircle = () => {
+  useMapboxDraw().drawCircle()
+}
+
 const rightNavSubHeaderIconColor = computed(() => {
   return useGlobalColor().rightNavSubHeaderIconColor
 })
@@ -112,7 +116,7 @@ const openRightNav = () => {
           <v-icon>mdi-close</v-icon>
         </v-btn>
 
-        <v-btn @click.stop="drawPoint"
+        <v-btn @click.stop="drawCircle"
                variant="flat"
                color="secondary"
                icon="mdi-vector-point"

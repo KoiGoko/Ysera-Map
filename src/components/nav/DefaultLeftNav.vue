@@ -28,11 +28,7 @@ const toggleDrawer = () => {
         </v-btn>
       </v-list-item>
     </v-list>
-
-
     <template v-slot:append>
-
-
       <v-dialog width="500">
         <template v-slot:activator="{ props }">
           <v-list-item class="mb-4">

@@ -37,7 +37,6 @@ const closeInfoBar = () => {
     </v-card>
   </div>
 </template>
-
 <style scoped>
 .info-card {
   position: absolute;
