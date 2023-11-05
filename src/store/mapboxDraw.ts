@@ -31,7 +31,7 @@ export const useMapboxDraw = defineStore('mapboxDraw', () => {
     const getMapInstance = (mapInstance: any) => {
         map.value = mapInstance
     }
-Flexpart
+
     const drawRectangle = () => {
         draw.changeMode('draw_rectangle');
         currDrawMode.value = draw.getMode()

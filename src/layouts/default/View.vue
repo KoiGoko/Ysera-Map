@@ -1,28 +1,32 @@
 <template>
   <v-app class="NotoFont">
-    <!--map main-->
-    <div>
-      <router-view name="map"></router-view>
-    </div>
 
-    <v-main>
-      <router-view name="main"></router-view>
-    </v-main>
+    <div class="container">
+      <!-- 左侧抽屉 -->
+      <div class="drawer">
+        <router-view name="left"></router-view>
+      </div>
 
-    <div>
-      <router-view name="left"></router-view>
-    </div>
+      <!-- 地图主区域 -->
+      <div class="map-container">
+        <router-view name="map"></router-view>
+      </div>
 
-    <div>
-      <router-view name="right"></router-view>
-    </div>
+      <v-main>
+        <router-view name="main"></router-view>
+      </v-main>
 
-    <div>
-      <router-view name="top"></router-view>
-    </div>
+      <div>
+        <router-view name="right"></router-view>
+      </div>
 
-    <div>
-      <router-view name="bottom"></router-view>
+      <div>
+        <router-view name="top"></router-view>
+      </div>
+
+      <div>
+        <router-view name="bottom"></router-view>
+      </div>
     </div>
   </v-app>
 </template>
@@ -35,5 +39,18 @@
 
 .NotoFont {
   font-family: 'Noto Sans SC', sans-serif;
+}
+
+.container {
+  position: relative;
+  height: 100vh;
+  display: flex;
+}
+
+.map-container {
+  position: relative;
+  left: 80px;
+  width: calc(100% - 80px); /* 浏览器宽度减去抽屉宽度 */
+  height: 100%;
 }
 </style>

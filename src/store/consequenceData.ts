@@ -5,8 +5,8 @@ import axios from "axios";
 
 
 export const useConsequenceData = defineStore('consequenceData', () => {
-    const doseUrl = ref('http://test.opendap.org/dap/data/nc/sst.mnmean.nc.gz.ascii?lat')
-    const doseTiffUrl = ref('http://test.opendap.org/dap/data/nc/sst.mnmean.nc.gz.ascii?lat')
+    const doseUrl = ref('')
+    const doseTiffUrl = ref('')
 
 
 

@@ -32,13 +32,13 @@ const drawerRight = ref(true)
             <v-icon>mdi-close</v-icon>
           </v-btn>
           <v-divider vertical></v-divider>
-          <v-btn :color="rightNavSubHeaderIconColor" variant="outlined" class="ml-4" icon="mdi-vector-point"></v-btn>
-          <v-btn :color="rightNavSubHeaderIconColor" variant="outlined" class="ml-1"
+          <v-btn variant="outlined" class="ml-4" icon="mdi-vector-point"></v-btn>
+          <v-btn variant="outlined" class="ml-1"
                  icon="mdi-rectangle-outline"></v-btn>
-          <v-btn :color="rightNavSubHeaderIconColor" variant="outlined" class="ml-1"
+          <v-btn variant="outlined" class="ml-1"
                  icon="mdi-shape-polygon-plus"></v-btn>
 
-          <v-btn :color="rightNavSubHeaderIconColor" variant="outlined" height="48" width="96" class="rounded-pill ml-4"
+          <v-btn variant="outlined" height="48" width="96" class="rounded-pill ml-4"
                  icon="mdi-trash-can-outline"></v-btn>
         </v-list-subheader>
         <v-divider class="mt-2 mx-2 mb-2"></v-divider>

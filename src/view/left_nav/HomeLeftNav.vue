@@ -6,10 +6,5 @@ import DefaultLeftNav from "@/components/nav/DefaultLeftNav.vue";
 
 <template>
   <DefaultTemLeftNav></DefaultTemLeftNav>
-
   <DefaultLeftNav></DefaultLeftNav>
 </template>
-
-<style scoped>
-
-</style>

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {computed, onMounted, ref} from "vue";
 import {useMapboxDraw} from "@/store/mapboxDraw.ts";
-import {useGlobalColor} from "@/store/globalColor.ts";
 import {useInfoBar} from "@/store/infoBar.ts";
 import InfoBar from "@/components/bar/InfoBar.vue";
 import RightMenuIcon from "@/components/bar/RightMenuIcon.vue";
@@ -31,9 +30,6 @@ const drawPolygon = () => {
   useMapboxDraw().drawPolygon()
 }
 
-const rightNavSubHeaderIconColor = computed(() => {
-  return useGlobalColor().rightNavSubHeaderIconColor
-})
 
 const openInfoBar = () => {
   useInfoBar().openInfoBar()
@@ -63,27 +59,27 @@ const openRightNav = () => {
       <v-list height="90" class="px-4">
 
       </v-list>
-      <v-list
-          density="compact"
-          class="px-4">
-        <v-list-item
-            v-for="(info, index) in currZoomNuclearStationInfos"
-            :key="index"
-            @click="openInfoBar"
-            class="py-0 rounded-xl mt-2"
-            elevation="0" variant="flat"
-            :value="index + 1"
-            density="compact"
-            color="#00838F"
-            base-color="#00838F"
-        >
-          <template v-slot:append>
-            <v-icon>mdi-vector-point</v-icon>
-          </template>
-          <span>{{ info['nuclear_stations_name'] }}
-          </span>
-        </v-list-item>
-      </v-list>
+<!--      <v-list-->
+<!--          density="compact"-->
+<!--          class="px-4">-->
+<!--        <v-list-item-->
+<!--            v-for="(info, index) in currZoomNuclearStationInfos"-->
+<!--            :key="index"-->
+<!--            @click="openInfoBar"-->
+<!--            class="py-0 rounded-xl mt-2"-->
+<!--            elevation="0" variant="flat"-->
+<!--            :value="index + 1"-->
+<!--            density="compact"-->
+<!--            color="#00838F"-->
+<!--            base-color="#00838F"-->
+<!--        >-->
+<!--          <template v-slot:append>-->
+<!--            <v-icon>mdi-vector-point</v-icon>-->
+<!--          </template>-->
+<!--          <span>{{ info['nuclear_stations_name'] }}-->
+<!--          </span>-->
+<!--        </v-list-item>-->
+<!--      </v-list>-->
 
       <v-card style="position: absolute; top: 0px; right: 16px"
               width="347"

@@ -628,7 +628,7 @@
 
 "@mapbox-controls/compass@^1.0.1":
   version "1.0.1"
-  resolved "https://registry.npmjs.org/@mapbox-controls/compass/-/compass-1.0.1.tgz"
+  resolved "https://registry.npmmirror.com/@mapbox-controls/compass/-/compass-1.0.1.tgz"
   integrity sha512-Yd/Dfp6/dA+BltoPsN4H401KLc6C6a/rQ8xe2HWtKg9Rw9AiNbIMYQz3mxmhXIBfD8A2rVNMoAj02M5kTemh1g==
   dependencies:
     "@mapbox-controls/helpers" "1.0.1"
@@ -652,6 +652,11 @@
     "@turf/transform-rotate" "7.0.0-alpha.2"
     "@turf/transform-scale" "7.0.0-alpha.2"
     "@turf/transform-translate" "7.0.0-alpha.2"
+
+"@mapbox-controls/language@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npmmirror.com/@mapbox-controls/language/-/language-1.0.1.tgz"
+  integrity sha512-XtiVaQ4RN8X6xBRx2UWXd9IS5cBV3s78TZKygR35lVxodDOlBPvnsi/bz5cqETaA2RnQGpHPj5Z8SThzygqrxQ==
 
 "@mapbox-controls/ruler@^1.0.1":
   version "1.0.1"

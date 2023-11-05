@@ -8,7 +8,7 @@ export const useMapbox3DBuilds = defineStore('mapbox3DBuilds', () => {
       map.on('style.load', () => {
         // Insert the layer beneath any symbol layer.
         const layers = map.getStyle().layers;
-        const labelLayerId = layers.find((layer) => layer.type === 'symbol' && layer.layout['text-field']).id;
+        const labelLayerId = layers.find((layer: any) => layer.type === 'symbol' && layer.layout['text-field']).id;
 
         // The 'building' layer in the Mapbox Streets
         // vector tileset contains building height data

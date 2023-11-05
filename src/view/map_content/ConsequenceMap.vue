@@ -17,7 +17,7 @@ const geocoder = useMapboxGeocoder().geocoder
 const initConsequenceMap = () => {
   const map = mapRef.value.map
   geocoderRef.value.appendChild(geocoder.onAdd(map));
-  useConsequenceData().getDoseData()
+  // useConsequenceData().getDoseData()
 }
 </script>
 <template>

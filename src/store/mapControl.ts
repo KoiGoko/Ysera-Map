@@ -1,4 +1,3 @@
-import {ref} from "vue";
 import {defineStore} from "pinia";
 
 import RulerControl from '@mapbox-controls/ruler';
@@ -12,6 +11,7 @@ import '@mapbox-controls/image/src/index.css';
 
 import CompassControl from '@mapbox-controls/compass';
 import '@mapbox-controls/compass/src/index.css';
+import {ref} from "vue";
 
 
 export const useMapControl = defineStore('mapControl', () => {
@@ -20,15 +20,10 @@ export const useMapControl = defineStore('mapControl', () => {
     const imageControl = new ImageControl();
     const compassControl = new CompassControl();
 
-    const controlBottom = ref(null);
-    const controlRight = ref(null);
-    const isControlCollapsed = ref(false);
+    const offsetRight = ref('100px');
+    const offsetBottom = ref('20px');
+
     const initRulerControl = (map: any) => {
-        if (isControlCollapsed.value) {
-            const controlContainer = rulerControl.container;
-            controlContainer.style.position = 'absolute';
-            controlContainer.style.right = '400px';
-        }
         map.addControl(rulerControl, 'bottom-right')
     }
 
@@ -44,6 +39,7 @@ export const useMapControl = defineStore('mapControl', () => {
         map.addControl(compassControl, 'bottom-right')
     }
 
+
     const initBaseControl = (map: any) => {
         initCompassControl(map)
         initImageControl(map)
@@ -51,23 +47,6 @@ export const useMapControl = defineStore('mapControl', () => {
         initRulerControl(map)
     }
 
-    const collapseControl = (bottom: any, top: any, isCollapsed: boolean) => {
-        controlBottom.value = bottom.value;
-        controlRight.value = top.value;
-        isControlCollapsed.value = isCollapsed;
-    };
-
-    const expandControl = () => {
-        controlBottom.value = null;
-        controlRight.value = null;
-        isControlCollapsed.value = false;
-    };
-
-    return {
-        collapseControl,
-        expandControl,
-        isControlCollapsed,
-        initBaseControl
-    }
+    return {initBaseControl}
 })
 

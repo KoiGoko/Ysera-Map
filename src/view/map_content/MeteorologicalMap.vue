@@ -31,8 +31,8 @@ const initMeteorologicalMapData = (map: any) => {
 }
 const initMeteorologicalMap = async () => {
   const map = mapRef.value.map
-  initControlAndDraw(map)
-  initMeteorologicalMapData(map)
+  // initControlAndDraw(map)
+  // initMeteorologicalMapData(map)
 }
 
 </script>
