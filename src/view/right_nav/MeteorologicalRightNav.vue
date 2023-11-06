@@ -5,11 +5,10 @@ import {useInfoBar} from "@/store/infoBar.ts";
 import {useMeteorologicalStationsInfo} from "@/store/meteorologicalStationsInfo.ts";
 import InfoBar from "@/components/bar/InfoBar.vue";
 import RightMenuIcon from "@/components/bar/RightMenuIcon.vue";
-
 const drawerRight = ref(true)
-
-function drawSwitch() {
+const drawSwitch = () => {
   drawerRight.value = !drawerRight.value
+  useInfoBar().closeInfoBar()
 }
 
 const currZoomMeteorologicalStationInfos = computed(() => {
@@ -20,38 +19,20 @@ const currZoomMeteorologicalStationInfos = computed(() => {
     return useMeteorologicalStationsInfo().currZoomMeteorologicalStationInfos
   }
 })
-
 const drawRectangle = () => {
   useMapboxDraw().drawRectangle()
 }
-
 const deleteAll = () => {
   useMapboxDraw().deleteAll()
 }
-
 const drawPoint = () => {
   useMapboxDraw().drawPoint()
 }
-
 const drawPolygon = () => {
   useMapboxDraw().drawPolygon()
 }
-
-const drawCircle = () => {
-  useMapboxDraw().drawCircle()
-}
-
-
 const openInfoBar = () => {
   useInfoBar().openInfoBar()
-}
-
-const closeInfoBar = () => {
-  useInfoBar().closeInfoBar()
-}
-const openRightNav = () => {
-  drawerRight.value = !drawerRight.value
-  closeInfoBar()
 }
 </script>
 <template>
@@ -70,35 +51,36 @@ const openRightNav = () => {
       <v-list height="90" class="px-4">
 
       </v-list>
-<!--      <v-list-->
-<!--          density="compact"-->
-<!--          class="px-4">-->
-<!--        <v-list-item-->
-<!--            v-for="(info, index) in currZoomMeteorologicalStationInfos"-->
-<!--            :key="index"-->
-<!--            @click="openInfoBar"-->
-<!--            class="py-0 rounded-xl mt-2"-->
-<!--            elevation="0" variant="flat"-->
-<!--            :value="index + 1"-->
-<!--            density="compact"-->
-<!--            color="#00838F"-->
-<!--            base-color="#00838F"-->
-<!--        >-->
-<!--          <template v-slot:append>-->
-<!--            <v-icon>mdi-vector-point</v-icon>-->
-<!--          </template>-->
-<!--          <span>{{ info['station_name'] }}气象站-->
-<!--          </span>-->
-<!--          <span><br></span>-->
-<!--          <span>-->
-<!--                  {{ info['station_type'] }}-->
-<!--          </span>-->
-<!--        </v-list-item>-->
-<!--      </v-list>-->
+      <v-list
+          density="compact"
+          class="px-4">
+        <v-list-item
+            v-for="(info, index) in currZoomMeteorologicalStationInfos"
+            :key="index"
+            @click="openInfoBar"
+            class="py-0 rounded-xl mt-2"
+            elevation="0" variant="flat"
+            :value="index + 1"
+            density="compact"
+            color="#00838F"
+            base-color="#00838F"
+        >
+          <template v-slot:append>
+            <v-icon>mdi-vector-point</v-icon>
+          </template>
+          <span>
+            {{ info['station_name'] }}气象站
+          </span>
+          <span><br></span>
+          <span>
+            {{ info['station_type'] }}
+          </span>
+        </v-list-item>
+      </v-list>
 
-      <v-card style="position: absolute; top: 0px; right: 16px"
-              width="347"
-              elevation="4"
+      <v-card style="position: absolute; top: 0px; right: 0px"
+              width="364"
+              elevation="2"
               translate="yes"
               color="background"
               class="d-flex justify-center align-center rounded-0 pr-4"
@@ -111,7 +93,7 @@ const openRightNav = () => {
           <v-icon>mdi-close</v-icon>
         </v-btn>
 
-        <v-btn @click.stop="drawCircle"
+        <v-btn @click.stop="drawPoint"
                variant="flat"
                color="secondary"
                icon="mdi-vector-point"
@@ -146,7 +128,6 @@ const openRightNav = () => {
     <InfoBar></InfoBar>
   </div>
 </template>
-
 <style scoped>
 .right-nav-open {
   position: absolute;

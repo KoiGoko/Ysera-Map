@@ -1,14 +1,10 @@
 <script setup lang="ts">
 import {computed, ref} from "vue";
 import {useInfoBar} from "@/store/infoBar.ts";
-
-const closeInfoBar1 = ref(true);
-
 const infoBarStatus = computed(() => useInfoBar().infoBarStatus)
 const closeInfoBar = () => {
   useInfoBar().closeInfoBar()
 }
-
 </script>
 <template>
   <div v-show="infoBarStatus">

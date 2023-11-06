@@ -183,8 +183,6 @@ export const useMapboxDraw = defineStore('mapboxDraw', () => {
         drawRectangle,
         drawPolygon,
         drawPoint,
-        drawCircle,
-        drawDragCircle,
         deleteAll,
         drawEvent,
         getMapInstance,

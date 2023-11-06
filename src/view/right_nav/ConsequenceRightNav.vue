@@ -16,36 +16,50 @@ const drawerRight = ref(true)
     </v-btn>
     <v-navigation-drawer
         location="right"
-        width="364"
+        width="420"
         height="100%"
         v-model="drawerRight"
-        color="primary"
+        color="white"
+        class="pa-2"
     >
-      <v-list>
-        <v-list-subheader elevation="4" class="justify-start align-center">
-          <v-btn
-              icon
-              @click.stop="drawerRight = !drawerRight"
-              color="primary"
-              variant="flat"
-          >
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-          <v-divider vertical></v-divider>
-          <v-btn variant="outlined" class="ml-4" icon="mdi-vector-point"></v-btn>
-          <v-btn variant="outlined" class="ml-1"
-                 icon="mdi-rectangle-outline"></v-btn>
-          <v-btn variant="outlined" class="ml-1"
-                 icon="mdi-shape-polygon-plus"></v-btn>
+      <v-list-subheader color="black"
+                        class="d-flex justify-center"
+      >
+        <h1>Ysera Map灾害模拟分析</h1>
+      </v-list-subheader>
+      <v-divider class="mt-1"></v-divider>
+      <v-list-item>
+        <v-list-item-subtitle color="red">第一步：选择模拟地点</v-list-item-subtitle>
+        <v-list-item class="px-0 py-0">
+          经度 <input style="width: 96px; border: 1px">
+          维度 <input style="width: 96px; border: 1px">
+        </v-list-item>
+        <v-list-item class="px-0 py-0">
+          或者选择地图上的点
+          <v-btn width="96" color="red" variant="flat" class="rounded-pill"></v-btn>
+        </v-list-item>
+      </v-list-item>
+      <v-list-item class="mt-2">
+        <v-list-item-subtitle color="red">第二步：选择事故源项</v-list-item-subtitle>
+        <v-list-item class="px-0 py-0 mt-2">
+          <v-select
+              density="compact"
+              clearable
+              chips
+              :items="['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming'
+                      ,'California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming'
+              ]"
+              variant="solo"
+          ></v-select>
+        </v-list-item>
+      </v-list-item>
 
-          <v-btn variant="outlined" height="48" width="96" class="rounded-pill ml-4"
-                 icon="mdi-trash-can-outline"></v-btn>
-        </v-list-subheader>
-        <v-divider class="mt-2 mx-2 mb-2"></v-divider>
-        <v-list class="px-2">
-        </v-list>
-
-      </v-list>
+      <v-list-item class="mt-2">
+        <v-list-item-subtitle color="red">第三步：选择模拟开始时间</v-list-item-subtitle>
+        <v-list-item class="px-0 py-0 mt-2">
+          <v-date-picker></v-date-picker>
+        </v-list-item>
+      </v-list-item>
     </v-navigation-drawer>
   </div>
 </template>
@@ -55,5 +69,9 @@ const drawerRight = ref(true)
   position: absolute;
   top: 8px;
   right: 8px;
+}
+
+.font-size {
+  font-size: 10px;
 }
 </style>

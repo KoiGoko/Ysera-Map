@@ -17,7 +17,7 @@ interface MeteorologicalStationProperties {
 }
 
 export const useMeteorologicalStationsInfo = defineStore('meteorologicalStationsInfo', () => {
-    const meteorologicalStationsData = ref('http://127.0.0.1:8001/me_stations_info');
+    const meteorologicalStationsData = ref('http://127.0.0.1:8001/me/stations');
 
     const initialCircleRadius = 4;
     const meteorologicalStationsColor = ref('#0D47A1');

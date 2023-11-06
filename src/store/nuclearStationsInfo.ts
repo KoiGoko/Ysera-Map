@@ -3,7 +3,7 @@ import {defineStore} from "pinia";
 import mapboxgl from "mapbox-gl";
 
 export const useNuclearStationsInfo = defineStore('nuclearStationsInfo', () => {
-    const NuclearStationsData = ref('http://127.0.0.1:8002/nu_stations_info');
+    const NuclearStationsData = ref('http://127.0.0.1:8001/nu/stations');
     const nuclearStation = ref(null)
     const currZoomNuclearStationInfos = ref()
     const initNuclearStationsMap = (map: any) => {

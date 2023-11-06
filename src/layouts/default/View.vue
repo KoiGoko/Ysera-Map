@@ -43,12 +43,12 @@
 
 .container {
   position: relative;
-  height: 100vh;
   display: flex;
+  width: auto;
+  height: 100vh;
 }
-
 .map-container {
-  position: relative;
+  position: absolute;
   left: 80px;
   width: calc(100% - 80px); /* 浏览器宽度减去抽屉宽度 */
   height: 100%;
