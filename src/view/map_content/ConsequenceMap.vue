@@ -3,6 +3,7 @@ import {computed, ref} from "vue";
 import {useMapOption} from "@/store/mapOption.ts";
 import {useMapControl} from "@/store/mapControl.ts";
 import {useMapboxGeocoder} from "@/store/MapboxGeocoder.ts";
+import {useConsequenceData} from "@/store/consequenceData.ts";
 
 const mapRef = ref()
 const geocoderRef = ref()
@@ -14,6 +15,7 @@ const initConsequenceMap = () => {
   const geocoder = useMapboxGeocoder().geocoder
   geocoderRef.value.appendChild(geocoder.onAdd(map));
   useMapControl().initBaseControl(map)
+  useConsequenceData().initMapInstance(map)
 }
 </script>
 <template>

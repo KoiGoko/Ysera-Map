@@ -1,9 +1,15 @@
 <script setup lang="ts">
-import {ref} from "vue";
+import {computed, ref, watch} from "vue";
+import {useConsequenceData} from "@/store/consequenceData.ts";
 import RightMenuIcon from "@/components/bar/RightMenuIcon.vue";
 
 const drawerRight = ref(true)
-
+const initMaker = () => {
+  useConsequenceData().initMaker()
+}
+const closeInitMaker = () => {
+  useConsequenceData().closeInitMaker()
+}
 </script>
 <template>
 
@@ -36,7 +42,10 @@ const drawerRight = ref(true)
         </v-list-item>
         <v-list-item class="px-0 py-0">
           或者选择地图上的点
-          <v-btn width="96" color="red" variant="flat" class="rounded-pill"></v-btn>
+          <v-btn @click="initMaker" width="96" color="red" variant="flat" class="rounded-pill"></v-btn>
+          <v-btn @click="closeInitMaker" height="48" width="48" color="red" variant="flat"
+                 icon>
+          </v-btn>
         </v-list-item>
       </v-list-item>
       <v-list-item class="mt-2">
